@@ -14,6 +14,7 @@ const SINGLE = {
 
 const CONGVIEC = {
 	CONGVIEC: lazy(() => import('../pages/presentation/quanlycongviec/WorkManagementPage')),
+	DANHSACH: lazy(() => import('../pages/presentation/danhsachcongviec/DanhSachCongViecPage')),
 	DAUVIEC: lazy(() => import('../pages/presentation/dauviec/DauViecPage')),
 	// THANGKETQUA: lazy(() => import('../pages/presentation/single-pages/SingleFluidPage')),
 	// MOCKHENTHUONG: lazy(() => import('../pages/presentation/single-pages/SingleFluidPage')),
@@ -219,6 +220,15 @@ const presentation = [
 	{
 		path: demoPages.quanLyCongViec.subMenu.congViec.path,
 		element: <CONGVIEC.CONGVIEC />,
+		exact: true,
+	},
+
+	/**
+	 * Trang danh sách công việc
+	 */
+	{
+		path: demoPages.quanLyCongViec.subMenu.danhSach.path,
+		element: <CONGVIEC.DANHSACH />,
 		exact: true,
 	},
 

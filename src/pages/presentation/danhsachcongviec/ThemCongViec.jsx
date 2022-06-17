@@ -19,7 +19,7 @@ import Popovers from '../../../components/bootstrap/Popovers';
 import Button from '../../../components/bootstrap/Button';
 import Icon from '../../../components/icon/Icon';
 
-const DauViecForm = ({
+const ThemCongViec = ({
 	setUpcomingEventsEditOffcanvas = Function,
 	upcomingEventsEditOffcanvas = false,
 	handleUpcomingEdit = Function,
@@ -220,18 +220,18 @@ const DauViecForm = ({
 	);
 };
 
-DauViecForm.propTypes = {
+ThemCongViec.propTypes = {
 	setUpcomingEventsEditOffcanvas: PropTypes.func,
 	upcomingEventsEditOffcanvas: PropTypes.bool,
 	handleUpcomingEdit: PropTypes.func,
 	titleModal: PropTypes.string,
 };
 
-DauViecForm.defaultProps = {
+ThemCongViec.defaultProps = {
 	setUpcomingEventsEditOffcanvas: Function,
 	upcomingEventsEditOffcanvas: false,
 	handleUpcomingEdit: Function,
 	titleModal: '',
 };
 
-export default DauViecForm;
+export default ThemCongViec;

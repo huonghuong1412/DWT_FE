@@ -17,6 +17,7 @@ import ExtrasHeader from '../pages/common/Headers/ExtrasHeader';
 import DefaultHeader from '../pages/common/Headers/DefaultHeader';
 import WorkManagementHeader from '../pages/common/Headers/WorkManagementHeader';
 import DauViecHeader from '../pages/common/Headers/DauViecHeader';
+import DanhSachCongViecHeader from '../pages/common/Headers/DanhSachCongViecHeader';
 
 const headers = [
 	{ path: layoutMenu.pageLayout.subMenu.onlySubheader.path, element: null, exact: true },
@@ -196,6 +197,13 @@ const headers = [
 	{
 		path: demoPages.quanLyCongViec.subMenu.congViec.path,
 		element: <WorkManagementHeader />,
+		exact: true,
+	},
+
+	// danh sach cong viec
+	{
+		path: demoPages.quanLyCongViec.subMenu.danhSach.path,
+		element: <DanhSachCongViecHeader />,
 		exact: true,
 	},
 

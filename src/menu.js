@@ -78,6 +78,12 @@ export const demoPages = {
 				path: '/quan-ly-cong-viec/cong-viec',
 				icon: 'ViewArray',
 			},
+			danhSach: {
+				id: 'danhSach',
+				text: 'Danh sách',
+				path: '/quan-ly-cong-viec/danh-sach',
+				icon: 'ViewArray',
+			},
 			dauViec: {
 				id: 'dauViec',
 				text: 'Đầu việc',

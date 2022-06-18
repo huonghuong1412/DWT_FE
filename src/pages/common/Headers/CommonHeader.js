@@ -4,7 +4,7 @@ import CommonHeaderChat from './CommonHeaderChat';
 import Search from '../../../components/Search';
 import CommonHeaderRight from './CommonHeaderRight';
 
-const DauViecHeader = () => {
+const CommonHeader = () => {
 	return (
 		<Header>
 			<HeaderLeft>
@@ -15,4 +15,4 @@ const DauViecHeader = () => {
 	);
 };
 
-export default DauViecHeader;
+export default CommonHeader;

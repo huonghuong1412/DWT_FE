@@ -74,7 +74,7 @@ export const demoPages = {
 		subMenu: {
 			congViec: {
 				id: 'congViec',
-				text: 'Công việc',
+				text: 'Tổng quan',
 				path: '/quan-ly-cong-viec/cong-viec',
 				icon: 'ViewArray',
 			},
@@ -88,6 +88,24 @@ export const demoPages = {
 				id: 'dauViec',
 				text: 'Đầu việc',
 				path: '/quan-ly-cong-viec/dau-viec',
+				icon: 'ViewDay',
+			},
+			danhSachCongViecPhongBan: {
+				id: 'danhSachCongViecPhongBan',
+				text: 'DSCV phòng ban',
+				path: '/quan-ly-cong-viec/tong-quan-phong-ban',
+				icon: 'ViewDay',
+			},
+			chiTietCongViecPhongBan: {
+				id: 'chiTietCongViecPhongBan',
+				text: 'CTCV phòng ban',
+				path: '/quan-ly-cong-viec/chi-tiet-phong-ban',
+				icon: 'ViewDay',
+			},
+			cauHinh: {
+				id: 'cauHinh',
+				text: 'Cấu hình',
+				path: '/quan-ly-cong-viec/cau-hinh',
 				icon: 'ViewDay',
 			},
 			thangKetQua: {

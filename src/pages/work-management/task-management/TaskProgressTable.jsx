@@ -36,10 +36,10 @@ import PaginationButtons, {
 } from '../../../components/PaginationButtons';
 import useSortableData from '../../../hooks/useSortableData';
 import useDarkMode from '../../../hooks/useDarkMode';
-import DauViecForm from '../dauviec/DauViecForm';
+import SubTaskForm from '../subtask/SubTaskForm';
 
 // eslint-disable-next-line react/prop-types
-const WorkProgressTable = ({ isFluid }) => {
+const TaskProgressTable = ({ isFluid }) => {
 	const { themeStatus, darkModeStatus } = useDarkMode();
 
 	// BEGIN :: Upcoming Events
@@ -248,7 +248,7 @@ const WorkProgressTable = ({ isFluid }) => {
 				/>
 			</Card>
 
-			<DauViecForm
+			<SubTaskForm
 				setUpcomingEventsEditOffcanvas={setUpcomingEventsEditOffcanvas}
 				upcomingEventsEditOffcanvas={upcomingEventsEditOffcanvas}
 				handleUpcomingEdit={handleUpcomingEdit}
@@ -428,4 +428,4 @@ const WorkProgressTable = ({ isFluid }) => {
 	);
 };
 
-export default WorkProgressTable;
+export default TaskProgressTable;

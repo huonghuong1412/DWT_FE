@@ -2,31 +2,31 @@ import React from 'react';
 import Card, { CardBody } from '../../../components/bootstrap/Card';
 import Icon from '../../../components/icon/Icon';
 
-const WorkCount = () => {
+const TaskCount = () => {
 	const dataWorks = [
 		{
 			id: 1,
 			title: 'Công việc của tôi',
 			number: 45,
-			icon: '',
+			icon: 'Person',
 		},
 		{
 			id: 2,
 			title: 'Công việc đã giao',
 			number: 12,
-			icon: '',
+			icon: 'PersonCheck',
 		},
 		{
 			id: 3,
 			title: 'Công việc được giao',
 			number: 8,
-			icon: '',
+			icon: 'PersonPlus',
 		},
 		{
 			id: 4,
 			title: 'Yêu cầu chờ duyệt',
 			number: 15,
-			icon: '',
+			icon: 'PersonX',
 		},
 	];
 
@@ -70,4 +70,4 @@ const WorkCount = () => {
 	);
 };
 
-export default WorkCount;
+export default TaskCount;

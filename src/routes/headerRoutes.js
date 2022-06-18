@@ -15,9 +15,7 @@ import UtilitiesHeader from '../pages/common/Headers/UtilitiesHeader';
 import IconHeader from '../pages/common/Headers/IconHeader';
 import ExtrasHeader from '../pages/common/Headers/ExtrasHeader';
 import DefaultHeader from '../pages/common/Headers/DefaultHeader';
-import WorkManagementHeader from '../pages/common/Headers/WorkManagementHeader';
-import DauViecHeader from '../pages/common/Headers/DauViecHeader';
-import DanhSachCongViecHeader from '../pages/common/Headers/DanhSachCongViecHeader';
+import CommonHeader from '../pages/common/Headers/CommonHeader';
 
 const headers = [
 	{ path: layoutMenu.pageLayout.subMenu.onlySubheader.path, element: null, exact: true },
@@ -196,21 +194,42 @@ const headers = [
 	// quan ly cong viec
 	{
 		path: demoPages.quanLyCongViec.subMenu.congViec.path,
-		element: <WorkManagementHeader />,
+		element: <CommonHeader />,
 		exact: true,
 	},
 
 	// danh sach cong viec
 	{
 		path: demoPages.quanLyCongViec.subMenu.danhSach.path,
-		element: <DanhSachCongViecHeader />,
+		element: <CommonHeader />,
 		exact: true,
 	},
 
 	// quan ly dau viec
 	{
 		path: demoPages.quanLyCongViec.subMenu.dauViec.path,
-		element: <DauViecHeader />,
+		element: <CommonHeader />,
+		exact: true,
+	},
+
+	// công việc phòng ban chi tiết - danh sách dạng bảng
+	{
+		path: demoPages.quanLyCongViec.subMenu.danhSachCongViecPhongBan.path,
+		element: <CommonHeader />,
+		exact: true,
+	},
+
+	// công việc phòng ban chi tiết - danh sách chi tiết dạng cột
+	{
+		path: demoPages.quanLyCongViec.subMenu.chiTietCongViecPhongBan.path,
+		element: <CommonHeader />,
+		exact: true,
+	},
+
+	// công việc phòng ban chi tiết - cấu hình
+	{
+		path: demoPages.quanLyCongViec.subMenu.cauHinh.path,
+		element: <CommonHeader />,
 		exact: true,
 	},
 

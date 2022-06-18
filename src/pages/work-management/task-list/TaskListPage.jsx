@@ -24,7 +24,7 @@ import Avatar, { AvatarGroup } from '../../../components/Avatar';
 import USERS from '../../../common/data/userDummyData';
 import Icon from '../../../components/icon/Icon';
 import Progress from '../../../components/bootstrap/Progress';
-import ThemCongViec from './ThemCongViec';
+import AddTaskForm from './AddTaskForm';
 
 // eslint-disable-next-line react/prop-types
 const Item = ({ name, teamName, attachCount, taskCount, percent, dueDate, ...props }) => {
@@ -116,7 +116,7 @@ const Item = ({ name, teamName, attachCount, taskCount, percent, dueDate, ...pro
 	);
 };
 
-const DanhSachCongViecPage = () => {
+const TaskListPage = () => {
 	const dataWork = [
 		{
 			id: 1,
@@ -181,7 +181,7 @@ const DanhSachCongViecPage = () => {
 				</div> */}
 				<div className='row'>
 					<div className='col-12'>
-						<div className='display-4 fw-bold py-3'>Danh sách công việc</div>
+						<div className='display-6 fw-bold py-3'>Danh sách công việc</div>
 					</div>
 					<div className='col-md-6 col-xl-4 col-sm-12'>
 						<Card stretch>
@@ -339,7 +339,7 @@ const DanhSachCongViecPage = () => {
 				</div>
 				<div className='row mt-3'>
 					<div className='col-12'>
-						<div className='display-4 fw-bold py-3'>Công việc phòng tôi</div>
+						<div className='display-6 fw-bold py-3'>Công việc phòng tôi</div>
 					</div>
 					<Item
 						name='Theme'
@@ -398,7 +398,7 @@ const DanhSachCongViecPage = () => {
 						</Card>
 					</div>
 				</div>
-				<ThemCongViec
+				<AddTaskForm
 					setUpcomingEventsEditOffcanvas={setUpcomingEventsEditOffcanvas}
 					upcomingEventsEditOffcanvas={upcomingEventsEditOffcanvas}
 					handleUpcomingEdit={handleUpcomingEdit}
@@ -409,4 +409,4 @@ const DanhSachCongViecPage = () => {
 	);
 };
 
-export default DanhSachCongViecPage;
+export default TaskListPage;

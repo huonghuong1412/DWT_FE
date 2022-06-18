@@ -5,7 +5,7 @@ import CardAlert from '../../../components/CardAlert/CardAlert';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import { demoPages } from '../../../menu';
-import WorkProgressTable from '../quanlycongviec/WorkProgressTable';
+import TaskProgressTable from '../task-management/TaskProgressTable';
 
 // eslint-disable-next-line react/prop-types
 // const RenderWorkCount = ({ id, label, number, status }) => {
@@ -33,11 +33,11 @@ import WorkProgressTable from '../quanlycongviec/WorkProgressTable';
 // 	);
 // };
 
-const DauViecPage = () => {
+const SubTaskPage = () => {
 	return (
 		<PageWrapper title={demoPages.quanLyCongViec.subMenu.dauViec.text}>
 			<Page container='fluid'>
-				<div className='row'>
+				<div className='row mt-4'>
 					{workCountData.map((item) => (
 						// eslint-disable-next-line react/jsx-props-no-spreading
 						// <RenderWorkCount key={item.id} {...item} />
@@ -49,7 +49,7 @@ const DauViecPage = () => {
 				</div>
 				<div className='row h-100'>
 					<div className='col-12'>
-						<WorkProgressTable isFluid />
+						<TaskProgressTable isFluid />
 					</div>
 				</div>
 			</Page>
@@ -57,4 +57,4 @@ const DauViecPage = () => {
 	);
 };
 
-export default DauViecPage;
+export default SubTaskPage;

@@ -12,16 +12,16 @@ const SINGLE = {
 	FLUID: lazy(() => import('../pages/presentation/single-pages/SingleFluidPage')),
 };
 
-const CONGVIEC = {
-	CONGVIEC: lazy(() => import('../pages/presentation/quanlycongviec/WorkManagementPage')),
-	DANHSACH: lazy(() => import('../pages/presentation/danhsachcongviec/DanhSachCongViecPage')),
-	DAUVIEC: lazy(() => import('../pages/presentation/dauviec/DauViecPage')),
-	// THANGKETQUA: lazy(() => import('../pages/presentation/single-pages/SingleFluidPage')),
-	// MOCKHENTHUONG: lazy(() => import('../pages/presentation/single-pages/SingleFluidPage')),
-	// TRANGTHAICONGVIEC: lazy(() => import('../pages/presentation/single-pages/SingleFluidPage')),
-	// QUYTRINH: lazy(() => import('../pages/presentation/single-pages/SingleFluidPage')),
-	// HUONGDANNGHIEPVU: lazy(() => import('../pages/presentation/single-pages/SingleFluidPage')),
-	// BIEUMAU: lazy(() => import('../pages/presentation/single-pages/SingleFluidPage')),
+const TASK = {
+	TASKMANAGEMENT: lazy(() =>
+		import('../pages/work-management/task-management/TaskManagementPage'),
+	),
+	TASKLIST: lazy(() => import('../pages/work-management/task-list/TaskListPage')),
+	SUBTASK: lazy(() => import('../pages/work-management/subtask/SubTaskPage')),
+	TASKLISTDEPARTMENT: lazy(() =>
+		import('../pages/work-management/task-department/TaskDepartmentPage'),
+	),
+	CONFIGURE: lazy(() => import('../pages/work-management/configure/WorkConfigurePage')),
 };
 
 const LIST = {
@@ -219,7 +219,7 @@ const presentation = [
 	 */
 	{
 		path: demoPages.quanLyCongViec.subMenu.congViec.path,
-		element: <CONGVIEC.CONGVIEC />,
+		element: <TASK.TASKMANAGEMENT />,
 		exact: true,
 	},
 
@@ -228,7 +228,7 @@ const presentation = [
 	 */
 	{
 		path: demoPages.quanLyCongViec.subMenu.danhSach.path,
-		element: <CONGVIEC.DANHSACH />,
+		element: <TASK.TASKLIST />,
 		exact: true,
 	},
 
@@ -237,7 +237,24 @@ const presentation = [
 	 */
 	{
 		path: demoPages.quanLyCongViec.subMenu.dauViec.path,
-		element: <CONGVIEC.DAUVIEC />,
+		element: <TASK.SUBTASK />,
+		exact: true,
+	},
+	/**
+	 * trang quản lý danh sách công việc theo phòng ban - danh sách dạng bảng
+	 */
+	{
+		path: demoPages.quanLyCongViec.subMenu.danhSachCongViecPhongBan.path,
+		element: <TASK.TASKLISTDEPARTMENT />,
+		exact: true,
+	},
+
+	/**
+	 * trang công việc phòng ban chi tiết - cấu hình
+	 */
+	{
+		path: demoPages.quanLyCongViec.subMenu.cauHinh.path,
+		element: <TASK.CONFIGURE />,
 		exact: true,
 	},
 

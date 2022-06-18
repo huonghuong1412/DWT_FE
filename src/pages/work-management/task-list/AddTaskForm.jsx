@@ -19,7 +19,7 @@ import Popovers from '../../../components/bootstrap/Popovers';
 import Button from '../../../components/bootstrap/Button';
 import Icon from '../../../components/icon/Icon';
 
-const ThemCongViec = ({
+const AddTaskForm = ({
 	setUpcomingEventsEditOffcanvas = Function,
 	upcomingEventsEditOffcanvas = false,
 	handleUpcomingEdit = Function,
@@ -220,18 +220,18 @@ const ThemCongViec = ({
 	);
 };
 
-ThemCongViec.propTypes = {
+AddTaskForm.propTypes = {
 	setUpcomingEventsEditOffcanvas: PropTypes.func,
 	upcomingEventsEditOffcanvas: PropTypes.bool,
 	handleUpcomingEdit: PropTypes.func,
 	titleModal: PropTypes.string,
 };
 
-ThemCongViec.defaultProps = {
+AddTaskForm.defaultProps = {
 	setUpcomingEventsEditOffcanvas: Function,
 	upcomingEventsEditOffcanvas: false,
 	handleUpcomingEdit: Function,
 	titleModal: '',
 };
 
-export default ThemCongViec;
+export default AddTaskForm;

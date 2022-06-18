@@ -10,7 +10,7 @@ import Button from '../../../components/bootstrap/Button';
 import Chart from '../../../components/extras/Chart';
 // import CountProgressInfo from './CountProgressInfo';
 
-const WorkProgress = () => {
+const TaskProgress = () => {
 	const chartOptions = {
 		chart: {
 			type: 'donut',
@@ -177,4 +177,4 @@ const WorkProgress = () => {
 	);
 };
 
-export default WorkProgress;
+export default TaskProgress;

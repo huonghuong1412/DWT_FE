@@ -7,10 +7,10 @@ import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import { demoPages } from '../../../menu';
 import CommonTodo from '../../common/CommonTodo';
-import WorkCount from './WorkCount';
-import WorkProgress from './WorkProgress';
-import WorkProgressTable from './WorkProgressTable';
-import WorkRecent from './WorkRecent';
+import TaskCount from './TaskCount';
+import TaskProgress from './TaskProgress';
+import TaskProgressTable from './TaskProgressTable';
+import TaskRecent from './TaskRecent';
 
 // eslint-disable-next-line react/prop-types
 // const RenderWorkCount = ({ id, label, number, status }) => {
@@ -60,13 +60,13 @@ const WorkManagementPage = () => {
 				</div>
 				<div className='row'>
 					<div className='col-xl-4'>
-						<WorkProgress />
+						<TaskProgress />
 					</div>
 					<div className='col-xl-3'>
-						<WorkCount />
+						<TaskCount />
 					</div>
 					<div className='col-xl-5'>
-						<WorkRecent />
+						<TaskRecent />
 					</div>
 				</div>
 				<div className='row'>
@@ -81,7 +81,7 @@ const WorkManagementPage = () => {
 				</div>
 				<div className='row'>
 					<div className='col-xl-8'>
-						<WorkProgressTable />
+						<TaskProgressTable />
 					</div>
 					<div className='col-xl-4'>
 						<CommonTodo titleProps='Vấn đề của Bảo' />

@@ -12,7 +12,7 @@ import { demoPages } from '../../../menu';
 import useDarkMode from '../../../hooks/useDarkMode';
 
 // eslint-disable-next-line react/prop-types
-const WorkRecentItem = ({ status, title, subtitle, info, reason }) => {
+const TaskRecentItem = ({ status, title, subtitle, info, reason }) => {
 	const { darkModeStatus } = useDarkMode();
 
 	const _status =
@@ -54,7 +54,7 @@ const WorkRecentItem = ({ status, title, subtitle, info, reason }) => {
 	);
 };
 
-const WorkRecent = () => {
+const TaskRecent = () => {
 	const dataWorks = [
 		{
 			id: 1,
@@ -111,7 +111,7 @@ const WorkRecent = () => {
 				<div className='row g-4'>
 					{dataWorks.map((i) => (
 						// eslint-disable-next-line react/jsx-props-no-spreading
-						<WorkRecentItem key={i.id} {...i} />
+						<TaskRecentItem key={i.id} {...i} />
 					))}
 				</div>
 			</CardBody>
@@ -119,4 +119,4 @@ const WorkRecent = () => {
 	);
 };
 
-export default WorkRecent;
+export default TaskRecent;

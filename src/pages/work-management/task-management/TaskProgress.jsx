@@ -152,19 +152,19 @@ const TaskProgress = () => {
 					<div className='col-xl-4 col-md-12'>
 						<div className='row'>
 							<div className='col-xl-12 col-md-4 col-sm-4 mt-2'>
-								<div className='d-flex align-items-center'>
+								<div className='d-flex align-items-center justify-content-center'>
 									<div className='p-4' style={{ background: '#46BCAA' }} />
 									<span style={{ marginLeft: '1rem' }}>10 đầu việc (14%)</span>
 								</div>
 							</div>
 							<div className='col-xl-12 col-md-4 col-sm-4 mt-2'>
-								<div className='d-flex align-items-center'>
+								<div className='d-flex align-items-center justify-content-center'>
 									<div className='p-4' style={{ background: '#6C5DD3' }} />
 									<span style={{ marginLeft: '1rem' }}>10 đầu việc (14%)</span>
 								</div>
 							</div>
 							<div className='col-xl-12 col-md-4 col-sm-4 mt-2'>
-								<div className='d-flex align-items-center'>
+								<div className='d-flex align-items-center justify-content-center'>
 									<div className='p-4' style={{ background: '#FFA2C0' }} />
 									<span style={{ marginLeft: '1rem' }}>10 đầu việc (14%)</span>
 								</div>

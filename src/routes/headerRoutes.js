@@ -232,6 +232,12 @@ const headers = [
 		element: <CommonHeader />,
 		exact: true,
 	},
+	// công việc phòng ban chi tiết - báo cáo
+	{
+		path: demoPages.quanLyCongViec.subMenu.baoCao.path,
+		element: <CommonHeader />,
+		exact: true,
+	},
 
 	// {
 	// 	path: demoPages.singlePages.subMenu.fluidSingle.path,

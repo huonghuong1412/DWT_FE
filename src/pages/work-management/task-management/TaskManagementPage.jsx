@@ -73,7 +73,7 @@ const WorkManagementPage = () => {
 					{workCountData.map((item) => (
 						// eslint-disable-next-line react/jsx-props-no-spreading
 						// <RenderWorkCount key={item.id} {...item} />
-						<div className='col-xl-3 col-md-6 col-sm-12'>
+						<div key={item.id} className='col-xl-3 col-md-6 col-sm-12'>
 							{/* eslint-disable-next-line react/jsx-props-no-spreading */}
 							<CardAlert key={item.id} {...item} />
 						</div>

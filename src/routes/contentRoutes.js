@@ -18,10 +18,11 @@ const TASK = {
 	),
 	TASKLIST: lazy(() => import('../pages/work-management/task-list/TaskListPage')),
 	SUBTASK: lazy(() => import('../pages/work-management/subtask/SubTaskPage')),
-	TASKLISTDEPARTMENT: lazy(() =>
-		import('../pages/work-management/task-department/TaskDepartmentPage'),
-	),
+	// TASKLISTDEPARTMENT: lazy(() =>
+	// 	import('../pages/work-management/task-department/TaskDepartmentPage'),
+	// ),
 	CONFIGURE: lazy(() => import('../pages/work-management/configure/WorkConfigurePage')),
+	REPORT: lazy(() => import('../pages/work-management/report-department/ReportDepartmentPage')),
 };
 
 const LIST = {
@@ -243,11 +244,11 @@ const presentation = [
 	/**
 	 * trang quản lý danh sách công việc theo phòng ban - danh sách dạng bảng
 	 */
-	{
-		path: demoPages.quanLyCongViec.subMenu.danhSachCongViecPhongBan.path,
-		element: <TASK.TASKLISTDEPARTMENT />,
-		exact: true,
-	},
+	// {
+	// 	path: demoPages.quanLyCongViec.subMenu.danhSachCongViecPhongBan.path,
+	// 	element: <TASK.TASKLISTDEPARTMENT />,
+	// 	exact: true,
+	// },
 
 	/**
 	 * trang công việc phòng ban chi tiết - cấu hình
@@ -255,6 +256,14 @@ const presentation = [
 	{
 		path: demoPages.quanLyCongViec.subMenu.cauHinh.path,
 		element: <TASK.CONFIGURE />,
+		exact: true,
+	},
+	/**
+	 * trang công việc phòng ban chi tiết - báo cáo
+	 */
+	{
+		path: demoPages.quanLyCongViec.subMenu.baoCao.path,
+		element: <TASK.REPORT />,
 		exact: true,
 	},
 

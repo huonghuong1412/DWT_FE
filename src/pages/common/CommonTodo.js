@@ -88,6 +88,41 @@ const CommonTodo = ({ titleProps }) => {
 			date: moment().add(32, 'day'),
 			badge: TODO_BADGES.MEETING,
 		},
+		{
+			id: 8,
+			status: false,
+			title: 'End of month meeting',
+			date: moment().add(32, 'day'),
+			badge: TODO_BADGES.MEETING,
+		},
+		{
+			id: 9,
+			status: false,
+			title: 'End of month meeting',
+			date: moment().add(32, 'day'),
+			badge: TODO_BADGES.MEETING,
+		},
+		{
+			id: 10,
+			status: false,
+			title: 'End of month meeting',
+			date: moment().add(32, 'day'),
+			badge: TODO_BADGES.MEETING,
+		},
+		{
+			id: 11,
+			status: false,
+			title: 'End of month meeting',
+			date: moment().add(32, 'day'),
+			badge: TODO_BADGES.MEETING,
+		},
+		{
+			id: 12,
+			status: false,
+			title: 'End of month meeting',
+			date: moment().add(32, 'day'),
+			badge: TODO_BADGES.MEETING,
+		},
 	]);
 	const listLength = list.length;
 	const completeTaskLength = list.filter((i) => i.status).length;
@@ -136,7 +171,7 @@ const CommonTodo = ({ titleProps }) => {
 		},
 	});
 	return (
-		<Card stretch>
+		<Card stretch className='border-bottom'>
 			<CardHeader>
 				<CardLabel icon='AssignmentTurnedIn' iconColor='danger'>
 					<CardTitle tag='h4' className='h5'>
@@ -229,7 +264,7 @@ const CommonTodo = ({ titleProps }) => {
 					</Modal>
 				</CardActions>
 			</CardHeader>
-			<CardBody isScrollable>
+			<CardBody isScrollable style={{ minHeight: '30rem', padding: '0 0 2rem 0' }}>
 				<Todo list={list} setList={setList} />
 			</CardBody>
 		</Card>

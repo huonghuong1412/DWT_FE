@@ -257,7 +257,7 @@ const SubTaskPage = () => {
 									</div>
 									<div className='mt-4 mb-4 d-flex align-items-center justify-content-between'>
 										<div className='display-6' style={{ fontSize: '1.3rem' }}>
-											Cho phép khách hàng chụo ảnh trưng bày
+											Cho phép khách hàng chụp ảnh trưng bày
 										</div>
 										<div>
 											<FormGroup id='workName' className='col-12'>

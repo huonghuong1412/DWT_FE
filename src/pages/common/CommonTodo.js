@@ -171,7 +171,10 @@ const CommonTodo = ({ titleProps }) => {
 		},
 	});
 	return (
-		<Card stretch className='border-bottom'>
+		<Card
+			stretch
+			className='border-bottom'
+			style={{ paddingLeft: '1rem', paddingRight: '1rem' }}>
 			<CardHeader>
 				<CardLabel icon='AssignmentTurnedIn' iconColor='danger'>
 					<CardTitle tag='h4' className='h5'>

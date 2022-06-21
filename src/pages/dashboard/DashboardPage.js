@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-
-import { useTour } from '@reactour/tour';
+import { dashboardMenu } from '../../menu';
 import PageWrapper from '../../layout/PageWrapper/PageWrapper';
 import SubHeader, {
 	SubHeaderLeft,
@@ -137,21 +136,6 @@ const AnswerCustomer = ({ id, imgWebp, img, name, job, value, color }) => {
 };
 
 const DashboardPage = () => {
-	/**
-	 * Tour Start
-	 */
-	const { setIsOpen } = useTour();
-	useEffect(() => {
-		if (localStorage.getItem('tourModalStarted') !== 'shown') {
-			setTimeout(() => {
-				setIsOpen(true);
-				localStorage.setItem('tourModalStarted', 'shown');
-			}, 3000);
-		}
-		return () => {};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
 	const { themeStatus, darkModeStatus } = useDarkMode();
 
 	const TABS = {
@@ -617,7 +601,7 @@ const DashboardPage = () => {
 	];
 
 	return (
-		<PageWrapper>
+		<PageWrapper title={dashboardMenu.dashboard.text}>
 			<SubHeader>
 				<SubHeaderLeft>
 					<span className='h4 mb-0 fw-bold'>Bộ lọc</span>

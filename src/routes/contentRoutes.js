@@ -21,6 +21,9 @@ const TASK = {
 	TASKLISTDEPARTMENT: lazy(() =>
 		import('../pages/work-management/task-department/TaskDepartmentPage'),
 	),
+	DETAIL_TASK_DEPARTMENT: lazy(() =>
+		import('../pages/work-management/detail-task-department/DetailTaskDepartment'),
+	),
 	CONFIGURE: lazy(() => import('../pages/work-management/configure/WorkConfigurePage')),
 	REPORT: lazy(() => import('../pages/work-management/report-department/ReportDepartmentPage')),
 };
@@ -247,6 +250,14 @@ const presentation = [
 	{
 		path: demoPages.quanLyCongViec.subMenu.danhSachCongViecPhongBan.path,
 		element: <TASK.TASKLISTDEPARTMENT />,
+		exact: true,
+	},
+	/**
+	 * trang quản lý danh sách công việc theo phòng ban - công việc dạng theo đầu nhiệm vụ
+	 */
+	{
+		path: demoPages.quanLyCongViec.subMenu.chiTietCongViecPhongBan.path,
+		element: <TASK.DETAIL_TASK_DEPARTMENT />,
 		exact: true,
 	},
 

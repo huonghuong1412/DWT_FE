@@ -3,7 +3,7 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Form, Dropdown } from 'react-bootstrap';
-// import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash';
 import { Container, Draggable } from 'react-smooth-dnd';
 import Button from '../../../components/bootstrap/Button';
 import Card, {
@@ -129,13 +129,27 @@ const Column = (props) => {
 			title: newCardTitle.trim(),
 			cover: null,
 		};
-		const newColumn = { ...column };
-		// const newColumn = cloneDeep(column);
+		// const newColumn = { ...column };
+		const newColumn = cloneDeep(column);
 		newColumn.cards.push(data);
 		newColumn.cardOrder.push(data.id);
 		// setColumns(newColumn);
-		// onAddCardToColumn(newColumn);
+		onUpdateColumn(newColumn);
 		setNewCardTitle('');
+	};
+
+	const onUpdateCard = (cardToUpdate) => {
+		const newColumn = { ...column };
+		const cardIndexToUpdate = newColumn.cards.findIndex((item) => item.id === cardToUpdate.id);
+		if (cardToUpdate._destroy) {
+			// delete card
+			newColumn.cards.splice(cardIndexToUpdate, 1);
+		} else {
+			// update card
+			newColumn.cards.splice(cardIndexToUpdate, 1, cardToUpdate);
+		}
+		onUpdateColumn(newColumn);
+		// console.log(newColumn);
 	};
 
 	const handleColumnTitleChange = useCallback((e) => {
@@ -203,7 +217,7 @@ const Column = (props) => {
 					{cards.map((card) => {
 						return (
 							<Draggable key={card.id}>
-								<CardItem {...card} key={card.id} />
+								<CardItem card={card} key={card.id} onUpdateCard={onUpdateCard} />
 							</Draggable>
 						);
 					})}

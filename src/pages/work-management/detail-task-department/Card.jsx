@@ -1,16 +1,14 @@
-import React from 'react';
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable react/prop-types */
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Button, Dropdown, Form } from 'react-bootstrap';
 import Avatar, { AvatarGroup } from '../../../components/Avatar';
-import Card, { CardActions, CardBody, CardHeader } from '../../../components/bootstrap/Card';
+import Card, { CardBody, CardHeader, CardTitle } from '../../../components/bootstrap/Card';
 import UserImage4 from '../../../assets/img/wanna/wanna4.png';
 import UserImage4Webp from '../../../assets/img/wanna/wanna4.webp';
 import Icon from '../../../components/icon/Icon';
-import Dropdown, {
-	DropdownItem,
-	DropdownMenu,
-	DropdownToggle,
-} from '../../../components/bootstrap/Dropdown';
-import Button from '../../../components/bootstrap/Button';
+import './style.scss';
 
 const USER = {
 	id: 4,
@@ -32,41 +30,84 @@ const Time = styled.div`
 	align-items: center;
 `;
 
-const CardTitle = styled.span`
-	font-weight: 500;
-	font-size: 16px;
-	color: #000000;
-`;
+// const CardTitle = styled.span`
+// 	font-weight: 500;
+// 	font-size: 16px;
+// 	color: #000000;
+// `;
 
-// eslint-disable-next-line react/prop-types
-const CardItem = ({ title }) => {
-	// assign employee
+const CardItem = (props) => {
+	const { card, onUpdateCard } = props;
+	const [cardTitle, setCardTitle] = useState('');
+	const [openFormEditCard, setOpenFormEditCard] = useState(false);
+
+	const handleOpenFormEditCard = (e) => {
+		setOpenFormEditCard(true);
+		// selectAllInlineText(e);
+		e.target.focus();
+	};
+
+	const handleCloseFormEditCard = () => {
+		setOpenFormEditCard(false);
+	};
+
+	useEffect(() => {
+		setCardTitle(card.title);
+	}, [card.title]);
+
+	const handleCardTitleChange = useCallback((e) => {
+		setCardTitle(e.target.value);
+	}, []);
+
+	const handleSubmitCardChangeTitle = () => {
+		const newCard = { ...card, title: cardTitle };
+		onUpdateCard(newCard);
+		handleCloseFormEditCard();
+	};
+
 	return (
 		<Card style={{ borderTop: '1px solid #BFC6CD' }}>
 			<CardHeader style={{ padding: '1rem' }} className='d-flex align-items-baseline'>
-				<CardTitle>{title}</CardTitle>
-				<CardActions>
+				{!openFormEditCard && <CardTitle>{card.title}</CardTitle>}
+				{openFormEditCard && (
+					<div className='card-title'>
+						<Form.Control
+							className='rounded-0 content-aditable-card'
+							name='cardTitle'
+							size='sm'
+							type='text'
+							as='textarea'
+							value={cardTitle}
+							onChange={handleCardTitleChange}
+							// onBlur={handleCloseFormEditCard}
+						/>
+						<Button
+							className='add-column-button'
+							color='info'
+							onClick={handleSubmitCardChangeTitle}>
+							Sửa đầu việc
+						</Button>
+					</div>
+				)}
+				<div className='column-dropdown-actions'>
 					<Dropdown>
-						<DropdownToggle hasIcon={false}>
-							<Button
-								color='light'
-								isLink
-								hoverShadow='default'
-								icon='MoreHoriz'
-								size='lg'
-								aria-label='More Actions'
-								style={{ padding: 0 }}
-							/>
-						</DropdownToggle>
-						<DropdownMenu isAlignmentEnd>
-							<DropdownItem>
-								<Button icon='Send' tag='a' href='mailto:example@site.com'>
-									Gửi
-								</Button>
-							</DropdownItem>
-						</DropdownMenu>
+						<Dropdown.Toggle
+							id='dropdown-button-drop-end'
+							size='sm'
+							className='dropdown-btn'
+						/>
+						<Dropdown.Menu>
+							<Dropdown.Item>Xem danh sách</Dropdown.Item>
+							<Dropdown.Item onClick={handleOpenFormEditCard}>
+								Sửa công việc
+							</Dropdown.Item>
+							<Dropdown.Item
+								onClick={() => onUpdateCard({ ...card, _destroy: true })}>
+								Xoá công việc
+							</Dropdown.Item>
+						</Dropdown.Menu>
 					</Dropdown>
-				</CardActions>
+				</div>
 			</CardHeader>
 			<CardBody style={{ paddingTop: 0 }}>
 				<div className='d-flex align-items-center justify-content-between'>

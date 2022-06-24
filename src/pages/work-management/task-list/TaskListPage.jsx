@@ -34,7 +34,6 @@ const Item = ({ name, teamName, attachCount, taskCount, percent, dueDate, ...pro
 		[navigate],
 	);
 	return (
-		// eslint-disable-next-line react/jsx-props-no-spreading
 		<div className='col-md-6 col-xl-4 col-sm-12' {...props}>
 			<Card stretch onClick={handleOnClickToProjectPage} className='cursor-pointer'>
 				<CardHeader>
@@ -51,13 +50,11 @@ const Item = ({ name, teamName, attachCount, taskCount, percent, dueDate, ...pro
 				<CardBody>
 					<div className='row g-2 mb-3'>
 						<div className='col-auto'>
-							{/* <Badge color={darkModeStatus ? 'light' : 'dark'} isLight> */}
 							<Badge color='light' isLight>
 								<Icon icon='AttachFile' /> {attachCount}
 							</Badge>
 						</div>
 						<div className='col-auto'>
-							{/* <Badge color={darkModeStatus ? 'light' : 'dark'} isLight> */}
 							<Badge color='light' isLight>
 								<Icon icon='TaskAlt' /> {taskCount}
 							</Badge>
@@ -174,11 +171,6 @@ const TaskListPage = () => {
 				</SubHeaderRight>
 			</SubHeader>
 			<Page container='fluid'>
-				{/* <div className='row'>
-					<div className='col-12'>
-						<h1>Danh sách công việc</h1>
-					</div>
-				</div> */}
 				<div className='row'>
 					<div className='col-12'>
 						<div className='display-6 fw-bold py-3'>Danh sách công việc</div>
@@ -331,7 +323,6 @@ const TaskListPage = () => {
 					{dataWork.map((item) => {
 						return (
 							<div className='col-xl-3 col-md-6 col-sm-12'>
-								{/* eslint-disable-next-line react/jsx-props-no-spreading */}
 								<CardAlert key={item.id} {...item} />
 							</div>
 						);

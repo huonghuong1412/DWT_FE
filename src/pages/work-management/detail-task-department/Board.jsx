@@ -78,6 +78,7 @@ const TaskBoard = () => {
 		setColumns(newColumns);
 		setBoard(newBoard);
 		setNewColumnTitle('');
+		handleToggleNewColumnForm();
 	};
 
 	const onColumnDrop = (dropResult) => {
@@ -100,6 +101,26 @@ const TaskBoard = () => {
 		}
 	};
 
+	const onUpdateColumn = (columnUpdate) => {
+		const newColumns = [...columns];
+		const columnIndexToUpdate = newColumns.findIndex((item) => item.id === columnUpdate.id);
+		if (columnUpdate._destroy) {
+			// delete column
+			newColumns.splice(columnIndexToUpdate, 1);
+		} else {
+			// update column
+			newColumns.splice(columnIndexToUpdate, 1, columnUpdate);
+			// newColumns.map((item) =>
+			// 	item.id === columnUpdate.id ? { ...item, title: columnUpdate.title } : item,
+			// );
+		}
+		const newBoard = { ...board };
+		newBoard.columnOrder = newColumns.map((column) => column.id);
+		newBoard.columns = newColumns;
+		setColumns(newColumns);
+		setBoard(newBoard);
+	};
+
 	return (
 		<div className='d-flex board-content'>
 			<Container
@@ -114,11 +135,16 @@ const TaskBoard = () => {
 				}}>
 				{columns.map((column) => (
 					<Draggable key={column.id}>
-						<Column onCardDrop={onCardDrop} column={column} />
+						<Column
+							onCardDrop={onCardDrop}
+							onUpdateColumn={onUpdateColumn}
+							column={column}
+						/>
 					</Draggable>
 				))}
 			</Container>
 			<Card style={{ marginRight: 20, minWidth: '360px', height: 'fit-content' }}>
+				{/* {!openNewColumnForm && ( */}
 				<CardHeader
 					style={{ background: '#eee' }}
 					className='d-block w-100 cursor-pointer py-0'
@@ -130,6 +156,7 @@ const TaskBoard = () => {
 						</div>
 					</CardLabel>
 				</CardHeader>
+				{/* )} */}
 
 				{openNewColumnForm && (
 					<CardBody>
@@ -141,7 +168,6 @@ const TaskBoard = () => {
 								size='sm'
 								type='text'
 								placeholder='Nhập công việc'
-								autoFocus
 								value={newColumnTitle}
 								onChange={handleNewColumnTitleChange}
 								onKeyDown={(e) => e.key === 'Enter' && addNewColumn()}

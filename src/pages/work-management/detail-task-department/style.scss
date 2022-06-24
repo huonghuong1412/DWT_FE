@@ -1,12 +1,12 @@
 .board-content {
-	height: 75vh;
-	overflow-y: hidden;
+	// height: 75vh;
+	// overflow-y: hidden;
 
 	.card-column {
 		margin-right: 20px;
 		width: 360px;
-		height: 75vh;
-		overflow-y: scroll;
+		// height: 75vh;
+		// overflow-y: scroll;
 	}
 
 	.card-ghost {
@@ -34,6 +34,7 @@
 		margin: 5px 45px 5px 5px;
 		min-width: 360px;
 	}
+
 	.add-column-input {
 		background-color: #fff;
 		width: 100%;
@@ -43,18 +44,96 @@
 		margin-bottom: 5px;
 		outline: none;
 	}
+
 	.add-column-input:focus {
 		outline: none;
 		box-shadow: none;
 	}
+
 	.add-column-button {
 		border-radius: 2px;
 		padding: 8px 12px;
 	}
+
 	.add-column-icon {
 		margin-left: 10px;
 	}
+
 	.add-card-input {
 		min-height: 75px;
 	}
+
+	.column-dropdown-actions {
+		button.dropdown-btn {
+			border-radius: 2px;
+			padding-left: 12px;
+			padding-right: 12px;
+			background-color: transparent;
+			border: none;
+			color: #212529;
+			font-size: 20px;
+			&:focus, &:active {
+				outline: none;
+				box-shadow: none;
+			}
+			&:after {
+				content: '...';
+				border: none;
+			}
+			&:hover {
+				background-color: darken($color: #eee, $amount: 10);
+				border-color: darken($color: #eee, $amount: 10);
+			}
+		}
+		.dropdown-menu {
+			padding: 0;
+			min-width: 200px;
+			border-radius: 2px;
+			a.dropdown-item {
+				padding: 1rem;
+				font-size: 14px;
+				border-radius: 2px;
+				&:not(:last-child) {
+					border-bottom: 1px solid darken($color: #eee, $amount: 10);
+				}
+				&:hover{
+					background-color: darken($color: #eee, $amount: 10);
+					color: inherit;
+				}
+			}
+		}
+	}
+}
+
+.modal {
+	.content-modal {
+		font-size: 16px;
+		text-align: center;
+	}
+	
+	.header-modal {
+		font-size: 18px;
+		text-align: center;
+		width: 100%;
+	}
+}
+
+.content-aditable {
+	background-color: inherit;
+	width: 100%;
+	border: 0;
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+	outline: none;
+	padding: 8px;
+	border-radius: 5px;
+	color: #212529;
+	box-shadow: none;
+}
+
+.content-aditable:focus {
+	outline: none;
+	box-shadow: none;
+	// border: 1px solid rgb(225, 221, 221);
 }

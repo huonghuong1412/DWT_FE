@@ -4,7 +4,7 @@ import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import { demoPages } from '../../../menu';
 import TaskDepartmentTable from './TaskDepartmentTable';
 
-const SubTaskPage = () => {
+const TaskDepartmentPage = () => {
 	return (
 		<PageWrapper title={demoPages.quanLyCongViec.subMenu.danhSachCongViecPhongBan.text}>
 			<Page container='fluid'>
@@ -23,4 +23,4 @@ const SubTaskPage = () => {
 	);
 };
 
-export default SubTaskPage;
+export default TaskDepartmentPage;

@@ -149,10 +149,10 @@ const TaskBoard = () => {
 					style={{ background: '#eee' }}
 					className='d-block w-100 cursor-pointer py-0'
 					onClick={handleToggleNewColumnForm}>
-					<CardLabel className='py-4'>
+					<CardLabel className='py-4 w-100'>
 						<div className='d-flex align-items-center'>
 							<Icon size='lg' icon='PlusCircle' />
-							<CardTitle className='mx-2'>Thêm công việc</CardTitle>
+							<CardTitle className='mx-2 w-100'>Thêm công việc</CardTitle>
 						</div>
 					</CardLabel>
 				</CardHeader>

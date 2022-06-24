@@ -30,7 +30,7 @@
 		"no-param-reassign": "off",
 		"no-empty": "warn",
 		"import/no-extraneous-dependencies": "warn",
-		"react/jsx-props-no-spreading": "warn",
+		"react/jsx-props-no-spreading": "off",
 		"react/no-unescaped-entities": ["error", { "forbid": [">", "}"] }],
 		"jsx-a11y/label-has-associated-control": [
 			"warn",

@@ -155,155 +155,137 @@ const TaskDepartmentTable = ({ isFluid }) => {
 									<td className='text-center'>{taskItem.percentComplete}%</td>
 									<td>{taskItem.note}</td>
 								</tr>
-								{expandState[taskItem.id] ? (
-									<tr>
-										<td colSpan='10'>
-											{expandedRows.includes(taskItem.id) ? (
-												<table className='table sub-table table-modern'>
-													<thead>
-														<tr>
-															<th
-																style={{
-																	color: '#A562EC',
-																	paddingLeft: 0,
-																}}>
-																<div className='d-flex align-items-center'>
-																	<span className='mx-2 block'>
-																		Tên đầu việc
-																	</span>
-																</div>
-															</th>
-															<th>STT</th>
-															<th className='text-center'>Owner</th>
-															<th className='text-center'>
-																Trạng thái
-															</th>
-															<th className='text-center'>
-																Thời gian thực hiện
-															</th>
-															<th className='text-center'>
-																Số điểm KPI
-															</th>
-															<th className='text-center'>
-																Tỉ trọng hoàn thành
-															</th>
-															<th className='text-center'>
-																Tên n.vụ phòng ban
-															</th>
-															<th className='text-center'>Đầu mục</th>
-															<th className='text-center'>
-																Thứ tự ưu tiên
-															</th>
-															<th className='text-center'>Báo cáo</th>
-														</tr>
-													</thead>
-													<tbody>
-														{taskItem.subTaskList.map(
-															(subTaskItem, index) => (
-																<tr key={subTaskItem.id}>
-																	<td
+								<tr>
+									<td colSpan='10'>
+										{expandedRows.includes(taskItem.id) && (
+											<table className='table sub-table table-modern'>
+												<thead>
+													<tr>
+														<th
+															style={{
+																color: '#A562EC',
+																paddingLeft: 0,
+															}}>
+															<div className='d-flex align-items-center'>
+																<span className='mx-2 block'>
+																	Tên đầu việc
+																</span>
+															</div>
+														</th>
+														<th>STT</th>
+														<th className='text-center'>Owner</th>
+														<th className='text-center'>Trạng thái</th>
+														<th className='text-center'>
+															Thời gian thực hiện
+														</th>
+														<th className='text-center'>Số điểm KPI</th>
+														<th className='text-center'>
+															Tỉ trọng hoàn thành
+														</th>
+														<th className='text-center'>
+															Tên n.vụ phòng ban
+														</th>
+														<th className='text-center'>Đầu mục</th>
+														<th className='text-center'>
+															Thứ tự ưu tiên
+														</th>
+														<th className='text-center'>Báo cáo</th>
+													</tr>
+												</thead>
+												<tbody>
+													{taskItem.subTaskList.map(
+														(subTaskItem, index) => (
+															<tr key={subTaskItem.id}>
+																<td
+																	style={{
+																		borderLeft:
+																			'2px solid #A562EC',
+																	}}>
+																	{subTaskItem.taskName}
+																</td>
+																<td
+																	style={{ color: '#569CFB' }}
+																	className='text-center'>
+																	<div className='d-flex align-items-center justify-content-center'>
+																		<span className='mx-2'>
+																			{index + 1}
+																		</span>
+																	</div>
+																</td>
+																<td className='text-center'>
+																	<Avatar
+																		src={user.src}
+																		srcSet={user.srcSet}
+																		color={user.color}
+																		size={36}
+																	/>
+																</td>
+																<RenderStatusTable
+																	status={subTaskItem.status}
+																/>
+																<td className='text-center'>
+																	<span
 																		style={{
-																			borderLeft:
-																				'2px solid #A562EC',
+																			background: '#A25DDC',
+																			color: '#fff',
+																			padding:
+																				'5px 30px 5px 30px',
+																			borderRadius: '2rem',
+																			display: 'block',
 																		}}>
-																		{subTaskItem.taskName}
-																	</td>
-																	<td
-																		style={{ color: '#569CFB' }}
-																		className='text-center'>
-																		<div className='d-flex align-items-center justify-content-center'>
-																			<span className='mx-2'>
-																				{index + 1}
-																			</span>
-																		</div>
-																	</td>
-																	<td className='text-center'>
-																		<Avatar
-																			src={user.src}
-																			srcSet={user.srcSet}
-																			color={user.color}
-																			size={36}
-																		/>
-																	</td>
-																	<RenderStatusTable
-																		status={subTaskItem.status}
-																	/>
-																	<td className='text-center'>
-																		<span
-																			style={{
-																				background:
-																					'#A25DDC',
-																				color: '#fff',
-																				padding:
-																					'5px 30px 5px 30px',
-																				borderRadius:
-																					'2rem',
-																				display: 'block',
-																			}}>
-																			{subTaskItem.date}
-																		</span>
-																	</td>
-																	<td className='text-center'>
-																		{subTaskItem.kpiPoint}
-																	</td>
-																	<td className='text-center'>
-																		{
-																			subTaskItem.percentComplete
-																		}
-																		%
-																	</td>
-																	<td className='text-center'>
-																		{
-																			subTaskItem?.departmentTaskName
-																		}
-																	</td>
-																	<td className='text-center'>
-																		<span
-																			style={{
-																				padding:
-																					'10px 20px',
-																				background:
-																					'#EDF6FD',
-																				color: '#0073EA',
-																				display: 'block',
-																			}}>
-																			{subTaskItem?.taskType}
-																		</span>
-																	</td>
-																	<td className='text-center'>
-																		1
-																	</td>
-																	<td className='text-center'>
-																		Cả phòng
-																	</td>
-																</tr>
-															),
-														)}
-														<tr>
-															<td
-																colSpan={11}
-																style={{
-																	borderLeft: '3px solid #D7A5FF',
-																}}>
-																<Button
-																	className='d-flex align-items-center cursor-pointer'
-																	style={{ paddingLeft: 0 }}>
-																	<Icon
-																		size='lg'
-																		icon='PlusCircle'
-																	/>
-																	<span className='mx-2'>
-																		Thêm mới
+																		{subTaskItem.date}
 																	</span>
-																</Button>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											) : null}
-										</td>
-									</tr>
-								) : null}
+																</td>
+																<td className='text-center'>
+																	{subTaskItem.kpiPoint}
+																</td>
+																<td className='text-center'>
+																	{subTaskItem.percentComplete}%
+																</td>
+																<td className='text-center'>
+																	{
+																		subTaskItem?.departmentTaskName
+																	}
+																</td>
+																<td className='text-center'>
+																	<span
+																		style={{
+																			padding: '10px 20px',
+																			background: '#EDF6FD',
+																			color: '#0073EA',
+																			display: 'block',
+																		}}>
+																		{subTaskItem?.taskType}
+																	</span>
+																</td>
+																<td className='text-center'>1</td>
+																<td className='text-center'>
+																	Cả phòng
+																</td>
+															</tr>
+														),
+													)}
+													<tr>
+														<td
+															colSpan={11}
+															style={{
+																borderLeft: '3px solid #D7A5FF',
+															}}>
+															<Button
+																className='d-flex align-items-center cursor-pointer'
+																style={{ paddingLeft: 0 }}>
+																<Icon size='lg' icon='PlusCircle' />
+																<span className='mx-2'>
+																	Thêm mới
+																</span>
+															</Button>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										)}
+									</td>
+								</tr>
 							</>
 						))}
 						<tr>
@@ -409,155 +391,137 @@ const TaskDepartmentTable = ({ isFluid }) => {
 									<td className='text-center'>{taskItem.percentComplete}%</td>
 									<td>{taskItem.note}</td>
 								</tr>
-								{expandState[taskItem.id] ? (
-									<tr>
-										<td colSpan='10'>
-											{expandedRows.includes(taskItem.id) ? (
-												<table className='table sub-table table-modern'>
-													<thead>
-														<tr>
-															<th
-																style={{
-																	color: '#A562EC',
-																	paddingLeft: 0,
-																}}>
-																<div className='d-flex align-items-center'>
-																	<span className='mx-2 block'>
-																		Tên đầu việc
-																	</span>
-																</div>
-															</th>
-															<th>STT</th>
-															<th className='text-center'>Owner</th>
-															<th className='text-center'>
-																Trạng thái
-															</th>
-															<th className='text-center'>
-																Thời gian thực hiện
-															</th>
-															<th className='text-center'>
-																Số điểm KPI
-															</th>
-															<th className='text-center'>
-																Tỉ trọng hoàn thành
-															</th>
-															<th className='text-center'>
-																Tên n.vụ phòng ban
-															</th>
-															<th className='text-center'>Đầu mục</th>
-															<th className='text-center'>
-																Thứ tự ưu tiên
-															</th>
-															<th className='text-center'>Báo cáo</th>
-														</tr>
-													</thead>
-													<tbody>
-														{taskItem.subTaskList.map(
-															(subTaskItem, index) => (
-																<tr key={subTaskItem.id}>
-																	<td
+								<tr>
+									<td colSpan='10'>
+										{expandedRows.includes(taskItem.id) && (
+											<table className='table sub-table table-modern'>
+												<thead>
+													<tr>
+														<th
+															style={{
+																color: '#A562EC',
+																paddingLeft: 0,
+															}}>
+															<div className='d-flex align-items-center'>
+																<span className='mx-2 block'>
+																	Tên đầu việc
+																</span>
+															</div>
+														</th>
+														<th>STT</th>
+														<th className='text-center'>Owner</th>
+														<th className='text-center'>Trạng thái</th>
+														<th className='text-center'>
+															Thời gian thực hiện
+														</th>
+														<th className='text-center'>Số điểm KPI</th>
+														<th className='text-center'>
+															Tỉ trọng hoàn thành
+														</th>
+														<th className='text-center'>
+															Tên n.vụ phòng ban
+														</th>
+														<th className='text-center'>Đầu mục</th>
+														<th className='text-center'>
+															Thứ tự ưu tiên
+														</th>
+														<th className='text-center'>Báo cáo</th>
+													</tr>
+												</thead>
+												<tbody>
+													{taskItem.subTaskList.map(
+														(subTaskItem, index) => (
+															<tr key={subTaskItem.id}>
+																<td
+																	style={{
+																		borderLeft:
+																			'2px solid #A562EC',
+																	}}>
+																	{subTaskItem.taskName}
+																</td>
+																<td
+																	style={{ color: '#569CFB' }}
+																	className='text-center'>
+																	<div className='d-flex align-items-center justify-content-center'>
+																		<span className='mx-2'>
+																			{index + 1}
+																		</span>
+																	</div>
+																</td>
+																<td className='text-center'>
+																	<Avatar
+																		src={user.src}
+																		srcSet={user.srcSet}
+																		color={user.color}
+																		size={36}
+																	/>
+																</td>
+																<RenderStatusTable
+																	status={subTaskItem.status}
+																/>
+																<td className='text-center'>
+																	<span
 																		style={{
-																			borderLeft:
-																				'2px solid #A562EC',
+																			background: '#A25DDC',
+																			color: '#fff',
+																			padding:
+																				'5px 30px 5px 30px',
+																			borderRadius: '2rem',
+																			display: 'block',
 																		}}>
-																		{subTaskItem.taskName}
-																	</td>
-																	<td
-																		style={{ color: '#569CFB' }}
-																		className='text-center'>
-																		<div className='d-flex align-items-center justify-content-center'>
-																			<span className='mx-2'>
-																				{index + 1}
-																			</span>
-																		</div>
-																	</td>
-																	<td className='text-center'>
-																		<Avatar
-																			src={user.src}
-																			srcSet={user.srcSet}
-																			color={user.color}
-																			size={36}
-																		/>
-																	</td>
-																	<RenderStatusTable
-																		status={subTaskItem.status}
-																	/>
-																	<td className='text-center'>
-																		<span
-																			style={{
-																				background:
-																					'#A25DDC',
-																				color: '#fff',
-																				padding:
-																					'5px 30px 5px 30px',
-																				borderRadius:
-																					'2rem',
-																				display: 'block',
-																			}}>
-																			{subTaskItem.date}
-																		</span>
-																	</td>
-																	<td className='text-center'>
-																		{subTaskItem.kpiPoint}
-																	</td>
-																	<td className='text-center'>
-																		{
-																			subTaskItem.percentComplete
-																		}
-																		%
-																	</td>
-																	<td className='text-center'>
-																		{
-																			subTaskItem?.departmentTaskName
-																		}
-																	</td>
-																	<td className='text-center'>
-																		<span
-																			style={{
-																				padding:
-																					'10px 20px',
-																				background:
-																					'#EDF6FD',
-																				color: '#0073EA',
-																				display: 'block',
-																			}}>
-																			{subTaskItem?.taskType}
-																		</span>
-																	</td>
-																	<td className='text-center'>
-																		1
-																	</td>
-																	<td className='text-center'>
-																		Cả phòng
-																	</td>
-																</tr>
-															),
-														)}
-														<tr>
-															<td
-																colSpan={11}
-																style={{
-																	borderLeft: '3px solid #99FFD3',
-																}}>
-																<Button
-																	className='d-flex align-items-center cursor-pointer'
-																	style={{ paddingLeft: 0 }}>
-																	<Icon
-																		size='lg'
-																		icon='PlusCircle'
-																	/>
-																	<span className='mx-2'>
-																		Thêm mới
+																		{subTaskItem.date}
 																	</span>
-																</Button>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											) : null}
-										</td>
-									</tr>
-								) : null}
+																</td>
+																<td className='text-center'>
+																	{subTaskItem.kpiPoint}
+																</td>
+																<td className='text-center'>
+																	{subTaskItem.percentComplete}%
+																</td>
+																<td className='text-center'>
+																	{
+																		subTaskItem?.departmentTaskName
+																	}
+																</td>
+																<td className='text-center'>
+																	<span
+																		style={{
+																			padding: '10px 20px',
+																			background: '#EDF6FD',
+																			color: '#0073EA',
+																			display: 'block',
+																		}}>
+																		{subTaskItem?.taskType}
+																	</span>
+																</td>
+																<td className='text-center'>1</td>
+																<td className='text-center'>
+																	Cả phòng
+																</td>
+															</tr>
+														),
+													)}
+													<tr>
+														<td
+															colSpan={11}
+															style={{
+																borderLeft: '3px solid #99FFD3',
+															}}>
+															<Button
+																className='d-flex align-items-center cursor-pointer'
+																style={{ paddingLeft: 0 }}>
+																<Icon size='lg' icon='PlusCircle' />
+																<span className='mx-2'>
+																	Thêm mới
+																</span>
+															</Button>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										)}
+									</td>
+								</tr>
 							</>
 						))}
 						<tr>
@@ -663,155 +627,137 @@ const TaskDepartmentTable = ({ isFluid }) => {
 									<td className='text-center'>{taskItem.percentComplete}%</td>
 									<td>{taskItem.note}</td>
 								</tr>
-								{expandState[taskItem.id] ? (
-									<tr>
-										<td colSpan='10'>
-											{expandedRows.includes(taskItem.id) ? (
-												<table className='table sub-table table-modern'>
-													<thead>
-														<tr>
-															<th
-																style={{
-																	color: '#A562EC',
-																	paddingLeft: 0,
-																}}>
-																<div className='d-flex align-items-center'>
-																	<span className='mx-2 block'>
-																		Tên đầu việc
-																	</span>
-																</div>
-															</th>
-															<th>STT</th>
-															<th className='text-center'>Owner</th>
-															<th className='text-center'>
-																Trạng thái
-															</th>
-															<th className='text-center'>
-																Thời gian thực hiện
-															</th>
-															<th className='text-center'>
-																Số điểm KPI
-															</th>
-															<th className='text-center'>
-																Tỉ trọng hoàn thành
-															</th>
-															<th className='text-center'>
-																Tên n.vụ phòng ban
-															</th>
-															<th className='text-center'>Đầu mục</th>
-															<th className='text-center'>
-																Thứ tự ưu tiên
-															</th>
-															<th className='text-center'>Báo cáo</th>
-														</tr>
-													</thead>
-													<tbody>
-														{taskItem.subTaskList.map(
-															(subTaskItem, index) => (
-																<tr key={subTaskItem.id}>
-																	<td
+								<tr>
+									<td colSpan='10'>
+										{expandedRows.includes(taskItem.id) && (
+											<table className='table sub-table table-modern'>
+												<thead>
+													<tr>
+														<th
+															style={{
+																color: '#A562EC',
+																paddingLeft: 0,
+															}}>
+															<div className='d-flex align-items-center'>
+																<span className='mx-2 block'>
+																	Tên đầu việc
+																</span>
+															</div>
+														</th>
+														<th>STT</th>
+														<th className='text-center'>Owner</th>
+														<th className='text-center'>Trạng thái</th>
+														<th className='text-center'>
+															Thời gian thực hiện
+														</th>
+														<th className='text-center'>Số điểm KPI</th>
+														<th className='text-center'>
+															Tỉ trọng hoàn thành
+														</th>
+														<th className='text-center'>
+															Tên n.vụ phòng ban
+														</th>
+														<th className='text-center'>Đầu mục</th>
+														<th className='text-center'>
+															Thứ tự ưu tiên
+														</th>
+														<th className='text-center'>Báo cáo</th>
+													</tr>
+												</thead>
+												<tbody>
+													{taskItem.subTaskList.map(
+														(subTaskItem, index) => (
+															<tr key={subTaskItem.id}>
+																<td
+																	style={{
+																		borderLeft:
+																			'2px solid #A562EC',
+																	}}>
+																	{subTaskItem.taskName}
+																</td>
+																<td
+																	style={{ color: '#569CFB' }}
+																	className='text-center'>
+																	<div className='d-flex align-items-center justify-content-center'>
+																		<span className='mx-2'>
+																			{index + 1}
+																		</span>
+																	</div>
+																</td>
+																<td className='text-center'>
+																	<Avatar
+																		src={user.src}
+																		srcSet={user.srcSet}
+																		color={user.color}
+																		size={36}
+																	/>
+																</td>
+																<RenderStatusTable
+																	status={subTaskItem.status}
+																/>
+																<td className='text-center'>
+																	<span
 																		style={{
-																			borderLeft:
-																				'2px solid #A562EC',
+																			background: '#A25DDC',
+																			color: '#fff',
+																			padding:
+																				'5px 30px 5px 30px',
+																			borderRadius: '2rem',
+																			display: 'block',
 																		}}>
-																		{subTaskItem.taskName}
-																	</td>
-																	<td
-																		style={{ color: '#569CFB' }}
-																		className='text-center'>
-																		<div className='d-flex align-items-center justify-content-center'>
-																			<span className='mx-2'>
-																				{index + 1}
-																			</span>
-																		</div>
-																	</td>
-																	<td className='text-center'>
-																		<Avatar
-																			src={user.src}
-																			srcSet={user.srcSet}
-																			color={user.color}
-																			size={36}
-																		/>
-																	</td>
-																	<RenderStatusTable
-																		status={subTaskItem.status}
-																	/>
-																	<td className='text-center'>
-																		<span
-																			style={{
-																				background:
-																					'#A25DDC',
-																				color: '#fff',
-																				padding:
-																					'5px 30px 5px 30px',
-																				borderRadius:
-																					'2rem',
-																				display: 'block',
-																			}}>
-																			{subTaskItem.date}
-																		</span>
-																	</td>
-																	<td className='text-center'>
-																		{subTaskItem.kpiPoint}
-																	</td>
-																	<td className='text-center'>
-																		{
-																			subTaskItem.percentComplete
-																		}
-																		%
-																	</td>
-																	<td className='text-center'>
-																		{
-																			subTaskItem?.departmentTaskName
-																		}
-																	</td>
-																	<td className='text-center'>
-																		<span
-																			style={{
-																				padding:
-																					'10px 20px',
-																				background:
-																					'#EDF6FD',
-																				color: '#0073EA',
-																				display: 'block',
-																			}}>
-																			{subTaskItem?.taskType}
-																		</span>
-																	</td>
-																	<td className='text-center'>
-																		1
-																	</td>
-																	<td className='text-center'>
-																		Cả phòng
-																	</td>
-																</tr>
-															),
-														)}
-														<tr>
-															<td
-																colSpan={11}
-																style={{
-																	borderLeft: '3px solid #A8CDFF',
-																}}>
-																<Button
-																	className='d-flex align-items-center cursor-pointer'
-																	style={{ paddingLeft: 0 }}>
-																	<Icon
-																		size='lg'
-																		icon='PlusCircle'
-																	/>
-																	<span className='mx-2'>
-																		Thêm mới
+																		{subTaskItem.date}
 																	</span>
-																</Button>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											) : null}
-										</td>
-									</tr>
-								) : null}
+																</td>
+																<td className='text-center'>
+																	{subTaskItem.kpiPoint}
+																</td>
+																<td className='text-center'>
+																	{subTaskItem.percentComplete}%
+																</td>
+																<td className='text-center'>
+																	{
+																		subTaskItem?.departmentTaskName
+																	}
+																</td>
+																<td className='text-center'>
+																	<span
+																		style={{
+																			padding: '10px 20px',
+																			background: '#EDF6FD',
+																			color: '#0073EA',
+																			display: 'block',
+																		}}>
+																		{subTaskItem?.taskType}
+																	</span>
+																</td>
+																<td className='text-center'>1</td>
+																<td className='text-center'>
+																	Cả phòng
+																</td>
+															</tr>
+														),
+													)}
+													<tr>
+														<td
+															colSpan={11}
+															style={{
+																borderLeft: '3px solid #A8CDFF',
+															}}>
+															<Button
+																className='d-flex align-items-center cursor-pointer'
+																style={{ paddingLeft: 0 }}>
+																<Icon size='lg' icon='PlusCircle' />
+																<span className='mx-2'>
+																	Thêm mới
+																</span>
+															</Button>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										)}
+									</td>
+								</tr>
 							</>
 						))}
 						<tr>

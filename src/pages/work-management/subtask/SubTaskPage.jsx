@@ -1,6 +1,5 @@
 import React from 'react';
 import workCountData from '../../../common/data/workCountData';
-// import Card, { CardBody } from '../../../components/bootstrap/Card';
 import CardAlert from '../../../components/CardAlert/CardAlert';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
@@ -39,10 +38,7 @@ const SubTaskPage = () => {
 			<Page container='fluid'>
 				<div className='row mt-4'>
 					{workCountData.map((item) => (
-						// eslint-disable-next-line react/jsx-props-no-spreading
-						// <RenderWorkCount key={item.id} {...item} />
 						<div className='col-xl-3 col-md-6 col-sm-12'>
-							{/* eslint-disable-next-line react/jsx-props-no-spreading */}
 							<CardAlert key={item.id} {...item} />
 						</div>
 					))}

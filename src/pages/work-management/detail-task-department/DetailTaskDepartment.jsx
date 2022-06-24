@@ -3,7 +3,7 @@ import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import { demoPages } from '../../../menu';
 import Board from './Board';
-// eslint-disable-next-line react/prop-types
+
 const DetailTaskDepartmentPage = () => {
 	return (
 		<PageWrapper title={demoPages.quanLyCongViec.subMenu.chiTietCongViecPhongBan.text}>

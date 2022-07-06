@@ -29,10 +29,10 @@ const CommonHeaderRight = ({ beforeChildren, afterChildren }) => {
 	const { i18n } = useTranslation();
 
 	const changeLanguage = () => {
-		if (i18n.language === 'en-US') {
-			i18n.changeLanguage('vi');
-		} else {
+		if (i18n.language === 'vi-VN') {
 			i18n.changeLanguage('en-US');
+		} else {
+			i18n.changeLanguage('vi-VN');
 		}
 	};
 

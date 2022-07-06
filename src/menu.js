@@ -38,462 +38,219 @@ export const dashboardMenu = {
 		icon: 'Dashboard',
 		subMenu: null,
 	},
-	dashboardBooking: {
-		id: 'dashboard-booking',
-		text: 'Dashboard Booking',
-		path: 'dashboard-booking',
-		icon: 'emoji_transportation',
-		subMenu: null,
-	},
-	crmDashboard: {
-		id: 'crmDashboard',
-		text: 'CRM Dashboard',
-		path: 'crm/dashboard',
-		icon: 'RecentActors',
-	},
-	summary: {
-		id: 'summary',
-		text: 'Summary',
-		path: 'summary',
-		icon: 'sticky_note_2',
-		subMenu: null,
-	},
 };
 
 export const demoPages = {
-	pages: {
-		id: 'pages',
-		text: 'Pages',
-		icon: 'Extension',
-	},
+	// pages: {
+	// 	id: 'pages',
+	// 	text: 'Pages',
+	// 	icon: 'Extension',
+	// },
 	quanLyCongViec: {
 		id: 'quanlycongviec',
 		text: 'Công việc',
 		path: 'quan-ly-cong-viec',
-		icon: 'Article',
 		subMenu: {
 			congViec: {
 				id: 'congViec',
 				text: 'Tổng quan',
 				path: '/quan-ly-cong-viec/cong-viec',
-				icon: 'ViewArray',
 			},
 			danhSach: {
 				id: 'danhSach',
 				text: 'Danh sách',
 				path: '/quan-ly-cong-viec/danh-sach',
-				icon: 'ViewArray',
 			},
 			dauViec: {
 				id: 'dauViec',
 				text: 'Đầu việc',
 				path: '/quan-ly-cong-viec/dau-viec',
-				icon: 'ViewDay',
 			},
 			danhSachCongViecPhongBan: {
 				id: 'danhSachCongViecPhongBan',
 				text: 'DSCV phòng ban',
 				path: '/quan-ly-cong-viec/tong-quan-phong-ban',
-				icon: 'ViewDay',
 			},
 			chiTietCongViecPhongBan: {
 				id: 'chiTietCongViecPhongBan',
 				text: 'CTCV phòng ban',
 				path: '/quan-ly-cong-viec/chi-tiet-phong-ban',
-				icon: 'ViewDay',
 			},
 			cauHinh: {
 				id: 'cauHinh',
 				text: 'Cấu hình',
 				path: '/quan-ly-cong-viec/cau-hinh',
-				icon: 'ViewDay',
 			},
 			baoCao: {
 				id: 'baoCao',
 				text: 'Báo cáo',
 				path: '/quan-ly-cong-viec/bao-cao',
-				icon: 'ViewDay',
 			},
-			// 	thangKetQua: {
-			// 		id: 'thangKetQua',
-			// 		text: 'Thang kết quả',
-			// 		path: '/quan-ly-cong-viec/thang-ket-qua',
-			// 		icon: 'ViewArray',
-			// 	},
-			// 	mocKhenThuong: {
-			// 		id: 'mocKhenThuong',
-			// 		text: 'Mốc khen thưởng',
-			// 		path: '/quan-ly-cong-viec/moc-khen-thuong',
-			// 		icon: 'ViewDay',
-			// 	},
-			// 	trangThaiCongViec: {
-			// 		id: 'trangThaiCongViec',
-			// 		text: 'Trạng thái công việc',
-			// 		path: '/quan-ly-cong-viec/trang-thai-cong-viec',
-			// 		icon: 'ViewArray',
-			// 	},
-			// 	quyTrinh: {
-			// 		id: 'quyTrinh',
-			// 		text: 'Quy trình',
-			// 		path: '/quan-ly-cong-viec/quy-trinh',
-			// 		icon: 'ViewDay',
-			// 	},
-			// 	huongDanNgiepVu: {
-			// 		id: 'huongDanNgiepVu',
-			// 		text: 'Hướng dẫn nghiệp vụ',
-			// 		path: '/quan-ly-cong-viec/huong-dan-nghiep-vu',
-			// 		icon: 'ViewArray',
-			// 	},
-			// 	bieuMau: {
-			// 		id: 'bieuMau',
-			// 		text: 'Biểu mẫu',
-			// 		path: '/quan-ly-cong-viec/bieu-mau',
-			// 		icon: 'ViewDay',
-			// 	},
 		},
 	},
-	singlePages: {
-		id: 'singlePages',
-		text: 'Single Pages',
-		path: 'single-pages',
-		icon: 'Article',
+	companyPage: {
+		id: 'companyPage',
+		text: 'Cơ cấu tổ chức',
+		path: 'company-pages',
+		icon: 'CustomCompany',
 		subMenu: {
-			boxedSingle: {
-				id: 'boxedSingle',
-				text: 'Boxed',
-				path: 'single-pages/boxed',
-				icon: 'ViewArray',
+			department: {
+				id: 'department',
+				text: 'Phòng ban',
+				path: '/phong-ban',
 			},
-			fluidSingle: {
-				id: 'fluidSingle',
-				text: 'Fluid',
-				path: 'single-pages/fluid',
-				icon: 'ViewDay',
+			areas: {
+				id: 'areas',
+				text: 'Khu vực',
+				path: '/khu-vuc',
+			},
+			unitTree: {
+				id: 'unitTree',
+				text: 'Cây đơn vị',
+				path: '/cay-don-vi',
+			},
+			position: {
+				id: 'position',
+				text: 'Chức danh',
+				path: '/chuc-danh',
+			},
+			records: {
+				id: 'records',
+				text: 'Hồ sơ nhân sự',
+				path: '/ho-so-nhan-su',
 			},
 		},
 	},
-	listPages: {
-		id: 'listPages',
-		text: 'List Pages',
-		path: 'list-pages',
-		icon: 'Dvr',
+	jobsPage: {
+		id: 'jobsPage',
+		text: 'Công việc',
+		path: 'jobs-page',
+		icon: 'CustomBriefCase',
 		subMenu: {
-			listBoxed: {
-				id: 'listBoxed',
-				text: 'Boxed List',
-				path: 'list-pages/boxed-list',
-				icon: 'ViewArray',
+			work: {
+				id: 'work',
+				text: 'Công việc',
+				path: '/cong-viec',
 			},
-			listFluid: {
-				id: 'listFluid',
-				text: 'Fluid List',
-				path: 'list-pages/fluid-list',
-				icon: 'ViewDay',
+			startWork: {
+				id: 'startWork',
+				text: 'Đầu việc',
+				path: '/dau-viec',
+			},
+			resultsLadder: {
+				id: 'resultsLadder',
+				text: 'Thang kết quả',
+				path: '/thang-ket-qua',
+			},
+			bonusMilestone: {
+				id: 'bonusMilestone',
+				text: 'Mốc khen thưởng',
+				path: '/moc-khen-thuong',
+			},
+			workStatus: {
+				id: 'workStatus',
+				text: 'Trạng thái công việc',
+				path: '/trang-thai-cong-viec',
+			},
+			process: {
+				id: 'process',
+				text: 'Quy trình',
+				path: '/quy-trinh',
+			},
+			careerGuildline: {
+				id: 'careerGuildline',
+				text: 'Hướng dẫn nghiệp vụ',
+				path: '/huong-dan-nghiep-vu',
+			},
+			jobForm: {
+				id: 'jobForm',
+				text: 'Biểu mẫu',
+				path: '/bieu-mau',
 			},
 		},
 	},
-	gridPages: {
-		id: 'gridPages',
-		text: 'Grid Pages',
-		path: 'grid-pages',
-		icon: 'Window',
+	permissionsPage: {
+		id: 'permissionsPage',
+		text: 'Phân quyền',
+		path: 'permissions-page',
+		icon: 'CustomBalanceScale',
 		subMenu: {
-			gridBoxed: {
-				id: 'gridBoxed',
-				text: 'Boxed Grid',
-				path: 'grid-pages/boxed',
-				icon: 'ViewArray',
+			permissionName: {
+				id: 'permissionName',
+				text: 'Tên quyền',
+				path: '/ten-quyen',
 			},
-			gridFluid: {
-				id: 'gridFluid',
-				text: 'Fluid Grid',
-				path: 'grid-pages/fluid',
-				icon: 'ViewDay',
+			accessLevel: {
+				id: 'accessLevel',
+				text: 'Mức độ tiếp cận',
+				path: '/muc-do-tiep-can',
 			},
 		},
 	},
-	editPages: {
-		id: 'editPages',
-		text: 'Edit Pages',
-		path: 'edit-pages',
-		icon: 'drive_file_rename_outline ',
+	kpiPage: {
+		id: 'kpiPage',
+		text: 'Chỉ tiêu KPI',
+		path: 'kpi-page',
+		icon: 'CustomChartBar',
 		subMenu: {
-			editModern: {
-				id: 'editModern',
-				text: 'Modern Edit',
-				path: 'edit-pages/modern',
-				icon: 'AutoAwesomeMosaic',
-				notification: 'primary',
-			},
-			editBoxed: {
-				id: 'editBoxed',
-				text: 'Boxed Edit',
-				path: 'edit-pages/boxed',
-				icon: 'ViewArray',
-			},
-			editFluid: {
-				id: 'editFluid',
-				text: 'Fluid Edit',
-				path: 'edit-pages/fluid',
-				icon: 'ViewDay',
-			},
-			editWizard: {
-				id: 'editWizard',
-				text: 'Wizard Edit',
-				path: 'edit-pages/wizard',
-				icon: 'LinearScale',
-			},
-			editInCanvas: {
-				id: 'editInCanvas',
-				text: 'In Canvas Edit',
-				path: 'edit-pages/in-canvas',
-				icon: 'VerticalSplit',
-			},
-			editInModal: {
-				id: 'editInModal',
-				text: 'In Modal Edit',
-				path: 'edit-pages/in-modal',
-				icon: 'PictureInPicture',
+			kpiList: {
+				id: 'kpiList',
+				text: 'Danh sách KPI',
+				path: '/danh-sach-kpi',
 			},
 		},
 	},
-	pricingTable: {
-		id: 'pricingTable',
-		text: 'Pricing Table',
-		path: 'pricing-table',
-		icon: 'Local Offer',
+	supervisoryPage: {
+		id: 'supervisoryPage',
+		text: 'Giám sát',
+		path: 'supervisory-page',
+		icon: 'CustomCompass ',
+		subMenu: {
+			procedure: {
+				id: 'procedure',
+				text: 'Quy trình',
+				path: '/quy-trinh',
+			},
+			progress: {
+				id: 'progress',
+				text: 'Tiến độ',
+				path: '/tien-do',
+			},
+			productivity: {
+				id: 'productivity',
+				text: 'Năng suất',
+				path: '/nang-xuat',
+			},
+			effective: {
+				id: 'effective',
+				text: 'Hiệu quả',
+				path: '/hieu-qua',
+			},
+		},
 	},
-
-	auth: {
-		id: 'auth',
-		text: 'Auth Pages',
-		icon: 'Extension',
+	reportPage: {
+		id: 'reportPage',
+		text: 'Báo cáo',
+		path: 'report-page',
+		icon: 'CustomPages',
+		subMenu: {
+			overview: {
+				id: 'overview',
+				text: 'Tổng quan',
+				path: '/tong-quan',
+			},
+			progressReports: {
+				id: 'progressReports',
+				text: 'Báo cáo tiến độ',
+				path: '/bao-cao-tien-do',
+			},
+		},
 	},
-	login: {
-		id: 'login',
-		text: 'Login',
-		path: 'auth-pages/login',
-		icon: 'Login',
-	},
-	signUp: {
-		id: 'signUp',
-		text: 'Sign Up',
-		path: 'auth-pages/sign-up',
-		icon: 'PersonAdd',
-	},
-
 	page404: {
 		id: 'Page404',
-		text: '404 Page',
+		text: '',
 		path: 'auth-pages/404',
-		icon: 'ReportGmailerrorred',
-	},
-
-	app: {
-		id: 'app',
-		text: 'Apps',
-		icon: 'Extension',
-	},
-	projectManagement: {
-		id: 'projectManagement',
-		text: 'Project Management',
-		path: 'project-management',
-		icon: 'AutoStories',
-		subMenu: {
-			list: {
-				id: 'list',
-				text: 'Projects',
-				path: 'project-management/list',
-				icon: 'AutoStories',
-			},
-			itemID: {
-				id: 'projectID',
-				text: 'projectID',
-				path: 'project-management/project',
-				hide: true,
-			},
-			item: {
-				id: 'item',
-				text: 'Project',
-				path: 'project-management/project/1',
-				icon: 'Book',
-			},
-		},
-	},
-	knowledge: {
-		id: 'knowledge',
-		text: 'Knowledge',
-		path: 'knowledge',
-		icon: 'AutoStories',
-		subMenu: {
-			grid: {
-				id: 'grid',
-				text: 'Knowledge Grid',
-				path: 'knowledge/grid',
-				icon: 'AutoStories',
-			},
-			itemID: {
-				id: 'itemID',
-				text: 'itemID',
-				path: 'knowledge/item',
-				hide: true,
-			},
-			item: {
-				id: 'item',
-				text: 'Item',
-				path: 'knowledge/item/1',
-				icon: 'Book',
-			},
-		},
-	},
-	sales: {
-		id: 'sales',
-		text: 'Sales',
-		path: 'sales',
-		icon: 'Store',
-		subMenu: {
-			dashboard: dashboardMenu.dashboard,
-			salesList: {
-				id: 'products',
-				text: 'Sales List',
-				path: 'sales/sales-list',
-				icon: 'FactCheck',
-			},
-			productsGrid: {
-				id: 'productsGrid',
-				text: 'Products Grid',
-				path: 'sales/grid',
-				icon: 'CalendarViewMonth',
-			},
-			productID: {
-				id: 'productID',
-				text: 'productID',
-				path: 'sales/product',
-				hide: true,
-			},
-			product: {
-				id: 'product',
-				text: 'Product',
-				path: 'sales/product/1',
-				icon: 'QrCode2',
-			},
-			transactions: {
-				id: 'transactions',
-				text: 'Transactions',
-				path: 'sales/transactions',
-				icon: 'PublishedWithChanges',
-			},
-		},
-	},
-	appointment: {
-		id: 'appointment',
-		text: 'Appointment',
-		path: 'appointment',
-		icon: 'Today',
-		subMenu: {
-			dashboard: dashboardMenu.dashboardBooking,
-			calendar: {
-				id: 'calendar',
-				text: 'Calendar',
-				path: 'appointment/calendar',
-				icon: 'EditCalendar',
-				notification: true,
-			},
-			employeeList: {
-				id: 'employeeList',
-				text: 'Employee List',
-				path: 'appointment/employee-list',
-				icon: 'PersonSearch',
-			},
-			employeeID: {
-				id: 'employeeID',
-				text: 'employeeID',
-				path: 'appointment/employee',
-				hide: true,
-			},
-			employee: {
-				id: 'employee',
-				text: 'Employee',
-				path: 'appointment/employee/1',
-				icon: 'QrCode2',
-			},
-			appointmentList: {
-				id: 'appointmentList',
-				text: 'Appointment List',
-				path: 'appointment/appointment-list',
-				icon: 'Event',
-			},
-		},
-	},
-	crm: {
-		id: 'crm',
-		text: 'CRM',
-		path: 'crm',
-		icon: 'Contacts',
-		subMenu: {
-			dashboard: {
-				id: 'dashboard',
-				text: 'CRM Dashboard',
-				path: 'crm/dashboard',
-				icon: 'RecentActors',
-			},
-			customersList: {
-				id: 'customersList',
-				text: 'Customers',
-				path: 'crm/customers',
-				icon: 'PersonSearch',
-			},
-			customerID: {
-				id: 'customerID',
-				text: 'customerID',
-				path: 'crm/customer',
-				hide: true,
-			},
-			customer: {
-				id: 'customer',
-				text: 'Customer',
-				path: 'crm/customer/1',
-				icon: 'Badge',
-			},
-			// sales: {
-			// 	id: 'sales',
-			// 	text: 'Sales',
-			// 	path: 'crm/sales',
-			// 	icon: 'Storefront',
-			// },
-			// invoiceID: {
-			// 	id: 'invoiceID',
-			// 	text: 'invoiceID',
-			// 	path: 'crm/invoice',
-			// 	hide: true,
-			// },
-			// invoice: {
-			// 	id: 'invoice',
-			// 	text: 'Invoice',
-			// 	path: 'crm/invoice/1',
-			// 	icon: 'Receipt',
-			// },
-		},
-	},
-	chat: {
-		id: 'chat',
-		text: 'Chat',
-		path: 'chat',
-		icon: 'Forum',
-		subMenu: {
-			withListChat: {
-				id: 'withListChat',
-				text: 'With List',
-				path: 'chat/with-list',
-				icon: 'Quickreply',
-			},
-			onlyListChat: {
-				id: 'onlyListChat',
-				text: 'Only List',
-				path: 'chat/only-list',
-				icon: 'Dns',
-			},
-		},
+		icon: '',
 	},
 };
 

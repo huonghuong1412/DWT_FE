@@ -118,11 +118,19 @@
 			@include margin-right($spacer);
 		}
 	}
+
+	&__wrapper{
+		width: 100%;
+
+		@include media-breakpoint-down(map.get($aside, mobile-breakpoint)) {
+			@include padding(map.get($header, padding-y) map.get($header, padding-x));
+		}
+	}
 }
 
 .modern-design .header {
 	@include header-modern {
-		@include margin($modern-design-size $modern-design-gutter-size);
+		@include margin($modern-design-size 0);
 		@include border-radius($modern-design-radius);
 		@include box-shadow($modern-design-shadow);
 	}

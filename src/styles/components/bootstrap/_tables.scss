@@ -55,13 +55,13 @@ thead > tr > th svg.ascending {
 
 		vertical-align: $table-modern-cell-vertical-align;
 
-		// &:first-child {
-		// 	@include border-start-radius($table-modern-border-radius);
-		// }
+		&:first-child {
+			@include border-start-radius($table-modern-border-radius);
+		}
 
-		// &:last-child {
-		// 	@include border-end-radius($table-modern-border-radius);
-		// }
+		&:last-child {
+			@include border-end-radius($table-modern-border-radius);
+		}
 	}
 
 	//  stylelint-disable selector-max-compound-selectors
@@ -80,44 +80,4 @@ thead > tr > th svg.ascending {
 	}
 	//  stylelint-enable at-rule-disallowed-list
 	//  stylelint-enable selector-max-compound-selectors
-}
-
-.sub-table {
-	> thead > tr {
-		background-color: #fff;
-	};
-
-	> thead > tr > * {
-		--bs-table-accent-bg: initial;
-		font-weight: 500;
-	}
-
-	> tbody > tr > td {
-		border: 1px solid #D2D2D2;
-	}
-
-	> tbody > tr:nth-of-type(even) > *,
-	> tbody > tr:nth-of-type(even) > * {
-		--bs-table-accent-bg: initial;
-	}
-}
-
-.table-task {
-	> thead > tr > th {
-		background-color: #fff;
-		font-weight: 500;
-	}
-
-	> thead > tr > * {
-		--bs-table-accent-bg: initial;
-	};
-
-
-	> tbody > tr > * {
-		background: #FCFCFA;
-	}
-
-	> tbody > tr:nth-of-type(even) > * {
-		--bs-table-accent-bg: initial;
-	}
 }

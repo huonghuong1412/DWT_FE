@@ -110,6 +110,12 @@ $content: (
 	padding-x: 0,
 ) !default;
 
+$main: (
+	padding-y: 0,
+	padding-x: $grid-gutter-width * 0.5,
+	mobile-breakpoint: md,
+) !default;
+
 $page: (
 	padding-y: $grid-gutter-width,
 ) !default;

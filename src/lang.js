@@ -1,7 +1,7 @@
 const LANG = {
 	VI: {
 		text: 'Tiếng Việt',
-		lng: 'vi',
+		lng: 'vi-VN',
 		icon: 'CustomVie',
 	},
 	EN: {

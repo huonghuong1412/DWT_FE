@@ -56,16 +56,28 @@
 			@include padding-bottom($spacer);
 		}
 	}
+
+	.btn-group {
+		$self: &;
+
+		> .btn:not(:first-child),
+		> #{ $self }:not(:first-child) {
+		border-left: 1px solid $gray-500;
+		}
+		.btn{
+			@include padding(#{$spacer * 0.5} #{$spacer * 2});
+			+ .btn{
+				z-index: 1;
+			}
+		}
+  	}
 }
 
 // If header is fly
 @include header-modern {
 	.modern-design .subheader {
-		// stylelint-disable-line
-		@include margin-left($grid-gutter-width * 0.5);
-		@include margin-right($grid-gutter-width * 0.5);
 		@include border-radius($modern-design-radius);
-
+		margin: 0;
 		border-bottom: 0;
 	}
 }

@@ -55,9 +55,13 @@
 	}
 
 	&-head {
-		@include padding(
-			map-deep-get($aside, head, padding-y) map-deep-get($aside, head, padding-x)
-		);
+		@include padding(1rem 0);
+		img{
+			width: 100%;
+			max-height: 60px;
+			object-fit: contain;
+			object-position: left center;
+		}
 	}
 
 	&-body {

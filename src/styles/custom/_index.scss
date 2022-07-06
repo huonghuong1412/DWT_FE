@@ -12,7 +12,3 @@
 .sticky-top-size {
 	top: map.get($header, height) + map.get($subheader, height) + map.get($page, padding-y);
 }
-
-.smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper {
-	overflow: visible !important;	
-}

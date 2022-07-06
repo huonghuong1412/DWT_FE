@@ -341,8 +341,8 @@ $dark-card-bg: #242731 !default;
 
 $card-spacer-y: $spacer * 1.5;
 $card-spacer-x: $spacer * 1.5;
-// $card-border-radius: $border-radius * 2;
-$card-border-radius: 5px;
+$card-border-radius: $border-radius * 2;
+// $card-border-radius: 5px;
 
 $card-border-color: $gray-300;
 $dark-card-border-color: $gray-700;

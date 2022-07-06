@@ -105,9 +105,9 @@ const TaskProgressTable = ({ isFluid }) => {
 								</th>
 								<th style={{ width: '20%' }}>Đầu việc</th>
 								<th style={{ width: '20%' }}>Nhân viên phụ trách</th>
-								<th>Điểm KPI</th>
-								<th>Thời gian dự tính</th>
-								<th>Độ ưu tiên</th>
+								<th style={{ minWidth: '100px' }}>Điểm KPI</th>
+								<th style={{ minWidth: '150px' }}>Thời gian dự tính</th>
+								<th style={{ minWidth: '100px' }}>Độ ưu tiên</th>
 								<th>Trạng thái</th>
 								<td />
 							</tr>

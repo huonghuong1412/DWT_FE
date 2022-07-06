@@ -192,8 +192,6 @@ const Column = (props) => {
 						<Dropdown.Toggle id='dropdown-basic' size='sm' className='dropdown-btn' />
 						<Dropdown.Menu>
 							<Dropdown.Item>Thêm đầu việc</Dropdown.Item>
-							<Dropdown.Item>Action 2</Dropdown.Item>
-							<Dropdown.Item>Action 3</Dropdown.Item>
 							<Dropdown.Item onClick={handleOpenConfirmModal}>
 								Xoá công việc
 							</Dropdown.Item>

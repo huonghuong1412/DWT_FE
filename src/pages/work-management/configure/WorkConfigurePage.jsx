@@ -127,7 +127,7 @@ const SubTaskPage = () => {
 									<Card className='mb-4 border-1 shadow-none'>
 										<CardHeader className='py-2' style={{ minHeight: '3rem' }}>
 											<CardLabel>
-												<CardTitle>
+												<CardTitle className='w-100'>
 													Cấu hình API
 													<Popovers
 														trigger='hover'
@@ -177,7 +177,7 @@ const SubTaskPage = () => {
 									<Card className='mb-4 border-1 shadow-none'>
 										<CardHeader className='py-2' style={{ minHeight: '3rem' }}>
 											<CardLabel>
-												<CardTitle>
+												<CardTitle className='w-100'>
 													Cấu hình app khách hàng đặt hàng
 													<Popovers
 														trigger='hover'
@@ -313,7 +313,7 @@ const SubTaskPage = () => {
 									<Card className='mb-4 border-1 shadow-none'>
 										<CardHeader className='py-2' style={{ minHeight: '3rem' }}>
 											<CardLabel>
-												<CardTitle>
+												<CardTitle className='w-100'>
 													Cấu hình bảo mật
 													<Popovers
 														trigger='hover'
@@ -341,7 +341,7 @@ const SubTaskPage = () => {
 									<Card className='mb-4 border-1 shadow-none'>
 										<CardHeader className='py-2' style={{ minHeight: '3rem' }}>
 											<CardLabel>
-												<CardTitle>
+												<CardTitle className='w-100'>
 													Mobile{' '}
 													<Popovers
 														trigger='hover'
@@ -369,7 +369,7 @@ const SubTaskPage = () => {
 									<Card className='mb-4 border-1 shadow-none'>
 										<CardHeader className='py-2' style={{ minHeight: '3rem' }}>
 											<CardLabel>
-												<CardTitle>
+												<CardTitle className='w-100'>
 													Web - Bán hàng{' '}
 													<Popovers
 														trigger='hover'
@@ -397,7 +397,7 @@ const SubTaskPage = () => {
 									<Card className='mb-4 border-1 shadow-none'>
 										<CardHeader className='py-2' style={{ minHeight: '3rem' }}>
 											<CardLabel>
-												<CardTitle>
+												<CardTitle className='w-100'>
 													Web - Mua hàng{' '}
 													<Popovers
 														trigger='hover'
@@ -425,7 +425,7 @@ const SubTaskPage = () => {
 									<Card className='mb-4 border-1 shadow-none'>
 										<CardHeader className='py-2' style={{ minHeight: '3rem' }}>
 											<CardLabel>
-												<CardTitle>
+												<CardTitle className='w-100'>
 													Cấu hình tự động (Chỉ áp dụng với xuất bản 1
 													lần){' '}
 													<Popovers

@@ -624,7 +624,7 @@ const DashboardPage = () => {
 				</SubHeaderRight>
 			</SubHeader>
 			<Page container='fluid'>
-				<div className='row'>
+				{/* <div className='row'>
 					<div className='col-12'>
 						<Alert
 							icon='Verified'
@@ -834,6 +834,221 @@ const DashboardPage = () => {
 					</div>
 				</div>
 				<div style={{ height: '10rem', padding: '4rem 0' }} />
+			</Page> */}
+				<div className='row'>
+					<div className='col-12'>
+						<Alert
+							icon='Verified'
+							isLight
+							color='primary'
+							borderWidth={0}
+							className='shadow-3d-primary'
+							isDismissible>
+							<AlertHeading tag='h2' className='h4'>
+								Chúc mừng! Đầu việc “15. Thiết kế banner” đã hoàn tất.
+							</AlertHeading>
+							<span>Trưởng bộ phận Nhãn đã xác nhận đầu việc này hoàn thành!</span>
+						</Alert>
+					</div>
+					<div className='col-xxl-9'>
+						<div className='row'>
+							<div className='col-xxl-7'>
+								<Card stretch>
+									<CardHeader>
+										<CardLabel icon='ReceiptLong'>
+											<CardTitle tag='h4' className='h5'>
+												Doanh số của cửa hàng
+											</CardTitle>
+											<CardSubTitle tag='h5' className='h6'>
+												Báo cáo
+											</CardSubTitle>
+										</CardLabel>
+										<CardActions>
+											<ButtonGroup>
+												<Button
+													color='primary'
+													isLight
+													icon='ChevronLeft'
+													aria-label='Previous Year'
+													isDisable={year <= 2019}
+													onClick={() => setYear(year - 1)}
+												/>
+												<Button color='primary' isLight isDisable>
+													{year}
+												</Button>
+												<Button
+													color='primary'
+													isLight
+													icon='ChevronRight'
+													aria-label='Next Year'
+													isDisable={year >= 2021}
+													onClick={() => setYear(year + 1)}
+												/>
+											</ButtonGroup>
+										</CardActions>
+									</CardHeader>
+									<CardBody>
+										<div className='row'>
+											<div className='col-xl-3 col-xxl-2'>
+												<div className='row g-3'>
+													{companies.map((company) => (
+														<div
+															key={company.name}
+															className='col-xl-12 col-lg-6 col-sm-12'>
+															<Button
+																isLight={
+																	activeCompanyTab !==
+																	company.name
+																}
+																onClick={() =>
+																	setActiveCompanyTab(
+																		company.name,
+																	)
+																}
+																color={themeStatus}
+																className='w-100 py-4'
+																shadow='sm'
+																hoverShadow='none'>
+																{/* <img
+																	src={company.img}
+																	alt={company.name}
+																	width='auto'
+																	height={24}
+																/> */}
+																{company.name}
+															</Button>
+														</div>
+													))}
+												</div>
+											</div>
+											<div className='col-xl-9 col-xxl-10'>
+												<Chart
+													series={
+														(activeCompanyTab === COMPANIES_TAB.COMP1 &&
+															salesByStoreSeries1) ||
+														(activeCompanyTab === COMPANIES_TAB.COMP2 &&
+															salesByStoreSeries2) ||
+														(activeCompanyTab === COMPANIES_TAB.COMP3 &&
+															salesByStoreSeries3) ||
+														salesByStoreSeries4
+													}
+													options={salesByStoreOptions}
+													type={salesByStoreOptions.chart.type}
+													height={salesByStoreOptions.chart.height}
+												/>
+											</div>
+										</div>
+									</CardBody>
+								</Card>
+							</div>
+							<div className='col-xxl-5'>
+								<Card stretch>
+									<CardHeader>
+										<CardLabel icon='ContactSupport' iconColor='secondary'>
+											<CardTitle tag='h4' className='h5'>
+												Chờ câu trả lời
+											</CardTitle>
+											<CardSubTitle tag='h5' className='h6'>
+												Khách hàng
+											</CardSubTitle>
+										</CardLabel>
+										<CardActions>
+											<Dropdown>
+												<DropdownToggle hasIcon={false}>
+													<Button
+														color={darkModeStatus ? 'light' : 'dark'}
+														isLink
+														hoverShadow='default'
+														icon='MoreHoriz'
+														aria-label='More Actions'
+													/>
+												</DropdownToggle>
+												<DropdownMenu isAlignmentEnd>
+													<DropdownItem>
+														<Button
+															icon='Send'
+															tag='a'
+															href='mailto:example@site.com'>
+															Gửi
+														</Button>
+													</DropdownItem>
+												</DropdownMenu>
+											</Dropdown>
+										</CardActions>
+									</CardHeader>
+									<CardBody>
+										<div className='row g-3'>
+											<AnswerCustomer
+												id={USERS.EMPLOYEETEST.id}
+												img={USERS.EMPLOYEETEST.src}
+												imgWebp={USERS.EMPLOYEETEST.srcSet}
+												name={`${USERS.EMPLOYEETEST.fullname}`}
+												color={USERS.EMPLOYEETEST.color}
+												job='a@doppelherz.vn'
+												value={43}
+											/>
+											<AnswerCustomer
+												id={USERS.EMPLOYEETEST.id}
+												img={USERS.EMPLOYEETEST.src}
+												imgWebp={USERS.EMPLOYEETEST.srcSet}
+												name={`${USERS.EMPLOYEETEST.fullname}`}
+												color={USERS.EMPLOYEETEST.color}
+												job='a@doppelherz.vn'
+												value={35}
+											/>
+											<AnswerCustomer
+												id={USERS.EMPLOYEETEST.id}
+												img={USERS.EMPLOYEETEST.src}
+												imgWebp={USERS.EMPLOYEETEST.srcSet}
+												name={`${USERS.EMPLOYEETEST.fullname}`}
+												color={USERS.EMPLOYEETEST.color}
+												job='a@doppelherz.vn'
+												value={27}
+											/>
+											<AnswerCustomer
+												id={USERS.EMPLOYEETEST.id}
+												img={USERS.EMPLOYEETEST.src}
+												imgWebp={USERS.EMPLOYEETEST.srcSet}
+												name={`${USERS.EMPLOYEETEST.fullname}`}
+												color={USERS.EMPLOYEETEST.color}
+												job='a@doppelherz.vn'
+												value={15}
+											/>
+											<AnswerCustomer
+												id={USERS.EMPLOYEETEST.id}
+												img={USERS.EMPLOYEETEST.src}
+												imgWebp={USERS.EMPLOYEETEST.srcSet}
+												name={`${USERS.EMPLOYEETEST.fullname}`}
+												color={USERS.EMPLOYEETEST.color}
+												job='a@doppelherz.vn'
+												value={12}
+											/>
+											<AnswerCustomer
+												id={USERS.EMPLOYEETEST.id}
+												img={USERS.EMPLOYEETEST.src}
+												imgWebp={USERS.EMPLOYEETEST.srcSet}
+												name={`${USERS.EMPLOYEETEST.fullname}`}
+												color={USERS.EMPLOYEETEST.color}
+												job='a@doppelherz.vn'
+												value={12}
+											/>
+										</div>
+									</CardBody>
+								</Card>
+							</div>
+							<div className='col-xxl-12 col-xl-12'>
+								<TaskProgressTable />
+							</div>
+							{/* <div className='col-xxl-12'>
+								<CommonUpcomingEvents />
+							</div> */}
+						</div>
+					</div>
+					<div className='col-xxl-3'>
+						{/* <CommonTodo /> */}
+						<CommonTodo titleProps='Vấn đề của Bảo' />
+					</div>
+				</div>
 			</Page>
 		</PageWrapper>
 	);

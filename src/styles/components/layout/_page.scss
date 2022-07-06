@@ -3,11 +3,10 @@
 //
 
 .page {
-	@include padding-top(map-get($page, padding-y));
-
 	display: flex;
 	flex: 1 0 auto;
 	flex-direction: column;
+	padding: 1rem 0;
 
 	@include only-safari {
 		// height: calc(100% - #{map-get($footer, height)});

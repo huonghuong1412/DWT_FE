@@ -10,12 +10,10 @@ import ThemeContext from '../contexts/themeContext';
 import Aside from '../layout/Aside/Aside';
 import Wrapper from '../layout/Wrapper/Wrapper';
 import Portal from '../layout/Portal/Portal';
-import { demoPages, layoutMenu } from '../menu';
 import { Toast, ToastContainer } from '../components/bootstrap/Toasts';
 import useDarkMode from '../hooks/useDarkMode';
 import COLORS from '../common/data/enumColors';
 import { getOS } from '../helpers/helpers';
-import steps, { styles } from '../steps';
 
 const App = () => {
 	getOS();
@@ -65,17 +63,10 @@ const App = () => {
 		}
 	});
 
-	//	Add paths to the array that you don't want to be "Aside".
-	const withOutAsidePages = [demoPages.login.path, demoPages.signUp.path, layoutMenu.blank.path];
-
 	return (
 		<ThemeProvider theme={theme}>
 			<ToastProvider components={{ ToastContainer, Toast }}>
-				<TourProvider
-					steps={steps}
-					styles={styles}
-					showNavigation={false}
-					showBadge={false}>
+				<TourProvider showNavigation={false} showBadge={false}>
 					<div
 						ref={ref}
 						className='app'
@@ -84,13 +75,18 @@ const App = () => {
 							zIndex: fullScreenStatus && 1,
 							overflow: fullScreenStatus && 'scroll',
 						}}>
-						<Routes>
-							{withOutAsidePages.map((path) => (
-								<Route key={path} path={path} />
-							))}
-							<Route path='*' element={<Aside />} />
-						</Routes>
-						<Wrapper />
+						<div className='main'>
+							<div className='main__wrapper w-100'>
+								<div className='main__sidebar'>
+									<Routes>
+										<Route path='*' element={<Aside />} />
+									</Routes>
+								</div>
+								<div className='main__content'>
+									<Wrapper />
+								</div>
+							</div>
+						</div>
 					</div>
 					<Portal id='portal-notification'>
 						<ReactNotifications />

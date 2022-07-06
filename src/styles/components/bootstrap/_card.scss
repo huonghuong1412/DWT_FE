@@ -138,6 +138,7 @@ $border-radius-child: #{$card-border-radius - $card-border-width};
 
 .card-title {
 	font-weight: $card-header-title-font-weight;
+	width: 100% !important;
 
 	.card-label & {
 		@include margin-bottom(0);

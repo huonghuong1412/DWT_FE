@@ -165,3 +165,8 @@
 		// border: 1px solid rgb(225, 221, 221);
 	}
 }
+
+.smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper {
+	display: block !important;
+	overflow: initial !important;
+}

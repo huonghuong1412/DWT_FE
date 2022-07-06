@@ -17,7 +17,7 @@ const TourModal = () => {
 	const [isOpenModal, setIsOpenModal] = useState(false);
 
 	useEffect(() => {
-		const timeout = setTimeout(() => setIsOpenModal(true), 3000);
+		const timeout = setTimeout(() => setIsOpenModal(true), 0);
 		return () => {
 			setIsOpenModal(false);
 			clearTimeout(timeout);

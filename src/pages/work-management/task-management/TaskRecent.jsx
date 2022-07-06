@@ -8,7 +8,6 @@ import Card, {
 	CardTitle,
 } from '../../../components/bootstrap/Card';
 import Button from '../../../components/bootstrap/Button';
-import { demoPages } from '../../../menu';
 import useDarkMode from '../../../hooks/useDarkMode';
 
 // eslint-disable-next-line react/prop-types
@@ -97,12 +96,7 @@ const TaskRecent = () => {
 					<CardTitle>Hoạt động gần đây</CardTitle>
 				</CardLabel>
 				<CardActions>
-					<Button
-						color='info'
-						isLink
-						icon='Summarize'
-						tag='a'
-						to={`../${demoPages.sales.subMenu.transactions.path}`}>
+					<Button color='info' isLink icon='Summarize' tag='a' to='#'>
 						Tất cả hoạt động
 					</Button>
 				</CardActions>

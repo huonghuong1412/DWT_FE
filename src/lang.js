@@ -1,11 +1,11 @@
 const LANG = {
 	VI: {
-		text: 'Tiếng Việt',
+		text: 'VNI',
 		lng: 'vi-VN',
 		icon: 'CustomVie',
 	},
 	EN: {
-		text: 'English',
+		text: 'ENG',
 		lng: 'en-US',
 		icon: 'CustomUsa',
 	},

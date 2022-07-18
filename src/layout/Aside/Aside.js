@@ -26,13 +26,13 @@ const Aside = () => {
 			<Card>
 				<Navigation menu={demoPages} id='aside-demo-pages' />
 			</Card>
-			<Card stretch='semi'>
+			<Card style={{ minHeight: '80vh' }}>
 				<CardHeader>
 					<CardLabel icon='NotificationsActive' iconColor='warning'>
 						<CardTitle tag='h4' className='h5'>
-							Recent Activities
+							Hoạt động gần đây
 						</CardTitle>
-						<CardSubTitle>last 2 weeks</CardSubTitle>
+						<CardSubTitle>1 tuần trước</CardSubTitle>
 					</CardLabel>
 				</CardHeader>
 				<CardBody isScrollable>

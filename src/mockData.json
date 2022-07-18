@@ -1,0 +1,10 @@
+{
+    "missions": [
+        {
+            "name": "Nhiệm vụ 1 - Phòng kinh doanh",
+            "description": "Mô tả nhiệm vụ 1 - Phòng kinh doanh",
+            "revenue": 100000000,
+            "kpi_point": 1000
+        }
+    ]
+}

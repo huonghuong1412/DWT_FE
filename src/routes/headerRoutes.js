@@ -8,6 +8,18 @@ const headers = [
 	{ path: layoutMenu.pageLayout.subMenu.onlySubheader.path, element: null, exact: true },
 	{ path: layoutMenu.pageLayout.subMenu.onlyContent.path, element: null, exact: true },
 	{ path: dashboardMenu.dashboard.path, element: <DashboardHeader />, exact: true },
+	// quan ly muc tieu
+	{
+		path: demoPages.quanLyCongViec.subMenu.mission.path,
+		element: <CommonHeader />,
+		exact: true,
+	},
+	// chi tiet muc tieu
+	{
+		path: `quan-ly-cong-viec/muc-tieu/:id`,
+		element: <CommonHeader />,
+		exact: true,
+	},
 	// quan ly cong viec
 	{
 		path: demoPages.quanLyCongViec.subMenu.congViec.path,

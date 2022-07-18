@@ -6,6 +6,8 @@ const LANDING = {
 };
 
 const TASK = {
+	MISSION: lazy(() => import('../pages/work-management/mission/MissionPage')),
+	MISSION_DETAIL: lazy(() => import('../pages/work-management/mission/MissionDetailPage')),
 	TASKMANAGEMENT: lazy(() =>
 		import('../pages/work-management/task-management/TaskManagementPage'),
 	),
@@ -41,6 +43,22 @@ const presentation = [
 	 * Pages
 	 */
 
+	/**
+	 * Trang quản lý nhiệm vụ
+	 */
+	{
+		path: demoPages.quanLyCongViec.subMenu.mission.path,
+		element: <TASK.MISSION />,
+		exact: true,
+	},
+	/**
+	 * Trang chi tiết nhiệm vụ
+	 */
+	{
+		path: `/quan-ly-cong-viec/muc-tieu/:id`,
+		element: <TASK.MISSION_DETAIL />,
+		exact: true,
+	},
 	/**
 	 * Trang quản lý công việc
 	 */
@@ -101,7 +119,7 @@ const presentation = [
 		exact: true,
 	},
 	{
-		path: demoPages.page404.path,
+		path: '*',
 		element: <AUTH.PAGE_404 />,
 		exact: true,
 	},

@@ -108,7 +108,7 @@ const SubTaskPage = () => {
 	];
 
 	return (
-		<PageWrapper title={demoPages.quanLyCongViec.subMenu.cauHinh.text}>
+		<PageWrapper title={demoPages.cauHinh.text}>
 			<Page container='fluid'>
 				<div className='row mt-4'>
 					<Chart

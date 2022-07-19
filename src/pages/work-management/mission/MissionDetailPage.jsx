@@ -3,7 +3,6 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useFormik } from 'formik';
 import styled from 'styled-components';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
@@ -15,12 +14,6 @@ import Card, {
 	CardSubTitle,
 	CardTitle,
 } from '../../../components/bootstrap/Card';
-import Modal, {
-	ModalBody,
-	ModalFooter,
-	ModalHeader,
-	ModalTitle,
-} from '../../../components/bootstrap/Modal';
 import SubHeader, { SubHeaderLeft, SubheaderSeparator } from '../../../layout/SubHeader/SubHeader';
 import Button from '../../../components/bootstrap/Button';
 import Badge from '../../../components/bootstrap/Badge';
@@ -28,9 +21,6 @@ import Icon from '../../../components/icon/Icon';
 import Progress from '../../../components/bootstrap/Progress';
 import Avatar, { AvatarGroup } from '../../../components/Avatar';
 import USERS from '../../../common/data/userDummyData';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Input from '../../../components/bootstrap/forms/Input';
-import Textarea from '../../../components/bootstrap/forms/Textarea';
 
 const Item = ({
 	name,
@@ -47,19 +37,6 @@ const Item = ({
 		() => navigate(`../${demoPages.quanLyCongViec.subMenu.chiTietCongViecPhongBan.path}`),
 		[navigate],
 	);
-	const [editModalStatus, setEditModalStatus] = useState(false);
-	const formik = useFormik({
-		initialValues: {
-			name: '',
-			description: '',
-			total_kpi_value: 0,
-			task: [],
-		},
-		// eslint-disable-next-line no-unused-vars
-		onSubmit: (values) => {
-			setEditModalStatus(false);
-		},
-	});
 	return (
 		<div className='col-md-6 col-xl-4 col-sm-12' {...props}>
 			<Card stretch onClick={handleOnClickToProjectPage} className='cursor-pointer'>
@@ -84,11 +61,6 @@ const Item = ({
 						</small>
 					</div>
 					<div className='row g-2 mb-3'>
-						{/* <div className='col-auto'>
-							<Badge color='dark' isLight style={{ fontSize: 18 }}>
-								<Icon icon='AttachFile' /> {attachCount}
-							</Badge>
-						</div> */}
 						<div className='col-auto'>
 							<Badge color='dark' isLight style={{ fontSize: 18 }}>
 								<Icon icon='TaskAlt' /> {taskCount}
@@ -309,7 +281,7 @@ const MissionDetailPage = () => {
 						isLink
 						icon='ArrowBack'
 						tag='a'
-						to={`../${demoPages.quanLyCongViec.subMenu.mission.path}`}>
+						to={`../${demoPages.mucTieu.subMenu.mission.path}`}>
 						Quay lại
 					</Button>
 					<SubheaderSeparator />
@@ -384,69 +356,6 @@ const MissionDetailPage = () => {
 						);
 					})}
 				</div>
-				<Modal
-					setIsOpen={setEditModalStatus}
-					isOpen={editModalStatus}
-					size='lg'
-					isScrollable>
-					<ModalHeader className='px-4' setIsOpen={setEditModalStatus}>
-						<ModalTitle id='project-edit'>Thêm mới nhiệm vụ</ModalTitle>
-					</ModalHeader>
-					<ModalBody className='px-4'>
-						<div className='row'>
-							<div className='col-md-12'>
-								<Card shadow='sm'>
-									<CardHeader>
-										<CardLabel icon='Info' iconColor='success'>
-											<CardTitle>Thông tin nhiệm vụ</CardTitle>
-										</CardLabel>
-									</CardHeader>
-									<CardBody>
-										<div className='row g-4'>
-											<FormGroup
-												className='col-12'
-												id='name'
-												label='Tên nhiệm vụ'>
-												<Input
-													onChange={formik.handleChange}
-													value={formik.values.name}
-												/>
-											</FormGroup>
-											<FormGroup
-												className='col-12'
-												id='description'
-												label='Mô tả nhiệm vụ'>
-												<Textarea
-													onChange={formik.handleChange}
-													value={formik.values.description}
-												/>
-											</FormGroup>
-											<FormGroup
-												className='col-12'
-												id='total_kpi_value'
-												label='Giá trị KPI'>
-												<Input
-													type='number'
-													onChange={formik.handleChange}
-													value={formik.values.total_kpi_value}
-												/>
-											</FormGroup>
-										</div>
-									</CardBody>
-								</Card>
-							</div>
-						</div>
-					</ModalBody>
-					<ModalFooter className='px-4 pb-4'>
-						<Button
-							color='primary'
-							className='w-100'
-							type='submit'
-							onClick={formik.handleSubmit}>
-							Thêm công việc
-						</Button>
-					</ModalFooter>
-				</Modal>
 			</Page>
 		</PageWrapper>
 	);

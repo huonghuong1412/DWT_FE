@@ -73,7 +73,7 @@ const ReportDepartmentPage = () => {
 		}
 	};
 	return (
-		<PageWrapper title={demoPages.quanLyCongViec.subMenu.baoCao.text}>
+		<PageWrapper title={demoPages.baoCao.text}>
 			<Page container='fluid'>
 				<div className='row mt-4'>
 					<div className='col-lg-6'>

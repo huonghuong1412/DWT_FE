@@ -10,10 +10,16 @@ const headers = [
 	{ path: dashboardMenu.dashboard.path, element: <DashboardHeader />, exact: true },
 	// quan ly muc tieu
 	{
-		path: demoPages.quanLyCongViec.subMenu.mission.path,
+		path: demoPages.mucTieu.subMenu.mission.path,
 		element: <CommonHeader />,
 		exact: true,
 	},
+	// quan ly muc tieu
+	// {
+	// 	path: demoPages.mucTieu.subMenu.addMission.path,
+	// 	element: <CommonHeader />,
+	// 	exact: true,
+	// },
 	// chi tiet muc tieu
 	{
 		path: `quan-ly-cong-viec/muc-tieu/:id`,
@@ -57,13 +63,13 @@ const headers = [
 
 	// công việc phòng ban chi tiết - cấu hình
 	{
-		path: demoPages.quanLyCongViec.subMenu.cauHinh.path,
+		path: demoPages.cauHinh.path,
 		element: <CommonHeader />,
 		exact: true,
 	},
 	// công việc phòng ban chi tiết - báo cáo
 	{
-		path: demoPages.quanLyCongViec.subMenu.baoCao.path,
+		path: demoPages.baoCao.path,
 		element: <CommonHeader />,
 		exact: true,
 	},

@@ -46,16 +46,23 @@ export const demoPages = {
 	// 	text: 'Pages',
 	// 	icon: 'Extension',
 	// },
+	mucTieu: {
+		id: 'mission',
+		text: 'Mục tiêu',
+		path: '/muc-tieu',
+		subMenu: {
+			mission: {
+				id: 'mission',
+				text: 'Danh sách',
+				path: '/muc-tieu/danh-sach',
+			},
+		},
+	},
 	quanLyCongViec: {
 		id: 'quanlycongviec',
 		text: 'Công việc',
 		path: 'quan-ly-cong-viec',
 		subMenu: {
-			mission: {	// mission
-				id: 'mission',
-				text: 'Mục tiêu',
-				path: '/quan-ly-cong-viec/muc-tieu',
-			},
 			congViec: {
 				id: 'congViec',
 				text: 'Tổng quan',
@@ -81,17 +88,41 @@ export const demoPages = {
 				text: 'CTCV phòng ban',
 				path: '/quan-ly-cong-viec/chi-tiet-phong-ban',
 			},
-			cauHinh: {
-				id: 'cauHinh',
-				text: 'Cấu hình',
-				path: '/quan-ly-cong-viec/cau-hinh',
-			},
-			baoCao: {
-				id: 'baoCao',
-				text: 'Báo cáo',
-				path: '/quan-ly-cong-viec/bao-cao',
-			},
+			// cauHinh: {
+			// 	id: 'cauHinh',
+			// 	text: 'Cấu hình',
+			// 	path: '/quan-ly-cong-viec/cau-hinh',
+			// },
+			// baoCao: {
+			// 	id: 'baoCao',
+			// 	text: 'Báo cáo',
+			// 	path: '/quan-ly-cong-viec/bao-cao',
+			// },
 		},
+	},
+	cauHinh: {
+		id: 'cauHinh',
+		text: 'Cấu hình',
+		path: '/cau-hinh',
+		// subMenu: {
+		// 	cauHinh: {
+		// 		id: 'cauHinh',
+		// 		text: 'Cấu hình',
+		// 		path: '/quan-ly-cong-viec/cau-hinh',
+		// 	},
+		// },
+	},
+	baoCao: {
+		id: 'baoCao',
+		text: 'Báo cáo',
+		path: '/bao-cao',
+		// subMenu: {
+		// 	baoCao: {
+		// 		id: 'baoCao',
+		// 		text: 'Báo cáo',
+		// 		path: '/quan-ly-cong-viec/bao-cao',
+		// 	},
+		// },
 	},
 	// companyPage: {
 	// 	id: 'companyPage',

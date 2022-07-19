@@ -46,11 +46,22 @@ const presentation = [
 	/**
 	 * Trang quản lý nhiệm vụ
 	 */
+	// {
+	// 	path: demoPages.quanLyCongViec.subMenu.mission.path,
+	// 	element: <TASK.MISSION />,
+	// 	exact: true,
+	// },
 	{
-		path: demoPages.quanLyCongViec.subMenu.mission.path,
+		path: demoPages.mucTieu.subMenu.mission.path,
 		element: <TASK.MISSION />,
 		exact: true,
 	},
+	// Thêm mới nhiệm vụ
+	// {
+	// 	path: demoPages.mucTieu.subMenu.addMission.path,
+	// 	element: <TASK.MISSION />,
+	// 	exact: true,
+	// },
 	/**
 	 * Trang chi tiết nhiệm vụ
 	 */
@@ -106,7 +117,7 @@ const presentation = [
 	 * trang công việc phòng ban chi tiết - cấu hình
 	 */
 	{
-		path: demoPages.quanLyCongViec.subMenu.cauHinh.path,
+		path: demoPages.cauHinh.path,
 		element: <TASK.CONFIGURE />,
 		exact: true,
 	},
@@ -114,7 +125,7 @@ const presentation = [
 	 * trang công việc phòng ban chi tiết - báo cáo
 	 */
 	{
-		path: demoPages.quanLyCongViec.subMenu.baoCao.path,
+		path: demoPages.baoCao.path,
 		element: <TASK.REPORT />,
 		exact: true,
 	},

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import Page from '../../../layout/Page/Page';
@@ -23,47 +23,10 @@ import Modal, {
 import FormGroup from '../../../components/bootstrap/forms/FormGroup';
 import Input from '../../../components/bootstrap/forms/Input';
 import Textarea from '../../../components/bootstrap/forms/Textarea';
-
-const dataMissions = [
-	{
-		id: 1,
-		name: 'Mục tiêu 1',
-		description: 'Mô tả mục tiêu 1',
-		total_kpi_value: 1000,
-		progress: 60,
-	},
-	{
-		id: 2,
-		name: 'Mục tiêu 2',
-		description: 'Mô tả mục tiêu 2',
-		total_kpi_value: 1000,
-		progress: 20,
-	},
-	{
-		id: 3,
-		name: 'Mục tiêu 3',
-		description: 'Mô tả mục tiêu 3',
-		total_kpi_value: 1000,
-		progress: 80,
-	},
-	{
-		id: 4,
-		name: 'Mục tiêu 4',
-		description: 'Mô tả mục tiêu 4',
-		total_kpi_value: 1000,
-		progress: 10,
-	},
-	{
-		id: 5,
-		name: 'Mục tiêu 5',
-		description: 'Mô tả mục tiêu 2',
-		total_kpi_value: 1000,
-		progress: 50,
-	},
-];
+import { getAll } from './services';
 
 const MissionPage = () => {
-	const [missions, setMissions] = useState(dataMissions);
+	const [missions, setMissions] = useState([]);
 	const navigate = useNavigate();
 	const handleOnClickToEmployeeListPage = useCallback(
 		(page) => navigate(`/quan-ly-cong-viec/muc-tieu/${page}`),
@@ -85,6 +48,15 @@ const MissionPage = () => {
 			setEditModalStatus(false);
 		},
 	});
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const result = await getAll();
+			setMissions(result.data);
+		};
+		fetchData();
+	}, []);
+
 	return (
 		<PageWrapper title={demoPages.quanLyCongViec.subMenu.danhSach.text}>
 			<Page container='fluid'>

@@ -100,7 +100,6 @@ const MissionPage = () => {
 			const newState = [...missions];
 			newState.filter((item) => item.id !== id);
 			setMissions(newState);
-			console.log(missions);
 			handleCloseConfirmModal();
 		} catch (error) {
 			handleCloseConfirmModal();

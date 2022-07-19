@@ -43,14 +43,7 @@ const MissionPage = () => {
 	const [editModalStatus, setEditModalStatus] = useState(false);
 	const [openConfirmModal, setOpenConfirmModal] = useState(false);
 
-	const [itemEdit, setItemEdit] = useState({
-		name: '',
-		description: '',
-		kpi_value: 0,
-		start_time: moment().add(0, 'days').format('YYYY-MM-DD'),
-		end_time: moment().add(0, 'days').format('YYYY-MM-DD'),
-		status: 1,
-	});
+	const [itemEdit, setItemEdit] = useState({});
 
 	const formik = useFormik({
 		initialValues: {
@@ -76,6 +69,14 @@ const MissionPage = () => {
 				newMissions.push(result);
 				setMissions(newMissions);
 			}
+			setItemEdit({
+				name: '',
+				description: '',
+				kpi_value: 0,
+				start_time: moment().add(0, 'days').format('YYYY-MM-DD'),
+				end_time: moment().add(0, 'days').format('YYYY-MM-DD'),
+				status: 1,
+			});
 			setEditModalStatus(false);
 		},
 	});

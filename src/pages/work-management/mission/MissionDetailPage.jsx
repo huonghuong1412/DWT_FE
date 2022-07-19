@@ -1,9 +1,9 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/prop-types */
-
 import React, { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-// import { useFormik } from 'formik';
+import { useFormik } from 'formik';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import { demoPages } from '../../../menu';
@@ -32,6 +32,7 @@ import FormGroup from '../../../components/bootstrap/forms/FormGroup';
 import Input from '../../../components/bootstrap/forms/Input';
 import Textarea from '../../../components/bootstrap/forms/Textarea';
 import TaskProgress from '../task-management/TaskProgress';
+
 
 const Item = ({
 	name,
@@ -122,153 +123,46 @@ const Item = ({
 		</div>
 	);
 };
-const dataMissions = [
-	{
-		id: 1,
-		name: 'Mục tiêu 1',
-		description: 'Mô tả mục tiêu 1',
-		total_kpi_value: 1000,
-		progress: 60,
-		keys: [
-			{
-				name: 'Doanh thu',
-				value: '100,000,000 đ',
-			},
-			{
-				name: 'Đầu việc',
-				value: '100',
-			},
-			{
-				name: 'Giá trị KPI',
-				value: '1000',
-			},
-		],
-		tasks: [
-			{
-				id: 1,
-				name: 'Công việc 1',
-				description: 'Mô tả công việc 1 - Mục tiêu 1',
-				teamName: 'Phòng kinh doanh',
-				estimateTime: '16-07-2022 17:00',
-				startTime: '15-07-2022 08:00',
-				endTime: '16-07-2022 17:00',
-				kpi_value: 300,
-				status: 2,
-				priority: 1,
-			},
-			{
-				id: 2,
-				name: 'Công việc 2',
-				description: 'Mô tả công việc 2 - Mục tiêu 1',
-				teamName: 'Phòng kinh doanh',
-				estimateTime: '20-07-2022 17:00',
-				startTime: '18-07-2022 08:00',
-				endTime: '20-07-2022 17:00',
-				kpi_value: 500,
-				status: 1,
-				priority: 1,
-			},
-			{
-				id: 3,
-				name: 'Công việc 3',
-				description: 'Mô tả công việc 3 - Mục tiêu 1',
-				teamName: 'Phòng kinh doanh',
-				estimateTime: '20-07-2022 17:00',
-				startTime: '18-07-2022 08:00',
-				endTime: '20-07-2022 17:00',
-				kpi_value: 200,
-				status: 3,
-				priority: 3,
-			},
-			{
-				id: 4,
-				name: 'Công việc 4',
-				description: 'Mô tả công việc 4 - Mục tiêu 1',
-				teamName: 'Phòng kinh doanh',
-				estimateTime: '20-07-2022 17:00',
-				startTime: '18-07-2022 08:00',
-				endTime: '20-07-2022 17:00',
-				kpi_value: 200,
-				status: 3,
-				priority: 3,
-			},
-		],
-	},
-	{
-		id: 2,
-		name: 'Mục tiêu 2',
-		description: 'Mô tả mục tiêu 2',
-		total_kpi_value: 1000,
-		progress: 20,
-		keys: [
-			{
-				name: 'Đầu việc',
-				value: '100',
-			},
-			{
-				name: 'Giá trị KPI',
-				value: '1000',
-			},
-		],
-	},
-	{
-		id: 3,
-		name: 'Mục tiêu 3',
-		description: 'Mô tả mục tiêu 3',
-		total_kpi_value: 1000,
-		progress: 80,
-		keys: [
-			{
-				name: 'Doanh thu',
-				value: '100,000,000 đ',
-			},
-			{
-				name: 'Đầu việc',
-				value: '100',
-			},
-			{
-				name: 'Giá trị KPI',
-				value: '1000',
-			},
-		],
-	},
-	{
-		id: 4,
-		name: 'Mục tiêu 4',
-		description: 'Mô tả mục tiêu 4',
-		total_kpi_value: 1000,
-		progress: 10,
-		keys: [
-			{
-				name: 'Số giờ',
-				value: '100h',
-			},
-			{
-				name: 'Đầu việc',
-				value: '100',
-			},
-			{
-				name: 'Giá trị KPI',
-				value: '1000',
-			},
-		],
-	},
-	{
-		id: 5,
-		name: 'Mục tiêu 5',
-		description: 'Mô tả mục tiêu 2',
-		total_kpi_value: 1000,
-		progress: 50,
-	},
-];
-
 const MissionDetailPage = () => {
 	const [mission, setMission] = useState({});
 	const params = useParams();
 	useEffect(() => {
-		setMission(dataMissions.filter((item) => item.id === parseInt(params?.id, 10))[0]);
-	}, [params?.id]);
-
+		axios.get(`http://localhost:3001/tasks?mission_id=${parseInt(params?.id, 10)}`)
+			.then(res => {
+				setMission(res);
+			});
+	}, [params?.id, editModalStatus]);
+	const [editModalStatus, setEditModalStatus] = useState(false);
+	const formik = useFormik({
+		initialValues: {
+			mission_id: 1,
+			departmnent_id: 1,
+			priority: 2,
+			status: 0,
+			user: {
+				id: 1,
+				name: 'Nhân viên 1',
+			},
+			name: '',
+			description: '',
+			assign_to: '',
+			teamName: '',
+			estimateTime: '',
+			startTime: '',
+			endTime: '',
+			kpi_value: 0,
+			keys: null,
+		},
+		// eslint-disable-next-line no-unused-vars
+		onSubmit: (values) => {
+			axios.post(`http://localhost:3001/tasks`, values);
+			axios.get(`http://localhost:3001/tasks?mission_id=${parseInt(params?.id, 10)}`)
+				.then(res => {
+					setMission(res);
+				});
+			setEditModalStatus(false);
+		},
+	});
 	return (
 		<PageWrapper title={`${mission?.name}`}>
 			<SubHeader>
@@ -331,6 +225,7 @@ const MissionDetailPage = () => {
 								size='lg'
 								isLight
 								className='w-50 h-100'
+								onClick={() => setEditModalStatus(true)}
 								icon='AddCircle'>
 								Thêm công việc
 							</Button>
@@ -338,7 +233,7 @@ const MissionDetailPage = () => {
 					</div>
 				</div>
 				<div className='row mt-3'>
-					{mission?.tasks?.map((item, index) => {
+					{mission?.data?.map((item, index) => {
 						return (
 							<Item
 								// eslint-disable-next-line react/no-array-index-key
@@ -356,53 +251,131 @@ const MissionDetailPage = () => {
 					})}
 				</div>
 				<Modal
-					// setIsOpen={setEditModalStatus}
-					// isOpen={editModalStatus}
+					setIsOpen={setEditModalStatus}
+					isOpen={editModalStatus}
 					size='lg'
 					isScrollable>
-					<ModalHeader className='px-4'>
-						<ModalTitle id='project-edit'>Thêm mới nhiệm vụ</ModalTitle>
+					<ModalHeader className='px-4' setIsOpen={setEditModalStatus}>
+						<ModalTitle id='project-edit'>Thêm mới công việc</ModalTitle>
 					</ModalHeader>
-					<ModalBody className='px-4'>
-						<div className='row'>
-							<div className='col-md-12'>
-								<Card shadow='sm'>
+					<ModalBody>
+						<div className='row g-4'>
+							<div className='col-12'>
+								<FormGroup id='name' label='Tên công việc' isFloating>
+									<Input
+										placeholder='Tên công việc'
+										onChange={formik.handleChange}
+										value={formik.values.name}
+									/>
+								</FormGroup>
+							</div>
+							<div className='col-12'>
+								<FormGroup id='teamName' label='Phòng ban' isFloating>
+									<Input
+										placeholder='Phòng ban'
+										onChange={formik.handleChange}
+										value={formik.values.teamName}
+									/>
+								</FormGroup>
+							</div>
+							<div className='col-12'>
+								<FormGroup id='assign_to' label='Nhân viên phụ trách' isFloating>
+									<Input
+										placeholder='Nhân viên phụ trách'
+										onChange={formik.handleChange}
+										value={formik.values.assign_to}
+									/>
+								</FormGroup>
+							</div>
+							<div className='col-12'>
+								<FormGroup id='total_kpi_value' label='Mức điểm KPI' isFloating>
+									<Input
+										placeholder='Mức điểm KPI'
+										onChange={formik.handleChange}
+										value={formik.values.total_kpi_value}
+									/>
+								</FormGroup>
+							</div>
+							<div className='col-6'>
+								<FormGroup
+									id='estimateDate'
+									label='Ngày hoàn thành ước tính'
+									isFloating>
+									<Input
+										placeholder='Ngày hoàn thành ước tính'
+										onChange={formik.handleChange}
+										value={formik.values.estimateDate}
+										type='date'
+									/>
+								</FormGroup>
+							</div>
+							<div className='col-6'>
+								<FormGroup
+									id='estimateTime'
+									label='Thời gian hoàn thành ước tính'
+									isFloating>
+									<Input
+										placeholder='Thời gian hoàn thành ước tính'
+										onChange={formik.handleChange}
+										value={formik.values.estimateTime}
+										type='time'
+									/>
+								</FormGroup>
+							</div>
+							<div className='col-6'>
+								<FormGroup id='deadlineDate' label='Hạn ngày hoàn thành' isFloating>
+									<Input
+										placeholder='Hạn ngày hoàn thành'
+										onChange={formik.handleChange}
+										value={formik.values.deadlineDate}
+										type='date'
+									/>
+								</FormGroup>
+							</div>
+							<div className='col-6'>
+								<FormGroup
+									id='deadlineTime'
+									label='Hạn thời gian hoàn thành'
+									isFloating>
+									<Input
+										placeholder='Hạn thời gian hoàn thành'
+										onChange={formik.handleChange}
+										value={formik.values.deadlineTime}
+										type='time'
+									/>
+								</FormGroup>
+							</div>
+							<div className='col-12'>
+								<Card isCompact className='mb-0'>
+									<CardBody>
+										<FormGroup id='description' label='Ghi chú mục tiêu' isFloating>
+											<Textarea
+												className='h-100'
+												rows={12}
+												placeholder='note'
+												onChange={formik.handleChange}
+												value={formik.values.description}
+											/>
+										</FormGroup>
+									</CardBody>
+								</Card>
+							</div>
+							<div className='col-12'>
+								<Card isCompact className='mb-0'>
 									<CardHeader>
-										<CardLabel icon='Info' iconColor='success'>
-											<CardTitle>Thông tin nhiệm vụ</CardTitle>
+										<CardLabel>
+											<CardTitle>Tạo mục tiêu</CardTitle>
 										</CardLabel>
 									</CardHeader>
 									<CardBody>
-										<div className='row g-4'>
-											<FormGroup
-												className='col-12'
-												id='name'
-												label='Tên nhiệm vụ'>
-												<Input
-												// onChange={formik.handleChange}
-												// value={formik.values.name}
-												/>
-											</FormGroup>
-											<FormGroup
-												className='col-12'
-												id='description'
-												label='Mô tả nhiệm vụ'>
-												<Textarea
-												// onChange={formik.handleChange}
-												// value={formik.values.description}
-												/>
-											</FormGroup>
-											<FormGroup
-												className='col-12'
-												id='total_kpi_value'
-												label='Giá trị KPI'>
-												<Input
-													type='number'
-												// onChange={formik.handleChange}
-												// value={formik.values.total_kpi_value}
-												/>
-											</FormGroup>
-										</div>
+										<Button
+											color='info'
+											size='lg'
+											isLight
+											className='h-100'
+											icon='AddCircle'>
+											Thêm mới
+										</Button>
 									</CardBody>
 								</Card>
 							</div>
@@ -413,9 +386,8 @@ const MissionDetailPage = () => {
 							color='primary'
 							className='w-100'
 							type='submit'
-						// onClick={formik.handleSubmit}
-						>
-							Thêm công việc
+							onClick={formik.handleSubmit}>
+							Lưu mục tiêu
 						</Button>
 					</ModalFooter>
 				</Modal>

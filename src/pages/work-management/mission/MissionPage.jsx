@@ -42,7 +42,7 @@ const dataMissions = [
 	},
 	{
 		id: 2,
-		name: 'Công việc 2',
+		name: 'Mục tiêu 2',
 		department: ' Phòng 2',
 		total_kpi_value: 0,
 		assign_to: 'Người 2',
@@ -110,7 +110,7 @@ const MissionPage = () => {
 										className='w-50 h-100'
 										icon='AddCircle'
 										onClick={() => setEditModalStatus(true)}>
-										Thêm công việc
+										Thêm mục tiêu
 									</Button>
 								</div>
 							</div>
@@ -167,28 +167,19 @@ const MissionPage = () => {
 					size='lg'
 					isScrollable>
 					<ModalHeader className='px-4' setIsOpen={setEditModalStatus}>
-						<ModalTitle id='project-edit'>Thêm mới công việc</ModalTitle>
+						<ModalTitle id='project-edit'>Thêm mới mục tiêu</ModalTitle>
 					</ModalHeader>
 					<ModalBody>
 						<div className='row g-4'>
 							<div className='col-12'>
-								<FormGroup id='name' label='Tên công việc' isFloating>
+								<FormGroup id='name' label='Tên mục tiêu' isFloating>
 									<Input
-										placeholder='Tên công việc'
+										placeholder='Tên mục tiêu'
 										onChange={formik.handleChange}
 										value={formik.values.name}
 									/>
 								</FormGroup>
 							</div>
-							{/* <div className='col-12'>
-								<FormGroup id='workCategory' label='Thuộc công việc' isFloating>
-									<Input
-										placeholder='Thuộc công việc'
-										onChange={formik.handleChange}
-										value={formik.values.workCategory}
-									/>
-								</FormGroup>
-							</div> */}
 							<div className='col-12'>
 								<FormGroup id='department' label='Phòng ban' isFloating>
 									<Input
@@ -268,7 +259,7 @@ const MissionPage = () => {
 							<div className='col-12'>
 								<Card isCompact className='mb-0'>
 									<CardBody>
-										<FormGroup id='note' label='Ghi chú đầu việc' isFloating>
+										<FormGroup id='note' label='Ghi chú mục tiêu' isFloating>
 											<Textarea
 												className='h-100'
 												rows={12}
@@ -280,44 +271,11 @@ const MissionPage = () => {
 									</CardBody>
 								</Card>
 							</div>
-							{/* <div className='col-12'>
-								<Card isCompact className='mb-0'>
-									<CardHeader>
-										<CardLabel>
-											<CardTitle>Thông báo khi đến hạn</CardTitle>
-										</CardLabel>
-									</CardHeader>
-									<CardBody>
-										<FormGroup>
-											<Checks
-												id='notify'
-												type='switch'
-												label={
-													<>
-														Thông báo cho khách hàng
-														<Popovers
-															trigger='hover'
-															desc='Check this checkbox if you want your customer to receive an email about the scheduled appointment'>
-															<Icon
-																icon='Help'
-																size='lg'
-																className='ms-1 cursor-help'
-															/>
-														</Popovers>
-													</>
-												}
-												onChange={formik.handleChange}
-												checked={formik.values.notify}
-											/>
-										</FormGroup>
-									</CardBody>
-								</Card>
-							</div> */}
 							<div className='col-12'>
 								<Card isCompact className='mb-0'>
 									<CardHeader>
 										<CardLabel>
-											<CardTitle>Tạo đầu việc</CardTitle>
+											<CardTitle>Tạo mục tiêu</CardTitle>
 										</CardLabel>
 									</CardHeader>
 									<CardBody>
@@ -340,7 +298,7 @@ const MissionPage = () => {
 							className='w-100'
 							type='submit'
 							onClick={formik.handleSubmit}>
-							Lưu công việc
+							Lưu mục tiêu
 						</Button>
 					</ModalFooter>
 				</Modal>

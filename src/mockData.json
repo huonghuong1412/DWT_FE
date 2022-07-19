@@ -1,10 +1,1547 @@
 {
-    "missions": [
+  "departments": [
+    {
+      "id": 1,
+      "name": "Phòng Marketing"
+    },
+    {
+      "id": 2,
+      "name": "Phòng Kinh doanh"
+    },
+    {
+      "id": 3,
+      "name": "Phòng IT"
+    },
+    {
+      "id": 4,
+      "name": "Phòng Cung ứng"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "department_id": 1,
+      "name": "Nhân viên 1 - Phòng Marketing"
+    },
+    {
+      "id": 2,
+      "department_id": 1,
+      "name": "Nhân viên 2 - Phòng Marketing"
+    },
+    {
+      "id": 3,
+      "department_id": 2,
+      "name": "Nhân viên 1 - Phòng Kinh doanh"
+    },
+    {
+      "id": 4,
+      "department_id": 2,
+      "name": "Nhân viên 2 - Phòng Kinh doanh"
+    },
+    {
+      "id": 5,
+      "department_id": 3,
+      "name": "Nhân viên 3 - Phòng IT"
+    }
+  ],
+  "missions": [
+    {
+      "id": 1,
+      "name": "Mở rộng thị trường miền Trung",
+      "description": "Mô tả nhiệm vụ 1",
+      "status": 0,
+      "kpi_value": 2000,
+      "start_time": "01/01/2022",
+      "end_time": "01/12/2022",
+      "details": [
         {
-            "name": "Nhiệm vụ 1 - Phòng kinh doanh",
-            "description": "Mô tả nhiệm vụ 1 - Phòng kinh doanh",
-            "revenue": 100000000,
-            "kpi_point": 1000
+          "id": 1,
+          "name": "Doanh thu đạt 500 tỷ"
+        },
+        {
+          "id": 2,
+          "name": "Mở mới 120% khách hàng"
         }
-    ]
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Nhiệm vụ 2",
+      "description": "Mô tả nhiệm vụ 2",
+      "status": 1,
+      "kpi_value": 1000,
+      "start_time": "01/01/2022",
+      "end_time": "01/12/2022",
+      "details": [
+        {
+          "id": 1,
+          "name": "Doanh thu đạt 500 tỷ"
+        },
+        {
+          "id": 2,
+          "name": "Mở mới 120% khách hàng"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Nhiệm vụ 3",
+      "description": "Mô tả nhiệm vụ 3",
+      "status": 1,
+      "kpi_value": 1000,
+      "start_time": "01/01/2022",
+      "end_time": "01/12/2022",
+      "details": [
+        {
+          "id": 1,
+          "name": "Doanh thu đạt 500 tỷ"
+        },
+        {
+          "id": 2,
+          "name": "Mở mới 120% khách hàng"
+        }
+      ]
+    },
+    {
+      "name": "Nhiệm vụ 4",
+      "description": "Mô tả nhiệm vụ 4",
+      "status": 1,
+      "kpi_value": 1111,
+      "start_time": "01/01/2022",
+      "end_time": "01/12/2022",
+      "id": 4,
+      "details": [
+        {
+          "id": 1,
+          "name": "Doanh thu đạt 500 tỷ"
+        },
+        {
+          "id": 2,
+          "name": "Mở mới 120% khách hàng"
+        }
+      ]
+    },
+    {
+      "name": "Mở rộng thị trường miền Nam",
+      "description": "Hehehe",
+      "kpi_value": 1000,
+      "start_time": "2022-07-19",
+      "end_time": "2022-12-19",
+      "status": 1,
+      "id": 5
+    },
+    {
+      "name": "AAA",
+      "description": "AAA",
+      "kpi_value": 100,
+      "start_time": "2022-07-19",
+      "end_time": "2022-07-25",
+      "status": 1,
+      "id": 6
+    },
+    {
+      "name": "",
+      "description": "",
+      "kpi_value": 0,
+      "start_time": "2022-07-19",
+      "end_time": "2022-07-19",
+      "status": 1,
+      "id": 7
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "Công việc 1 - Nhiệm vụ 1",
+      "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+      "kpi_value": 200,
+      "estimate_date": "19/07/2022",
+      "estimate_time": "08:00",
+      "deadline_date": "19/07/2022",
+      "deadline_time": "17:00",
+      "keys": null
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "Công việc 1 - Nhiệm vụ 1",
+      "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+      "kpi_value": 200,
+      "priority": 5,
+      "status": 1,
+      "estimate_date": "19/07/2022",
+      "estimate_time": "08:00",
+      "deadline_date": "19/07/2022",
+      "deadline_time": "17:00",
+      "keys": null,
+      "id": 4
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "Công việc 1 - Nhiệm vụ 1",
+      "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+      "kpi_value": 200,
+      "priority": 5,
+      "status": 1,
+      "start_date": "04/06/2022",
+      "start_time": "08:00",
+      "end_date": "04/06/2022",
+      "end_time": "17:00",
+      "keys": null,
+      "id": 5
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "user": {
+        "id": 2,
+        "name": "Nhân viên 2"
+      },
+      "name": "Công việc ngày 19/07/2022",
+      "description": "Mô tả cônng việc",
+      "kpi_value": 100,
+      "priority": 2,
+      "status": 0,
+      "estimate_date": "19/07/2022",
+      "estimate_time": "08:00",
+      "deadline_date": "19/07/2022",
+      "deadline_time": "17:00",
+      "keys": null,
+      "id": 6
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "Công việc ngày 19/07/2022",
+      "description": "Mô tả cônng việc",
+      "kpi_value": 100,
+      "priority": 2,
+      "status": 0,
+      "estimate_date": "19/07/2022",
+      "estimate_time": "08:00",
+      "deadline_date": "19/07/2022",
+      "deadline_time": "17:00",
+      "keys": null,
+      "id": 7
+    },
+    {
+      "data": [
+        {
+          "id": 1,
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 4
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "start_date": "04/06/2022",
+          "start_time": "08:00",
+          "end_date": "04/06/2022",
+          "end_time": "17:00",
+          "keys": null,
+          "id": 5
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 2,
+            "name": "Nhân viên 2"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 6
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 7
+        }
+      ],
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "cache-control": "no-cache",
+        "content-type": "application/json; charset=utf-8",
+        "expires": "-1",
+        "pragma": "no-cache"
+      },
+      "config": {
+        "transitional": {
+          "silentJSONParsing": true,
+          "forcedJSONParsing": true,
+          "clarifyTimeoutError": false
+        },
+        "transformRequest": [
+          null
+        ],
+        "transformResponse": [
+          null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {
+          "FormData": null
+        },
+        "headers": {
+          "Accept": "application/json, text/plain, */*"
+        },
+        "method": "get",
+        "url": "http://localhost:3001/tasks?mission_id=1"
+      },
+      "request": {},
+      "id": 8
+    },
+    {
+      "data": [
+        {
+          "id": 1,
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 4
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "start_date": "04/06/2022",
+          "start_time": "08:00",
+          "end_date": "04/06/2022",
+          "end_time": "17:00",
+          "keys": null,
+          "id": 5
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 2,
+            "name": "Nhân viên 2"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 6
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 7
+        }
+      ],
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "cache-control": "no-cache",
+        "content-type": "application/json; charset=utf-8",
+        "expires": "-1",
+        "pragma": "no-cache"
+      },
+      "config": {
+        "transitional": {
+          "silentJSONParsing": true,
+          "forcedJSONParsing": true,
+          "clarifyTimeoutError": false
+        },
+        "transformRequest": [
+          null
+        ],
+        "transformResponse": [
+          null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {
+          "FormData": null
+        },
+        "headers": {
+          "Accept": "application/json, text/plain, */*"
+        },
+        "method": "get",
+        "url": "http://localhost:3001/tasks?mission_id=1"
+      },
+      "request": {},
+      "id": 9
+    },
+    {
+      "data": [
+        {
+          "id": 1,
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 4
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "start_date": "04/06/2022",
+          "start_time": "08:00",
+          "end_date": "04/06/2022",
+          "end_time": "17:00",
+          "keys": null,
+          "id": 5
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 2,
+            "name": "Nhân viên 2"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 6
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 7
+        }
+      ],
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "cache-control": "no-cache",
+        "content-type": "application/json; charset=utf-8",
+        "expires": "-1",
+        "pragma": "no-cache"
+      },
+      "config": {
+        "transitional": {
+          "silentJSONParsing": true,
+          "forcedJSONParsing": true,
+          "clarifyTimeoutError": false
+        },
+        "transformRequest": [
+          null
+        ],
+        "transformResponse": [
+          null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {
+          "FormData": null
+        },
+        "headers": {
+          "Accept": "application/json, text/plain, */*"
+        },
+        "method": "get",
+        "url": "http://localhost:3001/tasks?mission_id=1"
+      },
+      "request": {},
+      "id": 10
+    },
+    {
+      "data": [
+        {
+          "id": 1,
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 4
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "start_date": "04/06/2022",
+          "start_time": "08:00",
+          "end_date": "04/06/2022",
+          "end_time": "17:00",
+          "keys": null,
+          "id": 5
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 2,
+            "name": "Nhân viên 2"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 6
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 7
+        }
+      ],
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "cache-control": "no-cache",
+        "content-type": "application/json; charset=utf-8",
+        "expires": "-1",
+        "pragma": "no-cache"
+      },
+      "config": {
+        "transitional": {
+          "silentJSONParsing": true,
+          "forcedJSONParsing": true,
+          "clarifyTimeoutError": false
+        },
+        "transformRequest": [
+          null
+        ],
+        "transformResponse": [
+          null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {
+          "FormData": null
+        },
+        "headers": {
+          "Accept": "application/json, text/plain, */*"
+        },
+        "method": "get",
+        "url": "http://localhost:3001/tasks?mission_id=1"
+      },
+      "request": {},
+      "id": 11
+    },
+    {
+      "data": [
+        {
+          "id": 1,
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 4
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "start_date": "04/06/2022",
+          "start_time": "08:00",
+          "end_date": "04/06/2022",
+          "end_time": "17:00",
+          "keys": null,
+          "id": 5
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 2,
+            "name": "Nhân viên 2"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 6
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 7
+        }
+      ],
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "cache-control": "no-cache",
+        "content-type": "application/json; charset=utf-8",
+        "expires": "-1",
+        "pragma": "no-cache"
+      },
+      "config": {
+        "transitional": {
+          "silentJSONParsing": true,
+          "forcedJSONParsing": true,
+          "clarifyTimeoutError": false
+        },
+        "transformRequest": [
+          null
+        ],
+        "transformResponse": [
+          null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {
+          "FormData": null
+        },
+        "headers": {
+          "Accept": "application/json, text/plain, */*"
+        },
+        "method": "get",
+        "url": "http://localhost:3001/tasks?mission_id=1"
+      },
+      "request": {},
+      "id": 12
+    },
+    {
+      "data": [
+        {
+          "id": 1,
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 4
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "start_date": "04/06/2022",
+          "start_time": "08:00",
+          "end_date": "04/06/2022",
+          "end_time": "17:00",
+          "keys": null,
+          "id": 5
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 2,
+            "name": "Nhân viên 2"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 6
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 7
+        }
+      ],
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "cache-control": "no-cache",
+        "content-type": "application/json; charset=utf-8",
+        "expires": "-1",
+        "pragma": "no-cache"
+      },
+      "config": {
+        "transitional": {
+          "silentJSONParsing": true,
+          "forcedJSONParsing": true,
+          "clarifyTimeoutError": false
+        },
+        "transformRequest": [
+          null
+        ],
+        "transformResponse": [
+          null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {
+          "FormData": null
+        },
+        "headers": {
+          "Accept": "application/json, text/plain, */*"
+        },
+        "method": "get",
+        "url": "http://localhost:3001/tasks?mission_id=1"
+      },
+      "request": {},
+      "id": 13
+    },
+    {
+      "data": [
+        {
+          "id": 1,
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 4
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "start_date": "04/06/2022",
+          "start_time": "08:00",
+          "end_date": "04/06/2022",
+          "end_time": "17:00",
+          "keys": null,
+          "id": 5
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 2,
+            "name": "Nhân viên 2"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 6
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 7
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "priority": 2,
+          "status": 0,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "",
+          "description": "",
+          "assign_to": "",
+          "teamName": "",
+          "estimateTime": "",
+          "startTime": "",
+          "endTime": "",
+          "kpi_value": 0,
+          "keys": null
+        }
+      ],
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "cache-control": "no-cache",
+        "content-type": "application/json; charset=utf-8",
+        "expires": "-1",
+        "pragma": "no-cache"
+      },
+      "config": {
+        "transitional": {
+          "silentJSONParsing": true,
+          "forcedJSONParsing": true,
+          "clarifyTimeoutError": false
+        },
+        "transformRequest": [
+          null
+        ],
+        "transformResponse": [
+          null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {
+          "FormData": null
+        },
+        "headers": {
+          "Accept": "application/json, text/plain, */*"
+        },
+        "method": "get",
+        "url": "http://localhost:3001/tasks?mission_id=1"
+      },
+      "request": {},
+      "id": 14
+    },
+    {
+      "data": [
+        {
+          "id": 1,
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 4
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc 1 - Nhiệm vụ 1",
+          "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+          "kpi_value": 200,
+          "priority": 5,
+          "status": 1,
+          "start_date": "04/06/2022",
+          "start_time": "08:00",
+          "end_date": "04/06/2022",
+          "end_time": "17:00",
+          "keys": null,
+          "id": 5
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 2,
+            "name": "Nhân viên 2"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 6
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "Công việc ngày 19/07/2022",
+          "description": "Mô tả cônng việc",
+          "kpi_value": 100,
+          "priority": 2,
+          "status": 0,
+          "estimate_date": "19/07/2022",
+          "estimate_time": "08:00",
+          "deadline_date": "19/07/2022",
+          "deadline_time": "17:00",
+          "keys": null,
+          "id": 7
+        },
+        {
+          "mission_id": 1,
+          "departmnent_id": 1,
+          "priority": 2,
+          "status": 0,
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "name": "",
+          "description": "",
+          "assign_to": "",
+          "teamName": "",
+          "estimateTime": "",
+          "startTime": "",
+          "endTime": "",
+          "kpi_value": 0,
+          "keys": null
+        }
+      ],
+      "status": 200,
+      "statusText": "OK",
+      "headers": {
+        "cache-control": "no-cache",
+        "content-type": "application/json; charset=utf-8",
+        "expires": "-1",
+        "pragma": "no-cache"
+      },
+      "config": {
+        "transitional": {
+          "silentJSONParsing": true,
+          "forcedJSONParsing": true,
+          "clarifyTimeoutError": false
+        },
+        "transformRequest": [
+          null
+        ],
+        "transformResponse": [
+          null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {
+          "FormData": null
+        },
+        "headers": {
+          "Accept": "application/json, text/plain, */*"
+        },
+        "method": "get",
+        "url": "http://localhost:3001/tasks?mission_id=1"
+      },
+      "request": {},
+      "id": 15
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "priority": 2,
+      "status": 0,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "",
+      "description": "",
+      "assign_to": "",
+      "teamName": "",
+      "estimateTime": "",
+      "startTime": "",
+      "endTime": "",
+      "kpi_value": 0,
+      "keys": null,
+      "id": 16
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "priority": 2,
+      "status": 0,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "",
+      "description": "",
+      "assign_to": "",
+      "teamName": "",
+      "estimateTime": "",
+      "startTime": "",
+      "endTime": "",
+      "kpi_value": 0,
+      "keys": null,
+      "id": 17
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "priority": 2,
+      "status": 0,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "",
+      "description": "",
+      "assign_to": "",
+      "teamName": "",
+      "estimateTime": "",
+      "startTime": "",
+      "endTime": "",
+      "kpi_value": 0,
+      "keys": null,
+      "id": 18
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "priority": 2,
+      "status": 0,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "123",
+      "description": "",
+      "assign_to": "123",
+      "teamName": "123",
+      "estimateTime": "",
+      "startTime": "",
+      "endTime": "",
+      "kpi_value": 0,
+      "keys": null,
+      "total_kpi_value": "123",
+      "id": 19
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "priority": 2,
+      "status": 0,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "123",
+      "description": "",
+      "assign_to": "123",
+      "teamName": "123",
+      "estimateTime": "",
+      "startTime": "",
+      "endTime": "",
+      "kpi_value": 0,
+      "keys": null,
+      "total_kpi_value": "123",
+      "id": 20
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "priority": 2,
+      "status": 0,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "123",
+      "description": "",
+      "assign_to": "123",
+      "teamName": "123",
+      "estimateTime": "16:29",
+      "startTime": "",
+      "endTime": "",
+      "kpi_value": 0,
+      "keys": null,
+      "total_kpi_value": "123",
+      "estimateDate": "2022-07-08",
+      "deadlineTime": "16:27",
+      "deadlineDate": "2022-07-01",
+      "id": 21
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "priority": 2,
+      "status": 0,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "123",
+      "description": "",
+      "assign_to": "123",
+      "teamName": "123",
+      "estimateTime": "16:29",
+      "startTime": "",
+      "endTime": "",
+      "kpi_value": 0,
+      "keys": null,
+      "total_kpi_value": "123",
+      "estimateDate": "2022-07-08",
+      "deadlineTime": "16:27",
+      "deadlineDate": "2022-07-01",
+      "id": 22
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "priority": 2,
+      "status": 0,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "123",
+      "description": "",
+      "assign_to": "123",
+      "teamName": "123",
+      "estimateTime": "16:29",
+      "startTime": "",
+      "endTime": "",
+      "kpi_value": 0,
+      "keys": null,
+      "total_kpi_value": "123",
+      "estimateDate": "2022-07-08",
+      "deadlineTime": "16:27",
+      "deadlineDate": "2022-07-01",
+      "id": 23
+    },
+    {
+      "mission_id": 1,
+      "departmnent_id": 1,
+      "priority": 2,
+      "status": 0,
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "name": "1233",
+      "description": "",
+      "assign_to": "1233",
+      "teamName": "1233",
+      "estimateTime": "16:28",
+      "startTime": "",
+      "endTime": "",
+      "kpi_value": 0,
+      "keys": null,
+      "total_kpi_value": "1233",
+      "estimateDate": "2022-07-19",
+      "deadlineDate": "2022-07-20",
+      "deadlineTime": "21:27",
+      "id": 24
+    }
+  ]
 }

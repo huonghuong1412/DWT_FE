@@ -3,8 +3,7 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useFormik } from 'formik';
-import styled from 'styled-components';
+// import { useFormik } from 'formik';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import { demoPages } from '../../../menu';
@@ -14,6 +13,7 @@ import Card, {
 	CardLabel,
 	CardSubTitle,
 	CardTitle,
+	CardActions,
 } from '../../../components/bootstrap/Card';
 import Modal, {
 	ModalBody,
@@ -31,6 +31,7 @@ import USERS from '../../../common/data/userDummyData';
 import FormGroup from '../../../components/bootstrap/forms/FormGroup';
 import Input from '../../../components/bootstrap/forms/Input';
 import Textarea from '../../../components/bootstrap/forms/Textarea';
+import TaskProgress from '../task-management/TaskProgress';
 
 const Item = ({
 	name,
@@ -47,19 +48,7 @@ const Item = ({
 		() => navigate(`../${demoPages.quanLyCongViec.subMenu.chiTietCongViecPhongBan.path}`),
 		[navigate],
 	);
-	const [editModalStatus, setEditModalStatus] = useState(false);
-	const formik = useFormik({
-		initialValues: {
-			name: '',
-			description: '',
-			total_kpi_value: 0,
-			task: [],
-		},
-		// eslint-disable-next-line no-unused-vars
-		onSubmit: (values) => {
-			setEditModalStatus(false);
-		},
-	});
+	const date = `Còn 30 ngày nữa`;
 	return (
 		<div className='col-md-6 col-xl-4 col-sm-12' {...props}>
 			<Card stretch onClick={handleOnClickToProjectPage} className='cursor-pointer'>
@@ -68,9 +57,14 @@ const Item = ({
 						<CardTitle>{name}</CardTitle>
 						<CardSubTitle>{teamName}</CardSubTitle>
 					</CardLabel>
+					<CardActions>
+						<small className='border border-success border-2 text-success fw-bold px-2 py-1 rounded-1'>
+							{date}
+						</small>
+					</CardActions>
 				</CardHeader>
 				<CardBody>
-					<div className='d-flex align-items-center mb-3'>
+					{/* <div className='d-flex align-items-center mb-3'>
 						<small
 							className='border rounded-1 text-success fw-bold px-2 py-1'
 							style={{ fontSize: 14 }}>
@@ -82,7 +76,7 @@ const Item = ({
 							style={{ fontSize: 14 }}>
 							{endTime}
 						</small>
-					</div>
+					</div> */}
 					<div className='row g-2 mb-3'>
 						{/* <div className='col-auto'>
 							<Badge color='dark' isLight style={{ fontSize: 18 }}>
@@ -128,23 +122,6 @@ const Item = ({
 		</div>
 	);
 };
-
-const MissionTitleIndex = styled.h3`
-	font-size: 20px;
-	color: #333;
-	padding: 15px;
-	border: 1px solid #eee;
-	margin-bottom: 0;
-`;
-
-const MissionValueIndex = styled.h3`
-	font-size: 16px;
-	color: #333;
-	padding: 15px;
-	border: 1px solid #eee;
-	margin-top: 0;
-`;
-
 const dataMissions = [
 	{
 		id: 1,
@@ -165,19 +142,11 @@ const dataMissions = [
 				name: 'Giá trị KPI',
 				value: '1000',
 			},
-			{
-				name: 'Ngân sách',
-				value: '500,000,000 đ',
-			},
-			{
-				name: 'Đã chi',
-				value: '150,000,000 đ',
-			},
 		],
 		tasks: [
 			{
 				id: 1,
-				name: 'Công việc 1 - Mục tiêu 1',
+				name: 'Công việc 1',
 				description: 'Mô tả công việc 1 - Mục tiêu 1',
 				teamName: 'Phòng kinh doanh',
 				estimateTime: '16-07-2022 17:00',
@@ -189,7 +158,7 @@ const dataMissions = [
 			},
 			{
 				id: 2,
-				name: 'Công việc 2 - Mục tiêu 1',
+				name: 'Công việc 2',
 				description: 'Mô tả công việc 2 - Mục tiêu 1',
 				teamName: 'Phòng kinh doanh',
 				estimateTime: '20-07-2022 17:00',
@@ -201,7 +170,7 @@ const dataMissions = [
 			},
 			{
 				id: 3,
-				name: 'Công việc 3 - Mục tiêu 1',
+				name: 'Công việc 3',
 				description: 'Mô tả công việc 3 - Mục tiêu 1',
 				teamName: 'Phòng kinh doanh',
 				estimateTime: '20-07-2022 17:00',
@@ -213,7 +182,7 @@ const dataMissions = [
 			},
 			{
 				id: 4,
-				name: 'Công việc 4 - Mục tiêu 1',
+				name: 'Công việc 4',
 				description: 'Mô tả công việc 4 - Mục tiêu 1',
 				teamName: 'Phòng kinh doanh',
 				estimateTime: '20-07-2022 17:00',
@@ -317,33 +286,37 @@ const MissionDetailPage = () => {
 			</SubHeader>
 			<Page container='fluid'>
 				<div className='row'>
-					<div className='col-12'>
-						<div className='display-6 fw-bold py-3'>Thông tin mục tiêu</div>
-					</div>
 					<div className='col-md-12 col-xl-12 col-sm-12'>
 						<Card stretch>
 							<CardHeader className='bg-transparent'>
 								<CardLabel>
-									<CardTitle tag='h2' className='h2'>
-										{mission?.name}
+									<CardTitle>
+										<div className='row'>
+											<div className=' row-12 md-5 h1'>
+												Mục Tiêu : {` `}
+												{mission?.name}
+											</div>
+											<div className='col-6 md-5' style={{ marginTop: '5%' }}>
+												<ul style={{ listStyle: 'none' }}>
+													{mission?.keys?.map((item, index) => (
+														// eslint-disable-next-line react/no-array-index-key
+														<li className='h4' style={{ margin: '0 0 3% 10%' }} key={index}>
+															{item?.name} {' : '} {item?.value}
+															{/* {30}% */}
+															<div className='col-md-6'>
+																<Progress isAutoColor value={30} height={10} />
+															</div>
+														</li>
+													))}
+												</ul>
+											</div>
+											<div className='col-6 md-5'>
+												<TaskProgress />
+											</div>
+										</div>
 									</CardTitle>
-									<CardSubTitle tag='h3' className='h3 text-muted mt-4'>
-										{mission?.description}
-									</CardSubTitle>
 								</CardLabel>
 							</CardHeader>
-							<CardBody>
-								<h3>Chỉ số mục tiêu</h3>
-								<div className='d-flex justify-content-start align-items-center'>
-									{mission?.keys?.map((item, index) => (
-										// eslint-disable-next-line react/no-array-index-key
-										<div style={{ minWidth: '20%' }} key={index}>
-											<MissionTitleIndex>{item?.name}</MissionTitleIndex>
-											<MissionValueIndex>{item?.value}</MissionValueIndex>
-										</div>
-									))}
-								</div>
-							</CardBody>
 						</Card>
 					</div>
 				</div>
@@ -358,9 +331,7 @@ const MissionDetailPage = () => {
 								size='lg'
 								isLight
 								className='w-50 h-100'
-								icon='AddCircle'
-								// onClick={handleUpcomingEdit}
-							>
+								icon='AddCircle'>
 								Thêm công việc
 							</Button>
 						</div>
@@ -385,11 +356,11 @@ const MissionDetailPage = () => {
 					})}
 				</div>
 				<Modal
-					setIsOpen={setEditModalStatus}
-					isOpen={editModalStatus}
+					// setIsOpen={setEditModalStatus}
+					// isOpen={editModalStatus}
 					size='lg'
 					isScrollable>
-					<ModalHeader className='px-4' setIsOpen={setEditModalStatus}>
+					<ModalHeader className='px-4'>
 						<ModalTitle id='project-edit'>Thêm mới nhiệm vụ</ModalTitle>
 					</ModalHeader>
 					<ModalBody className='px-4'>
@@ -408,8 +379,8 @@ const MissionDetailPage = () => {
 												id='name'
 												label='Tên nhiệm vụ'>
 												<Input
-													onChange={formik.handleChange}
-													value={formik.values.name}
+												// onChange={formik.handleChange}
+												// value={formik.values.name}
 												/>
 											</FormGroup>
 											<FormGroup
@@ -417,8 +388,8 @@ const MissionDetailPage = () => {
 												id='description'
 												label='Mô tả nhiệm vụ'>
 												<Textarea
-													onChange={formik.handleChange}
-													value={formik.values.description}
+												// onChange={formik.handleChange}
+												// value={formik.values.description}
 												/>
 											</FormGroup>
 											<FormGroup
@@ -427,8 +398,8 @@ const MissionDetailPage = () => {
 												label='Giá trị KPI'>
 												<Input
 													type='number'
-													onChange={formik.handleChange}
-													value={formik.values.total_kpi_value}
+												// onChange={formik.handleChange}
+												// value={formik.values.total_kpi_value}
 												/>
 											</FormGroup>
 										</div>
@@ -442,7 +413,8 @@ const MissionDetailPage = () => {
 							color='primary'
 							className='w-100'
 							type='submit'
-							onClick={formik.handleSubmit}>
+						// onClick={formik.handleSubmit}
+						>
 							Thêm công việc
 						</Button>
 					</ModalFooter>

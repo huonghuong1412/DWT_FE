@@ -191,8 +191,8 @@ const TaskListPage = () => {
 										icon='ArrowForwardIos'
 										aria-label='Read More'
 										hoverShadow='default'
-										// color={darkModeStatus && 'dark'}
-										// onClick={handleOnClickToEmployeeListPage}
+									// color={darkModeStatus && 'dark'}
+									// onClick={handleOnClickToEmployeeListPage}
 									/>
 								</CardActions>
 							</CardHeader>
@@ -255,8 +255,8 @@ const TaskListPage = () => {
 										icon='ArrowForwardIos'
 										aria-label='Read More'
 										hoverShadow='default'
-										// color={darkModeStatus && 'dark'}
-										// onClick={handleOnClickToEmployeeListPage}
+									// color={darkModeStatus && 'dark'}
+									// onClick={handleOnClickToEmployeeListPage}
 									/>
 								</CardActions>
 							</CardHeader>

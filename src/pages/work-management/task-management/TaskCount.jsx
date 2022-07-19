@@ -6,21 +6,21 @@ const TaskCount = () => {
 	const dataWorks = [
 		{
 			id: 1,
-			title: 'Công việc của tôi',
+			title: 'Số lượng công việc',
 			number: 45,
 			icon: 'Person',
 		},
 		{
 			id: 2,
-			title: 'Công việc đã giao',
+			title: 'Số công việc đã giao',
 			number: 12,
-			icon: 'PersonCheck',
+			icon: 'PersonPlus',
 		},
 		{
 			id: 3,
-			title: 'Công việc được giao',
+			title: 'Số công việc đã hoàn thành',
 			number: 8,
-			icon: 'PersonPlus',
+			icon: 'PersonCheck',
 		},
 		{
 			id: 4,
@@ -31,7 +31,7 @@ const TaskCount = () => {
 	];
 
 	return (
-		<Card stretch>
+		<Card>
 			<CardBody>
 				{dataWorks.map((item) => (
 					<Card key={item.id} className='pt-1 pb-1'>

@@ -1,0 +1,210 @@
+{
+    "departments": [
+        {
+            "id": 1,
+            "name": "Phòng Marketing"
+        },
+        {
+            "id": 2,
+            "name": "Phòng Kinh doanh"
+        },
+        {
+            "id": 3,
+            "name": "Phòng IT"
+        },
+        {
+            "id": 4,
+            "name": "Phòng Cung ứng"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "department_id": 1,
+            "name": "Nhân viên 1 - Phòng Marketing"
+        },
+        {
+            "id": 2,
+            "department_id": 1,
+            "name": "Nhân viên 2 - Phòng Marketing"
+        },
+        {
+            "id": 3,
+            "department_id": 2,
+            "name": "Nhân viên 1 - Phòng Kinh doanh"
+        },
+        {
+            "id": 4,
+            "department_id": 2,
+            "name": "Nhân viên 2 - Phòng Kinh doanh"
+        },
+        {
+            "id": 5,
+            "department_id": 3,
+            "name": "Nhân viên 3 - Phòng IT"
+        }
+    ],
+    "missions": [
+        {
+            "id": 1,
+            "name": "Mở rộng thị trường miền Trung",
+            "description": "Mô tả nhiệm vụ 1",
+            "status": 0,
+            "kpi_value": 2000,
+            "start_time": "01/01/2022",
+            "end_time": "01/12/2022",
+            "details": [
+                {
+                    "id": 1,
+                    "name": "Doanh thu đạt 500 tỷ"
+                },
+                {
+                    "id": 2,
+                    "name": "Mở mới 120% khách hàng"
+                }
+            ]
+        },
+        {
+            "name": "Mở rộng thị trường miền Nam",
+            "description": "Hehehe",
+            "kpi_value": 1000,
+            "start_time": "2022-07-19",
+            "end_time": "2022-12-19",
+            "status": 1,
+            "id": 5
+        },
+        {
+            "id": 6,
+            "name": "AAA",
+            "description": "AAA",
+            "kpi_value": "200",
+            "start_time": "2022-07-20",
+            "end_time": "2022-07-30",
+            "status": 1,
+            "details": [
+                {
+                    "id": 1,
+                    "name": "Doanh thu đạt 500 tỷ"
+                },
+                {
+                    "id": 2,
+                    "name": "Mở mới 120% khách hàng"
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "name": "BBB",
+            "description": "BBB",
+            "kpi_value": "199",
+            "start_time": "2022-07-20",
+            "end_time": "2022-07-30",
+            "status": 1,
+            "details": [
+                {
+                    "id": 1,
+                    "name": "Doanh thu đạt 500 tỷ"
+                },
+                {
+                    "id": 2,
+                    "name": "Mở mới 120% khách hàng"
+                }
+            ]
+        }
+    ],
+    "tasks": [
+        {
+            "id": 1,
+            "mission_id": 1,
+            "departmnent_id": 1,
+            "user": {
+                "id": 1,
+                "name": "Nhân viên 1"
+            },
+            "name": "Công việc 1 - Nhiệm vụ 1",
+            "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+            "kpi_value": 200,
+            "estimate_date": "19/07/2022",
+            "estimate_time": "08:00",
+            "deadline_date": "19/07/2022",
+            "deadline_time": "17:00",
+            "keys": null
+        },
+        {
+            "mission_id": 1,
+            "departmnent_id": 1,
+            "user": {
+                "id": 1,
+                "name": "Nhân viên 1"
+            },
+            "name": "Công việc 1 - Nhiệm vụ 1",
+            "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+            "kpi_value": 200,
+            "priority": 5,
+            "status": 1,
+            "estimate_date": "19/07/2022",
+            "estimate_time": "08:00",
+            "deadline_date": "19/07/2022",
+            "deadline_time": "17:00",
+            "keys": null,
+            "id": 4
+        },
+        {
+            "mission_id": 1,
+            "departmnent_id": 1,
+            "user": {
+                "id": 1,
+                "name": "Nhân viên 1"
+            },
+            "name": "Công việc 1 - Nhiệm vụ 1",
+            "description": "Mô tả cônng việc 1 - Nhiệm vụ 1",
+            "kpi_value": 200,
+            "priority": 5,
+            "status": 1,
+            "start_date": "04/06/2022",
+            "start_time": "08:00",
+            "end_date": "04/06/2022",
+            "end_time": "17:00",
+            "keys": null,
+            "id": 5
+        },
+        {
+            "mission_id": 1,
+            "departmnent_id": 1,
+            "user": {
+                "id": 2,
+                "name": "Nhân viên 2"
+            },
+            "name": "Công việc ngày 19/07/2022",
+            "description": "Mô tả cônng việc",
+            "kpi_value": 100,
+            "priority": 2,
+            "status": 0,
+            "estimate_date": "19/07/2022",
+            "estimate_time": "08:00",
+            "deadline_date": "19/07/2022",
+            "deadline_time": "17:00",
+            "keys": null,
+            "id": 6
+        },
+        {
+            "mission_id": 1,
+            "departmnent_id": 1,
+            "user": {
+                "id": 1,
+                "name": "Nhân viên 1"
+            },
+            "name": "Công việc ngày 19/07/2022",
+            "description": "Mô tả cônng việc",
+            "kpi_value": 100,
+            "priority": 2,
+            "status": 0,
+            "estimate_date": "19/07/2022",
+            "estimate_time": "08:00",
+            "deadline_date": "19/07/2022",
+            "deadline_time": "17:00",
+            "keys": null,
+            "id": 7
+        }
+    ]
+}

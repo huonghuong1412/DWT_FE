@@ -322,8 +322,8 @@ const TaskListPage = () => {
 				<div className='row my-4'>
 					{dataWork.map((item) => {
 						return (
-							<div className='col-xl-3 col-md-6 col-sm-12'>
-								<CardAlert key={item.id} {...item} />
+							<div className='col-xl-3 col-md-6 col-sm-12' key={item.id}>
+								<CardAlert {...item} />
 							</div>
 						);
 					})}

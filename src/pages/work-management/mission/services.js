@@ -7,6 +7,13 @@ const getAll = () => {
 	});
 };
 
+const getLatestTasks = () => {
+	return axiosClient({
+		method: 'GET',
+		url: '/tasks?_sort=id&_order=desc&_limit=6',
+	});
+};
+
 const getItemById = (id) => {
 	return axiosClient({
 		method: 'GET',
@@ -37,4 +44,4 @@ const deleteItemById = (id) => {
 	});
 };
 
-export { getAll, getItemById, addNewItem, updateItemById, deleteItemById };
+export { getAll, getLatestTasks, getItemById, addNewItem, updateItemById, deleteItemById };

@@ -599,13 +599,13 @@ export const dataChart2 = {
 };
 
 export const dataChart3 = {
-	series: [10, 20, 25, 48, 50, 21, 15, 35, 42, 20, 18],
+	series: [10, 20, 25, 48, 50],
 	options: {
 		chart: {
 			width: 450,
 			type: 'pie',
 		},
-		labels: ['N/A', 'B3', 'B5', 'B10', 'C20', 'C30', 'C60', 'S50', 'S100', 'S200', 'S350+'],
+		labels: ['Team 1', 'Team 2', 'Team 3', 'Team 4', 'Team 5'],
 		responsive: [
 			{
 				breakpoint: 480,
@@ -624,9 +624,9 @@ export const dataChart3 = {
 				expandOnClick: true,
 				donut: {
 					labels: {
-						show: true,
+						show: false,
 						name: {
-							show: true,
+							show: false,
 							fontSize: '24px',
 							fontFamily: 'Poppins',
 							fontWeight: 900,
@@ -636,7 +636,7 @@ export const dataChart3 = {
 							},
 						},
 						value: {
-							show: true,
+							show: false,
 							fontSize: '16px',
 							fontFamily: 'Poppins',
 							fontWeight: 900,

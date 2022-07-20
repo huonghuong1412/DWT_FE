@@ -87,6 +87,14 @@ const presentation = [
 		element: <TASK.TASKLIST />,
 		exact: true,
 	},
+	/**
+	 * Trang chi tiết công việc theo id
+	 */
+	{
+		path: `${demoPages.quanLyCongViec.subMenu.danhSach.path}/:id`,
+		element: <TASK.TASKLIST />,
+		exact: true,
+	},
 
 	/**
 	 * trang quản lý đầu việc

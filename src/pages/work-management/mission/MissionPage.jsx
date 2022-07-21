@@ -159,8 +159,8 @@ const MissionPage = () => {
 		try {
 			await deleteItemById(id);
 			const newState = [...missions];
-			const listFilter = newState.filter((item) => item.id !== id);
-			setMissions(listFilter);
+			newState.filter((item) => item.id !== id);
+			setMissions(newState);
 			handleCloseConfirmModal();
 			handleShowToast(`Xoá mục tiêu`, `Xoá mục tiêu thành công!`);
 		} catch (error) {

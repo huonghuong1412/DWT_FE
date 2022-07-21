@@ -71,6 +71,7 @@ const MissionDetailFormModal = ({ editModalStatus, setEditModalStatus, id }) => 
                 toast.error('Edit Task Error !')
             }
         }
+        setEditModalStatus(false)
     }
     return (
         <Modal

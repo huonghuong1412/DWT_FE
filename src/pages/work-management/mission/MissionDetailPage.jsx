@@ -39,6 +39,7 @@ const Item = ({
 	endTime,
 	id,
 	handleOpenModal,
+	setEditModalStatus,
 	...props
 }) => {
 	const navigate = useNavigate();
@@ -53,7 +54,8 @@ const Item = ({
             toast.success(`Delete Task success !`)
         } catch {
             toast.error('Delete Task Error !')
-        }
+		}
+		setEditModalStatus(false)
     }
 	return (
 		<div className='col-md-6 col-xl-4 col-sm-12' {...props}>
@@ -216,6 +218,7 @@ const MissionDetailPage = () => {
 								data-tour='project-item'
 								handleOpenModal={handleOpenModal}
 								id={item.id}
+								setEditModalStatus={setEditModalStatus}
 							/>
 						);
 					})}

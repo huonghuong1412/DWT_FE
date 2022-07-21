@@ -3,7 +3,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useFormik } from 'formik';
+import toast,{ Toaster } from 'react-hot-toast';
+import Dropdown,{DropdownToggle,DropdownMenu,DropdownItem} from '../../../components/bootstrap/Dropdown';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import { demoPages } from '../../../menu';
@@ -15,7 +16,6 @@ import Card, {
 	CardTitle,
 	CardActions,
 } from '../../../components/bootstrap/Card';
-import Modal, { ModalHeader, ModalBody, ModalTitle, ModalFooter } from '../../../components/bootstrap/Modal';
 import SubHeader, { SubHeaderLeft, SubheaderSeparator } from '../../../layout/SubHeader/SubHeader';
 import Button from '../../../components/bootstrap/Button';
 import Badge from '../../../components/bootstrap/Badge';
@@ -23,10 +23,8 @@ import Icon from '../../../components/icon/Icon';
 import Progress from '../../../components/bootstrap/Progress';
 import Avatar, { AvatarGroup } from '../../../components/Avatar';
 import USERS from '../../../common/data/userDummyData';
-import FormGroup from '../../../components/bootstrap/forms/FormGroup';
-import Input from '../../../components/bootstrap/forms/Input';
-import Textarea from '../../../components/bootstrap/forms/Textarea';
 import TaskProgress from '../task-management/TaskProgress';
+import MissionDetailForm from './TaskDetailForm/MissionDetailForm';
 
 const Item = ({
 	name,
@@ -36,6 +34,8 @@ const Item = ({
 	percent,
 	startTime,
 	endTime,
+	id,
+	handleOpenModal,
 	...props
 }) => {
 	const navigate = useNavigate();
@@ -44,11 +44,20 @@ const Item = ({
 		[navigate],
 	);
 	const date = `Còn 30 ngày nữa`;
+	const handleDelete = (idDelete) => {
+        try {
+            axios.delete(`https://fake-data-dwt.herokuapp.com/tasks/${idDelete}`)
+            toast.success(`Delete Task success !`)
+        } catch {
+            toast.error('Delete Task Error !')
+        }
+    }
 	return (
 		<div className='col-md-6 col-xl-4 col-sm-12' {...props}>
-			<Card stretch onClick={handleOnClickToProjectPage} className='cursor-pointer'>
+			<Toaster/>
+			<Card stretchclassName='cursor-pointer'>
 				<CardHeader>
-					<CardLabel icon='Ballot'>
+					<CardLabel icon='Ballot' onClick={handleOnClickToProjectPage} >
 						<CardTitle>{name}</CardTitle>
 						<CardSubTitle>{teamName}</CardSubTitle>
 					</CardLabel>
@@ -57,21 +66,25 @@ const Item = ({
 							{date}
 						</small>
 					</CardActions>
+					<Dropdown>
+						<DropdownToggle hasIcon={false}>
+							<Button icon='MoreHoriz' />
+						</DropdownToggle>
+						<DropdownMenu isAlignmentEnd>
+							<DropdownItem>
+								<Button icon='Delete' onClick={()=>handleDelete(id)}>
+									Delete
+								</Button>
+							</DropdownItem>
+							<DropdownItem>
+								<Button icon='Edit' onClick={()=>handleOpenModal(id)}>
+									Edit
+								</Button>
+							</DropdownItem>
+						</DropdownMenu>
+					</Dropdown>
 				</CardHeader>
 				<CardBody>
-					{/* <div className='d-flex align-items-center mb-3'>
-						<small
-							className='border rounded-1 text-success fw-bold px-2 py-1'
-							style={{ fontSize: 14 }}>
-							{startTime}
-						</small>
-						-
-						<small
-							className='border rounded-1 text-success fw-bold px-2 py-1'
-							style={{ fontSize: 14 }}>
-							{endTime}
-						</small>
-					</div> */}
 					<div className='row g-2 mb-3'>
 						<div className='col-auto'>
 							<Badge color='dark' isLight style={{ fontSize: 18 }}>
@@ -116,42 +129,17 @@ const MissionDetailPage = () => {
 	const [mission, setMission] = useState({});
 	const params = useParams();
 	useEffect(() => {
-		axios.get(`http://localhost:3001/api/forms?mission_id=${parseInt(params?.id, 10)}`)
+		axios.get(`https://fake-data-dwt.herokuapp.com/tasks?mission_id=${parseInt(params?.id, 10)}`)
 			.then(res => {
 				setMission(res);
 			});
 	}, [params?.id, editModalStatus]);
 	const [editModalStatus, setEditModalStatus] = useState(false);
-	const formik = useFormik({
-		initialValues: {
-			mission_id: 1,
-			departmnent_id: 1,
-			priority: 2,
-			status: 0,
-			user: {
-				id: 1,
-				name: 'Nhân viên 1',
-			},
-			name: '',
-			description: '',
-			assign_to: '',
-			teamName: '',
-			estimateTime: '',
-			startTime: '',
-			endTime: '',
-			kpi_value: 0,
-			keys: null,
-		},
-		// eslint-disable-next-line no-unused-vars
-		onSubmit: (values) => {
-			axios.post(`http://localhost:3001/api/forms`, values);
-			axios.get(`http://localhost:3001/api/forms?mission_id=${parseInt(params?.id, 10)}`)
-				.then(res => {
-					setMission(res);
-				});
-			setEditModalStatus(false);
-		},
-	});
+	const [idEdit, setIdEdit] = useState();
+	const handleOpenModal = (id) => {
+		setEditModalStatus(true);
+		setIdEdit(id);
+	}
 	return (
 		<PageWrapper title={`${mission?.name}`}>
 			<SubHeader>
@@ -216,7 +204,7 @@ const MissionDetailPage = () => {
 								size='lg'
 								isLight
 								className='w-50 h-100'
-								onClick={() => setEditModalStatus(true)}
+								onClick={() => handleOpenModal()}
 								icon='AddCircle'>
 								Thêm công việc
 							</Button>
@@ -237,154 +225,13 @@ const MissionDetailPage = () => {
 								taskCount={24}
 								percent={65}
 								data-tour='project-item'
+								handleOpenModal={handleOpenModal}
+								id={item.id}
 							/>
 						);
 					})}
 				</div>
-				<Modal
-					setIsOpen={setEditModalStatus}
-					isOpen={editModalStatus}
-					size='lg'
-					isScrollable>
-					<ModalHeader className='px-4' setIsOpen={setEditModalStatus}>
-						<ModalTitle id='project-edit'>Thêm mới công việc</ModalTitle>
-					</ModalHeader>
-					<ModalBody>
-						<div className='row g-4'>
-							<div className='col-12'>
-								<FormGroup id='name' label='Tên công việc' isFloating>
-									<Input
-										placeholder='Tên công việc'
-										onChange={formik.handleChange}
-										value={formik.values.name}
-									/>
-								</FormGroup>
-							</div>
-							<div className='col-12'>
-								<FormGroup id='teamName' label='Phòng ban' isFloating>
-									<Input
-										placeholder='Phòng ban'
-										onChange={formik.handleChange}
-										value={formik.values.teamName}
-									/>
-								</FormGroup>
-							</div>
-							<div className='col-12'>
-								<FormGroup id='assign_to' label='Nhân viên phụ trách' isFloating>
-									<Input
-										placeholder='Nhân viên phụ trách'
-										onChange={formik.handleChange}
-										value={formik.values.assign_to}
-									/>
-								</FormGroup>
-							</div>
-							<div className='col-12'>
-								<FormGroup id='total_kpi_value' label='Mức điểm KPI' isFloating>
-									<Input
-										placeholder='Mức điểm KPI'
-										onChange={formik.handleChange}
-										value={formik.values.total_kpi_value}
-									/>
-								</FormGroup>
-							</div>
-							<div className='col-6'>
-								<FormGroup
-									id='estimateDate'
-									label='Ngày hoàn thành ước tính'
-									isFloating>
-									<Input
-										placeholder='Ngày hoàn thành ước tính'
-										onChange={formik.handleChange}
-										value={formik.values.estimateDate}
-										type='date'
-									/>
-								</FormGroup>
-							</div>
-							<div className='col-6'>
-								<FormGroup
-									id='estimateTime'
-									label='Thời gian hoàn thành ước tính'
-									isFloating>
-									<Input
-										placeholder='Thời gian hoàn thành ước tính'
-										onChange={formik.handleChange}
-										value={formik.values.estimateTime}
-										type='time'
-									/>
-								</FormGroup>
-							</div>
-							<div className='col-6'>
-								<FormGroup id='deadlineDate' label='Hạn ngày hoàn thành' isFloating>
-									<Input
-										placeholder='Hạn ngày hoàn thành'
-										onChange={formik.handleChange}
-										value={formik.values.deadlineDate}
-										type='date'
-									/>
-								</FormGroup>
-							</div>
-							<div className='col-6'>
-								<FormGroup
-									id='deadlineTime'
-									label='Hạn thời gian hoàn thành'
-									isFloating>
-									<Input
-										placeholder='Hạn thời gian hoàn thành'
-										onChange={formik.handleChange}
-										value={formik.values.deadlineTime}
-										type='time'
-									/>
-								</FormGroup>
-							</div>
-							<div className='col-12'>
-								<Card isCompact className='mb-0'>
-									<CardBody>
-										<FormGroup
-											id='description'
-											label='Ghi chú mục tiêu'
-											isFloating>
-											<Textarea
-												className='h-100'
-												rows={12}
-												placeholder='note'
-												onChange={formik.handleChange}
-												value={formik.values.description}
-											/>
-										</FormGroup>
-									</CardBody>
-								</Card>
-							</div>
-							<div className='col-12'>
-								<Card isCompact className='mb-0'>
-									<CardHeader>
-										<CardLabel>
-											<CardTitle>Tạo mục tiêu</CardTitle>
-										</CardLabel>
-									</CardHeader>
-									<CardBody>
-										<Button
-											color='info'
-											size='lg'
-											isLight
-											className='h-100'
-											icon='AddCircle'>
-											Thêm mới
-										</Button>
-									</CardBody>
-								</Card>
-							</div>
-						</div>
-					</ModalBody>
-					<ModalFooter className='px-4 pb-4'>
-						<Button
-							color='primary'
-							className='w-100'
-							type='submit'
-							onClick={formik.handleSubmit}>
-							Lưu mục tiêu
-						</Button>
-					</ModalFooter>
-				</Modal>
+				<MissionDetailForm setEditModalStatus={setEditModalStatus} editModalStatus={editModalStatus} id={idEdit} />
 			</Page>
 		</PageWrapper>
 	);

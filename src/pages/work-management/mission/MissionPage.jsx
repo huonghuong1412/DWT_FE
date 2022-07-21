@@ -25,8 +25,8 @@ import Dropdown, {
 } from '../../../components/bootstrap/Dropdown';
 import MissionAlertConfirm from './MissionAlertConfirm';
 import MissionFormModal from './MissionFormModal';
-import Chart from '../../../components/extras/Chart';
-import { dataChart3 } from '../report-department/dataChart';
+// import Chart from '../../../components/extras/Chart';
+// import { dataChart3 } from '../report-department/dataChart';
 import Badge from '../../../components/bootstrap/Badge';
 import Icon from '../../../components/icon/Icon';
 import Progress from '../../../components/bootstrap/Progress';
@@ -126,7 +126,7 @@ const MissionPage = () => {
 	const [editModalStatus, setEditModalStatus] = useState(false);
 	const [openConfirmModal, setOpenConfirmModal] = useState(false);
 	const [itemEdit, setItemEdit] = useState({});
-	const [state3] = useState(dataChart3);
+	// const [state3] = useState(dataChart3);
 
 	const navigate = useNavigate();
 	const navigateToDetailPage = useCallback(
@@ -152,7 +152,7 @@ const MissionPage = () => {
 
 	const handleCloseConfirmModal = () => {
 		setOpenConfirmModal(false);
-		setItemEdit({});
+		setItemEdit(null);
 	};
 
 	const handleDeleteItem = async (id) => {
@@ -177,7 +177,7 @@ const MissionPage = () => {
 
 	const handleCloseEditForm = () => {
 		setEditModalStatus(false);
-		setItemEdit({});
+		setItemEdit(null);
 	};
 
 	const handleShowToast = (title, content) => {
@@ -253,7 +253,7 @@ const MissionPage = () => {
 						<div className='display-6 fw-bold py-3'>Danh sách mục tiêu</div>
 					</div>
 				</div>
-				<div className='row'>
+				{/* <div className='row'>
 					<div className='col-xl-6 col-xxl-4 col-md-12 col-sm-12'>
 						<Card stretch>
 							<CardHeader>
@@ -314,7 +314,7 @@ const MissionPage = () => {
 							</CardBody>
 						</Card>
 					</div>
-				</div>
+				</div> */}
 				<div className='row'>
 					{missions?.map((item) => (
 						<div className='col-md-6 col-xl-4 col-sm-12' key={item.id}>
@@ -441,7 +441,8 @@ const MissionPage = () => {
 								id={item.id}
 								name={item?.name}
 								teamName={item.departmnent?.name}
-								dueDate={`${item.deadline_date}  ${item.deadline_time}`}
+								// dueDate={`${item.deadline_date}  ${item.deadline_time}`}
+								dueDate={`${item.deadline_date}`}
 								percent={calculateProgressTaskBySteps(item?.subtasks) || 0}
 								data-tour='project-item'
 							/>
@@ -452,9 +453,9 @@ const MissionPage = () => {
 				<MissionAlertConfirm
 					openModal={openConfirmModal}
 					onCloseModal={handleCloseConfirmModal}
-					onConfirm={() => handleDeleteItem(itemEdit.id)}
+					onConfirm={() => handleDeleteItem(itemEdit?.id)}
 					title='Xoá mục tiêu'
-					content={`Xác nhận xoá mục tiêu <strong>${itemEdit.name}</strong> ?`}
+					content={`Xác nhận xoá mục tiêu <strong>${itemEdit?.name}</strong> ?`}
 				/>
 				<MissionFormModal
 					show={editModalStatus}

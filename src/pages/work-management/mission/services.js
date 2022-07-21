@@ -44,4 +44,19 @@ const deleteItemById = (id) => {
 	});
 };
 
-export { getAll, getLatestTasks, getItemById, addNewItem, updateItemById, deleteItemById };
+const getAllDepartments = () => {
+	return axiosClient({
+		method: 'GET',
+		url: '/departments',
+	});
+};
+
+export {
+	getAll,
+	getLatestTasks,
+	getAllDepartments,
+	getItemById,
+	addNewItem,
+	updateItemById,
+	deleteItemById,
+};

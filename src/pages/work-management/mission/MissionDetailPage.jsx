@@ -5,7 +5,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import moment from 'moment';
-import styled from 'styled-components';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import { demoPages } from '../../../menu';
@@ -114,23 +113,6 @@ const Item = ({
 		</div>
 	);
 };
-
-const MissionTitleIndex = styled.h3`
-	font-size: 20px;
-	color: #333;
-	padding: 15px;
-	border: 1px solid #eee;
-	margin-bottom: 0;
-`;
-
-const MissionValueIndex = styled.h3`
-	font-size: 16px;
-	color: #333;
-	padding: 15px;
-	border: 1px solid #eee;
-	margin-top: 0;
-`;
-
 const dataMissions = [
 	{
 		id: 1,
@@ -792,37 +774,6 @@ const MissionDetailPage = () => {
 										There is no scheduled and assigned task.
 									</Alert>
 								)}
-							</CardBody>
-						</Card>
-					</div>
-				</div>
-				<div className='row'>
-					<div className='col-12'>
-						<div className='display-6 fw-bold py-3'>Thông tin mục tiêu</div>
-					</div>
-					<div className='col-md-12 col-xl-12 col-sm-12'>
-						<Card stretch>
-							<CardHeader className='bg-transparent'>
-								<CardLabel>
-									<CardTitle tag='h2' className='h2'>
-										{mission?.name}
-									</CardTitle>
-									<CardSubTitle tag='h3' className='h3 text-muted mt-4'>
-										{mission?.description}
-									</CardSubTitle>
-								</CardLabel>
-							</CardHeader>
-							<CardBody>
-								<h3>Chỉ số mục tiêu</h3>
-								<div className='d-flex justify-content-start align-items-center'>
-									{mission?.keys?.map((item, index) => (
-										// eslint-disable-next-line react/no-array-index-key
-										<div style={{ minWidth: '20%' }} key={index}>
-											<MissionTitleIndex>{item?.name}</MissionTitleIndex>
-											<MissionValueIndex>{item?.value}</MissionValueIndex>
-										</div>
-									))}
-								</div>
 							</CardBody>
 						</Card>
 					</div>

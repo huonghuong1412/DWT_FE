@@ -14,15 +14,15 @@ const headers = [
 		element: <CommonHeader />,
 		exact: true,
 	},
-	// quan ly muc tieu
-	// {
-	// 	path: demoPages.mucTieu.subMenu.addMission.path,
-	// 	element: <CommonHeader />,
-	// 	exact: true,
-	// },
 	// chi tiet muc tieu
 	{
 		path: `quan-ly-cong-viec/muc-tieu/:id`,
+		element: <CommonHeader />,
+		exact: true,
+	},
+	// chi tiết đầu việc -step
+	{
+		path: `/quan-ly-cong-viec/cong-viec-:taskid/dau-viec/:id`,
 		element: <CommonHeader />,
 		exact: true,
 	},

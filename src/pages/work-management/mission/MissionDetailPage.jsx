@@ -1,8 +1,9 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/prop-types */
-
 import React, { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import classNames from 'classnames';
 import moment from 'moment';
 import Page from '../../../layout/Page/Page';
@@ -26,14 +27,17 @@ import Button from '../../../components/bootstrap/Button';
 import Badge from '../../../components/bootstrap/Badge';
 import Icon from '../../../components/icon/Icon';
 import Progress from '../../../components/bootstrap/Progress';
-import Chart from '../../../components/extras/Chart';
 import Avatar, { AvatarGroup } from '../../../components/Avatar';
-import USERS, { getUserDataWithId } from '../../../common/data/userDummyData';
+import USERS from '../../../common/data/userDummyData';
+// import TaskProgress from '../task-management/TaskProgress';
+import MissionDetailForm from './TaskDetailForm/MissionDetailForm';
+import COLORS from '../../../common/data/enumColors';
 import dummyEventsData from '../../../common/data/dummyEventsData';
-import useDarkMode from '../../../hooks/useDarkMode';
 import { priceFormat } from '../../../helpers/helpers';
 import EVENT_STATUS from '../../../common/data/enumEventStatus';
-import COLORS from '../../../common/data/enumColors';
+import { getUserDataWithId } from '../../../common/data/userDummyData';
+import useDarkMode from '../../../hooks/useDarkMode';
+import Chart from '../../../components/extras/Chart';
 
 const Item = ({
 	name,
@@ -43,6 +47,9 @@ const Item = ({
 	percent,
 	startTime,
 	endTime,
+	id,
+	handleOpenModal,
+	setEditModalStatus,
 	...props
 }) => {
 	const navigate = useNavigate();
@@ -50,29 +57,50 @@ const Item = ({
 		() => navigate(`../${demoPages.quanLyCongViec.subMenu.chiTietCongViecPhongBan.path}`),
 		[navigate],
 	);
+	const date = `Còn 30 ngày nữa`;
+	const handleDelete = (idDelete) => {
+        try {
+            axios.delete(`https://fake-data-dwt.herokuapp.com/tasks/${idDelete}`)
+            toast.success(`Delete Task success !`)
+        } catch {
+            toast.error('Delete Task Error !')
+        }
+	
+		setEditModalStatus(false)
+	}
 	return (
 		<div className='col-md-6 col-xl-4 col-sm-12' {...props}>
-			<Card stretch onClick={handleOnClickToProjectPage} className='cursor-pointer'>
+			<Toaster/>
+			<Card stretchclassName='cursor-pointer'>
 				<CardHeader>
-					<CardLabel icon='Ballot'>
+					<CardLabel icon='Ballot' onClick={handleOnClickToProjectPage} >
 						<CardTitle>{name}</CardTitle>
 						<CardSubTitle>{teamName}</CardSubTitle>
 					</CardLabel>
+					<CardActions>
+						<small className='border border-success border-2 text-success fw-bold px-2 py-1 rounded-1'>
+							{date}
+						</small>
+					</CardActions>
+					<Dropdown>
+						<DropdownToggle hasIcon={false}>
+							<Button icon='MoreHoriz' />
+						</DropdownToggle>
+						<DropdownMenu isAlignmentEnd>
+							<DropdownItem>
+								<Button icon='Delete' onClick={()=>handleDelete(id)}>
+									Delete
+								</Button>
+							</DropdownItem>
+							<DropdownItem>
+								<Button icon='Edit' onClick={()=>handleOpenModal(id)}>
+									Edit
+								</Button>
+							</DropdownItem>
+						</DropdownMenu>
+					</Dropdown>
 				</CardHeader>
 				<CardBody>
-					<div className='d-flex align-items-center mb-3'>
-						<small
-							className='border rounded-1 text-success fw-bold px-2 py-1'
-							style={{ fontSize: 14 }}>
-							{startTime}
-						</small>
-						-
-						<small
-							className='border rounded-1 text-success fw-bold px-2 py-1'
-							style={{ fontSize: 14 }}>
-							{endTime}
-						</small>
-					</div>
 					<div className='row g-2 mb-3'>
 						<div className='col-auto'>
 							<Badge color='dark' isLight style={{ fontSize: 18 }}>
@@ -113,164 +141,23 @@ const Item = ({
 		</div>
 	);
 };
-const dataMissions = [
-	{
-		id: 1,
-		name: 'Mục tiêu 1',
-		description: 'Mô tả mục tiêu 1',
-		total_kpi_value: 1000,
-		progress: 60,
-		keys: [
-			{
-				name: 'Doanh thu',
-				value: '100,000,000 đ',
-			},
-			{
-				name: 'Đầu việc',
-				value: '100',
-			},
-			{
-				name: 'Giá trị KPI',
-				value: '1000',
-			},
-			{
-				name: 'Ngân sách',
-				value: '500,000,000 đ',
-			},
-			{
-				name: 'Đã chi',
-				value: '150,000,000 đ',
-			},
-		],
-		tasks: [
-			{
-				id: 1,
-				name: 'Công việc 1 - Mục tiêu 1',
-				description: 'Mô tả công việc 1 - Mục tiêu 1',
-				teamName: 'Phòng kinh doanh',
-				estimateTime: '16-07-2022 17:00',
-				startTime: '15-07-2022 08:00',
-				endTime: '16-07-2022 17:00',
-				kpi_value: 300,
-				status: 2,
-				priority: 1,
-			},
-			{
-				id: 2,
-				name: 'Công việc 2 - Mục tiêu 1',
-				description: 'Mô tả công việc 2 - Mục tiêu 1',
-				teamName: 'Phòng kinh doanh',
-				estimateTime: '20-07-2022 17:00',
-				startTime: '18-07-2022 08:00',
-				endTime: '20-07-2022 17:00',
-				kpi_value: 500,
-				status: 1,
-				priority: 1,
-			},
-			{
-				id: 3,
-				name: 'Công việc 3 - Mục tiêu 1',
-				description: 'Mô tả công việc 3 - Mục tiêu 1',
-				teamName: 'Phòng kinh doanh',
-				estimateTime: '20-07-2022 17:00',
-				startTime: '18-07-2022 08:00',
-				endTime: '20-07-2022 17:00',
-				kpi_value: 200,
-				status: 3,
-				priority: 3,
-			},
-			{
-				id: 4,
-				name: 'Công việc 4 - Mục tiêu 1',
-				description: 'Mô tả công việc 4 - Mục tiêu 1',
-				teamName: 'Phòng kinh doanh',
-				estimateTime: '20-07-2022 17:00',
-				startTime: '18-07-2022 08:00',
-				endTime: '20-07-2022 17:00',
-				kpi_value: 200,
-				status: 3,
-				priority: 3,
-			},
-		],
-	},
-	{
-		id: 2,
-		name: 'Mục tiêu 2',
-		description: 'Mô tả mục tiêu 2',
-		total_kpi_value: 1000,
-		progress: 20,
-		keys: [
-			{
-				name: 'Đầu việc',
-				value: '100',
-			},
-			{
-				name: 'Giá trị KPI',
-				value: '1000',
-			},
-		],
-	},
-	{
-		id: 3,
-		name: 'Mục tiêu 3',
-		description: 'Mô tả mục tiêu 3',
-		total_kpi_value: 1000,
-		progress: 80,
-		keys: [
-			{
-				name: 'Doanh thu',
-				value: '100,000,000 đ',
-			},
-			{
-				name: 'Đầu việc',
-				value: '100',
-			},
-			{
-				name: 'Giá trị KPI',
-				value: '1000',
-			},
-		],
-	},
-	{
-		id: 4,
-		name: 'Mục tiêu 4',
-		description: 'Mô tả mục tiêu 4',
-		total_kpi_value: 1000,
-		progress: 10,
-		keys: [
-			{
-				name: 'Số giờ',
-				value: '100h',
-			},
-			{
-				name: 'Đầu việc',
-				value: '100',
-			},
-			{
-				name: 'Giá trị KPI',
-				value: '1000',
-			},
-		],
-	},
-	{
-		id: 5,
-		name: 'Mục tiêu 5',
-		description: 'Mô tả mục tiêu 2',
-		total_kpi_value: 1000,
-		progress: 50,
-	},
-];
-
 const MissionDetailPage = () => {
 	const [mission, setMission] = useState({});
 	const params = useParams();
 	useEffect(() => {
-		setMission(dataMissions.filter((item) => item.id === parseInt(params?.id, 10))[0]);
-	}, [params?.id]);
-
-	const { darkModeStatus } = useDarkMode();
+		axios.get(`https://fake-data-dwt.herokuapp.com/tasks?mission_id=${parseInt(params?.id, 10)}`)
+			.then(res => {
+				setMission(res);
+			});
+	}, [params?.id, editModalStatus]);
 	const data = getUserDataWithId(params?.id);
-
+	const { darkModeStatus } = useDarkMode();
+	const [editModalStatus, setEditModalStatus] = useState(false);
+	const [idEdit, setIdEdit] = useState();
+	const handleOpenModal = (id) => {
+		setEditModalStatus(true);
+		setIdEdit(id);
+	}
 	const [dayHours] = useState({
 		series: [
 			{
@@ -331,13 +218,11 @@ const MissionDetailPage = () => {
 			},
 		},
 	});
-
 	const userTasks = dummyEventsData.filter((f) => f.assigned.username === data.username);
-
 	return (
 		<PageWrapper title={`${mission?.name}`}>
 			<Page container='fluid'>
-				<div className='row'>
+			<div className='row'>
 					<div className='col-12'>
 						<div className='display-4 fw-bold py-3'>{mission?.name}</div>
 					</div>
@@ -789,16 +674,15 @@ const MissionDetailPage = () => {
 								size='lg'
 								isLight
 								className='w-50 h-100'
-								icon='AddCircle'
-								// onClick={handleUpcomingEdit}
-							>
+								onClick={() => handleOpenModal()}
+								icon='AddCircle'>
 								Thêm công việc
 							</Button>
 						</div>
 					</div>
 				</div>
 				<div className='row mt-3'>
-					{mission?.tasks?.map((item, index) => {
+					{mission?.data?.map((item, index) => {
 						return (
 							<Item
 								// eslint-disable-next-line react/no-array-index-key
@@ -811,13 +695,16 @@ const MissionDetailPage = () => {
 								taskCount={24}
 								percent={65}
 								data-tour='project-item'
+								handleOpenModal={handleOpenModal}
+								id={item.id}
+								setEditModalStatus={setEditModalStatus}
 							/>
 						);
 					})}
 				</div>
+				<MissionDetailForm setEditModalStatus={setEditModalStatus} editModalStatus={editModalStatus} id={idEdit} />
 			</Page>
 		</PageWrapper>
 	);
 };
-
 export default MissionDetailPage;

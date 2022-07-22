@@ -15,6 +15,7 @@ import Card, {
     CardTitle,
 } from "../../../../components/bootstrap/Card";
 import Button from "../../../../components/bootstrap/Button";
+
 const MissionDetailFormModal = ({ editModalStatus, setEditModalStatus, id }) => {
     const [valueInput, setValueInput] = React.useState({});
     console.log(id, 'id')
@@ -53,7 +54,7 @@ const MissionDetailFormModal = ({ editModalStatus, setEditModalStatus, id }) => 
             [name]: value,
         });
     };
-    const handleSunmit = () => {
+    const handleSunmit = async () => {
         if (id === undefined) {
             try {
                 axios.post(`https://fake-data-dwt.herokuapp.com/tasks`, valueInput)

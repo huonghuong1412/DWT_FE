@@ -1,11 +1,12 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/prop-types */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import classNames from 'classnames';
 import moment from 'moment';
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
 import { demoPages } from '../../../menu';
@@ -39,6 +40,8 @@ import { getUserDataWithId } from '../../../common/data/userDummyData';
 import useDarkMode from '../../../hooks/useDarkMode';
 import Chart from '../../../components/extras/Chart';
 
+
+const queryClient = QueryClient();
 const Item = ({
 	name,
 	teamName,
@@ -58,9 +61,9 @@ const Item = ({
 		[navigate],
 	);
 	const date = `Còn 30 ngày nữa`;
-	const handleDelete = (idDelete) => {
+	const handleDelete = async (idDelete) => {
         try {
-            axios.delete(`https://fake-data-dwt.herokuapp.com/tasks/${idDelete}`)
+            await axios.delete(`https://fake-data-dwt.herokuapp.com/tasks/${idDelete}`)
             toast.success(`Delete Task success !`)
         } catch {
             toast.error('Delete Task Error !')
@@ -141,15 +144,24 @@ const Item = ({
 		</div>
 	);
 };
-const MissionDetailPage = () => {
-	const [mission, setMission] = useState({});
+const fetchData = (params) => {
+	const fetch = async () => {
+		const response = await axios.get(`https://fake-data-dwt.herokuapp.com/tasks?mission_id=${parseInt(params?.id, 10)}`)
+		return response
+	}
+	const res = useQuery('data', fetch)
+	return res
+}
+const MissionDetailPages = () => {
+	// const [mission, setMission] = useState({});
 	const params = useParams();
-	useEffect(() => {
-		axios.get(`https://fake-data-dwt.herokuapp.com/tasks?mission_id=${parseInt(params?.id, 10)}`)
-			.then(res => {
-				setMission(res);
-			});
-	}, [params?.id, editModalStatus]);
+	// useEffect(() => {
+	// 	axios.get(`https://fake-data-dwt.herokuapp.com/tasks?mission_id=${parseInt(params?.id, 10)}`)
+	// 		.then(res => {
+	// 			setMission(res);
+	// 		});
+	// }, [params?.id, editModalStatus]);
+	const { data: mission } = fetchData(params);
 	const data = getUserDataWithId(params?.id);
 	const { darkModeStatus } = useDarkMode();
 	const [editModalStatus, setEditModalStatus] = useState(false);
@@ -707,4 +719,9 @@ const MissionDetailPage = () => {
 		</PageWrapper>
 	);
 };
-export default MissionDetailPage;
+export default function MissionDetailPage() {
+	return (<QueryClientProvider client={queryClient}>
+	  <MissionDetailPages />
+	</QueryClientProvider>
+	)
+  }

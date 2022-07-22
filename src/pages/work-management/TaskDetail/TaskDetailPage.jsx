@@ -1,168 +1,168 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/prop-types */
-import React, { useCallback, useState } from 'react';
+import React, {  useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import { useParams } from 'react-router-dom';
+// import toast, { Toaster } from 'react-hot-toast';
 import classNames from 'classnames';
 import moment from 'moment';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import { demoPages } from '../../../menu';
+// import { demoPages } from '../../../menu';
 import Card, {
 	CardActions,
 	CardBody,
 	CardHeader,
 	CardLabel,
-	CardSubTitle,
+	// CardSubTitle,
 	CardTitle,
 } from '../../../components/bootstrap/Card';
-import Dropdown, {
-	DropdownItem,
-	DropdownMenu,
-	DropdownToggle,
-} from '../../../components/bootstrap/Dropdown';
 import Alert from '../../../components/bootstrap/Alert';
 import Button from '../../../components/bootstrap/Button';
 import Badge from '../../../components/bootstrap/Badge';
 import Icon from '../../../components/icon/Icon';
 import Progress from '../../../components/bootstrap/Progress';
-import Avatar, { AvatarGroup } from '../../../components/Avatar';
-import USERS from '../../../common/data/userDummyData';
+import Avatar from '../../../components/Avatar';
+// import USERS from '../../../common/data/userDummyData';
 // import TaskProgress from '../task-management/TaskProgress';
-import MissionDetailForm from './TaskDetailForm/MissionDetailForm';
-import COLORS from '../../../common/data/enumColors';
+import TaskDetailForm from './TaskDetailForm/MissionDetailForm';
+// import COLORS from '../../../common/data/enumColors';
 import dummyEventsData from '../../../common/data/dummyEventsData';
-import { priceFormat } from '../../../helpers/helpers';
-import EVENT_STATUS from '../../../common/data/enumEventStatus';
+// import { priceFormat } from '../../../helpers/helpers';
 import { getUserDataWithId } from '../../../common/data/userDummyData';
 import useDarkMode from '../../../hooks/useDarkMode';
 import Chart from '../../../components/extras/Chart';
 
-const Item = ({
-	name,
-	teamName,
-	attachCount,
-	taskCount,
-	percent,
-	startTime,
-	endTime,
-	id,
-	handleOpenModal,
-	setEditModalStatus,
-	mission,
-	setMission,
-	...props
-}) => {
-	const navigate = useNavigate();
-	const handleOnClickToProjectPage = useCallback(
-		() => navigate(`../${demoPages.quanLyCongViec.subMenu.congViec.path}/${id}`),
-		[id, navigate],
-	);
-	const date = `Còn 30 ngày nữa`;
-	const handleDelete = async (idDelete) => {
-        try {
-			await axios.delete(`https://fake-data-dwt.herokuapp.com/tasks/${idDelete}`)
-			toast.success(`Delete Task success !`)
-			const newState = JSON.parse(JSON.stringify(mission));
-			setMission(newState.filter((item) => item.id !== idDelete));
-        } catch (error){
-            toast.error('Delete Task Error !')
-        }
+// const Item = ({
+// 	name,
+// 	teamName,
+// 	attachCount,
+// 	taskCount,
+// 	percent,
+// 	startTime,
+// 	endTime,
+// 	id,
+// 	handleOpenModal,
+// 	setEditModalStatus,
+// 	mission,
+// 	setMission,
+// 	...props
+// }) => {
+// 	const navigate = useNavigate();
+// 	const handleOnClickToProjectPage = useCallback(
+// 		() => navigate(`../${demoPages.quanLyCongViec.subMenu.danhSach}/:${id}`),
+// 		[id, navigate],
+// 	);
+// 	const date = `Còn 30 ngày nữa`;
+// 	const handleDelete = async (idDelete) => {
+//         try {
+// 			await axios.delete(`https://fake-data-dwt.herokuapp.com/tasks/${idDelete}`)
+// 			toast.success(`Delete Task success !`)
+// 			const newState = JSON.parse(JSON.stringify(mission));
+// 			setMission(newState.filter((item) => item.id !== idDelete));
+//         } catch (error){
+//             toast.error('Delete Task Error !')
+//         }
 	
-		setEditModalStatus(false)
-	}
-	return (
-		<div className='col-md-6 col-xl-4 col-sm-12' {...props}>
-			<Toaster/>
-			<Card stretchclassName='cursor-pointer'>
-				<CardHeader>
-					<CardLabel icon='Ballot' onClick={handleOnClickToProjectPage} >
-						<CardTitle>{name}</CardTitle>
-						<CardSubTitle>{teamName}</CardSubTitle>
-					</CardLabel>
-					<CardActions>
-						<small className='border border-success border-2 text-success fw-bold px-2 py-1 rounded-1'>
-							{date}
-						</small>
-					</CardActions>
-					<Dropdown>
-						<DropdownToggle hasIcon={false}>
-							<Button icon='MoreHoriz' />
-						</DropdownToggle>
-						<DropdownMenu isAlignmentEnd>
-							<DropdownItem>
-								<Button icon='Delete' onClick={()=>handleDelete(id)}>
-									Delete
-								</Button>
-							</DropdownItem>
-							<DropdownItem>
-								<Button icon='Edit' onClick={()=>handleOpenModal(id)}>
-									Edit
-								</Button>
-							</DropdownItem>
-						</DropdownMenu>
-					</Dropdown>
-				</CardHeader>
-				<CardBody>
-					<div className='row g-2 mb-3'>
-						<div className='col-auto'>
-							<Badge color='dark' isLight style={{ fontSize: 18 }}>
-								<Icon icon='TaskAlt' /> {taskCount}
-							</Badge>
-						</div>
-					</div>
-					<div className='row'>
-						<div className='col-md-6'>
-							{percent}%
-							<Progress isAutoColor value={percent} height={10} />
-						</div>
-						<div className='col-md-6 d-flex justify-content-end'>
-							<AvatarGroup>
-								<Avatar
-									srcSet={USERS.GRACE.srcSet}
-									src={USERS.GRACE.src}
-									userName={`${USERS.GRACE.name} ${USERS.GRACE.surname}`}
-									color={USERS.GRACE.color}
-								/>
-								<Avatar
-									srcSet={USERS.SAM.srcSet}
-									src={USERS.SAM.src}
-									userName={`${USERS.SAM.name} ${USERS.SAM.surname}`}
-									color={USERS.SAM.color}
-								/>
-								<Avatar
-									srcSet={USERS.CHLOE.srcSet}
-									src={USERS.CHLOE.src}
-									userName={`${USERS.CHLOE.name} ${USERS.CHLOE.surname}`}
-									color={USERS.CHLOE.color}
-								/>
-							</AvatarGroup>
-						</div>
-					</div>
-				</CardBody>
-			</Card>
-		</div>
-	);
-};
+// 		setEditModalStatus(false)
+// 	}
+// 	return (
+// 		<div className='col-md-6 col-xl-4 col-sm-12' {...props}>
+// 			<Toaster/>
+// 			<Card stretchclassName='cursor-pointer'>
+// 				<CardHeader>
+// 					<CardLabel icon='Ballot' onClick={handleOnClickToProjectPage} >
+// 						<CardTitle>{name}</CardTitle>
+// 						<CardSubTitle>{teamName}</CardSubTitle>
+// 					</CardLabel>
+// 					<CardActions>
+// 						<small className='border border-success border-2 text-success fw-bold px-2 py-1 rounded-1'>
+// 							{date}
+// 						</small>
+// 					</CardActions>
+// 					<Dropdown>
+// 						<DropdownToggle hasIcon={false}>
+// 							<Button icon='MoreHoriz' />
+// 						</DropdownToggle>
+// 						<DropdownMenu isAlignmentEnd>
+// 							<DropdownItem>
+// 								<Button icon='Delete' onClick={()=>handleDelete(id)}>
+// 									Delete
+// 								</Button>
+// 							</DropdownItem>
+// 							<DropdownItem>
+// 								<Button icon='Edit' onClick={()=>handleOpenModal(id)}>
+// 									Edit
+// 								</Button>
+// 							</DropdownItem>
+// 						</DropdownMenu>
+// 					</Dropdown>
+// 				</CardHeader>
+// 				<CardBody>
+// 					<div className='row g-2 mb-3'>
+// 						<div className='col-auto'>
+// 							<Badge color='dark' isLight style={{ fontSize: 18 }}>
+// 								<Icon icon='TaskAlt' /> {taskCount}
+// 							</Badge>
+// 						</div>
+// 					</div>
+// 					<div className='row'>
+// 						<div className='col-md-6'>
+// 							{percent}%
+// 							<Progress isAutoColor value={percent} height={10} />
+// 						</div>
+// 						<div className='col-md-6 d-flex justify-content-end'>
+// 							<AvatarGroup>
+// 								<Avatar
+// 									srcSet={USERS.GRACE.srcSet}
+// 									src={USERS.GRACE.src}
+// 									userName={`${USERS.GRACE.name} ${USERS.GRACE.surname}`}
+// 									color={USERS.GRACE.color}
+// 								/>
+// 								<Avatar
+// 									srcSet={USERS.SAM.srcSet}
+// 									src={USERS.SAM.src}
+// 									userName={`${USERS.SAM.name} ${USERS.SAM.surname}`}
+// 									color={USERS.SAM.color}
+// 								/>
+// 								<Avatar
+// 									srcSet={USERS.CHLOE.srcSet}
+// 									src={USERS.CHLOE.src}
+// 									userName={`${USERS.CHLOE.name} ${USERS.CHLOE.surname}`}
+// 									color={USERS.CHLOE.color}
+// 								/>
+// 							</AvatarGroup>
+// 						</div>
+// 					</div>
+// 				</CardBody>
+// 			</Card>
+// 		</div>
+// 	);
+// };
 
-const MissionDetailPage = () => {
+const TaskDetailPage = () => {
 	const [mission, setMission] = useState({});
 	const params = useParams();
 	React.useEffect(() => {
-		axios.get(`https://fake-data-dwt.herokuapp.com/tasks?mission_id=${parseInt(params?.id, 10)}`)
+		axios.get(`https://fake-data-dwt.herokuapp.com/tasks/${parseInt(params?.id, 10)}`)
 			.then(res => {
 				setMission(res);
 			});
 	}, [params?.id, editModalStatus]);
+	const [subtask, setSubTask] = React.useState();
+	React.useEffect(() => {
+		setSubTask(mission.data?.subtasks)
+	}, [mission]);
+	console.log(subtask,'mison');
 	const data = getUserDataWithId(params?.id);
 	const { darkModeStatus } = useDarkMode();
 	const [editModalStatus, setEditModalStatus] = useState(false);
-	const [idEdit, setIdEdit] = useState();
-	const handleOpenModal = (id) => {
-		setEditModalStatus(true);
-		setIdEdit(id);
-	}
+	const idEdit = 0;
+	// const [idEdit, setIdEdit] = useState();
+	// const handleOpenModal = (id) => {
+	// 	setEditModalStatus(true);
+	// 	setIdEdit(id);
+	// }
 	const [dayHours] = useState({
 		series: [
 			{
@@ -212,18 +212,51 @@ const MissionDetailPage = () => {
 				curve: 'smooth',
 				width: 2,
 			},
-			plotOptions: {
-				radar: {
-					polygons: {
-						strokeColors: `${COLORS.SUCCESS.code}50`,
-						strokeWidth: 1,
-						connectorColors: `${COLORS.SUCCESS.code}50`,
-					},
-				},
-			},
+			// plotOptions: {
+			// 	radar: {
+			// 		polygons: {
+			// 			strokeColors: `${COLORS.SUCCESS.code}50`,
+			// 			strokeWidth: 1,
+			// 			connectorColors: `${COLORS.SUCCESS.code}50`,
+			// 		},
+			// 	},
+			// },
 		},
 	});
 	const userTasks = dummyEventsData.filter((f) => f.assigned.username === data.username);
+	function color (props){
+		if (props === 0) {
+			return {name:"Đang thực hiện" , color:"primary" }
+		}
+		if (props === 1) {
+			return {name:"Đã hoàn thành" , color:"success" }
+		}
+		if (props === 2) {
+			return {name:"Bế tắc" , color:"danger" }
+		}
+		if (props === 3) {
+			return {name:"Xem xét" , color:"warning" }
+		}
+		return 'light'
+	}
+	function priority (props){
+		if (props === 1) {
+			return "success"
+		}
+		if (props === 2) {
+			return "primary"
+		}
+		if (props === 3) {
+			return "danger"
+		}
+		if (props === 4) {
+			return "warning"
+		}
+		if (props === 5) {
+			return "warning"
+		}
+		return 'light'
+	}
 	return (
 		<PageWrapper title={`${mission?.name}`}>
 			<Page container='fluid'>
@@ -563,29 +596,31 @@ const MissionDetailPage = () => {
 							<CardHeader>
 								<CardLabel icon='Task' iconColor='danger'>
 									<CardTitle>
-										<CardLabel>Danh sách công việc</CardLabel>
+										<CardLabel>Danh sách đầu việc</CardLabel>
 									</CardTitle>
 								</CardLabel>
 							</CardHeader>
 							<CardBody>
 								<div className='table-responsive'>
-									<table className='table table-modern mb-0'>
+									<table className='table table-modern mb-0' style={{textAlign : 'center'}}>
 										<thead>
 											<tr>
-												<th>Date / Time</th>
-												<th>Customer</th>
-												<th>Service</th>
-												<th>Duration</th>
-												<th>Payment</th>
+												<th>Date/Time</th>
+												<th>Name</th>
+												<th>priority</th>
+												<th>Kpi value</th>
+												<th>DealLine</th>
+												<th>Progress</th>
 												<th>Status</th>
+												<th>Title</th>
 											</tr>
 										</thead>
 										<tbody>
-											{userTasks.map((item) => (
+											{subtask?.map((item) => (
 												<tr key={item.id}>
 													<td>
 														<div className='d-flex align-items-center'>
-															<span
+															{/* <span
 																className={classNames(
 																	'badge',
 																	'border border-2 border-light',
@@ -597,62 +632,48 @@ const MissionDetailPage = () => {
 																<span className='visually-hidden'>
 																	{item.status.name}
 																</span>
-															</span>
+															</span> */}
 															<span className='text-nowrap'>
-																{moment(
-																	`${item.date} ${item.time}`,
-																).format('MMM Do YYYY, h:mm a')}
+																{item.estimate_time} {' '}{item.estimate_date}`,
 															</span>
 														</div>
 													</td>
 													<td>
 														<div>
-															<div>{item.customer.name}</div>
+															<div>{item.name}</div>
 															<div className='small text-muted'>
-																{item.customer.email}
+																{item.departmnent.name}
 															</div>
 														</div>
 													</td>
-													<td>{item.service.name}</td>
-													<td>{item.duration}</td>
 													<td>
-														{item.payment && priceFormat(item.payment)}
+														<Icon
+															icon='Circle'
+															color={priority(item.priority)} />
+														{item.priority}
+													</td>
+													<td>{item.kpi_value}</td>
+													<td>{item.deadline_time}{' '}{item.deadline_date}</td>
+													<td>
+														<Progress isAutoColor value={item.percent} height={10} />
 													</td>
 													<td>
-														<Dropdown>
-															<DropdownToggle hasIcon={false}>
-																<Button
-																	isLink
-																	color={item.status.color}
-																	icon='Circle'
-																	className='text-nowrap'>
-																	{item.status.name}
-																</Button>
-															</DropdownToggle>
-															<DropdownMenu>
-																{Object.keys(EVENT_STATUS).map(
-																	(key) => (
-																		<DropdownItem key={key}>
-																			<div>
-																				<Icon
-																					icon='Circle'
-																					color={
-																						EVENT_STATUS[
-																							key
-																						].color
-																					}
-																				/>
-																				{
-																					EVENT_STATUS[
-																						key
-																					].name
-																				}
-																			</div>
-																		</DropdownItem>
-																	),
-																)}
-															</DropdownMenu>
-														</Dropdown>
+														<Icon
+															icon='Circle'
+															color={color(item.status).color} />
+														{color(item.status).name}
+													</td>
+													<td>
+														<Button
+															isOutline={!darkModeStatus}
+															color='dark'
+															isLight={darkModeStatus}
+															className={classNames('text-nowrap', {
+																'border-light': !darkModeStatus,
+															})}
+															icon='Edit'>
+															Sửa
+														</Button>
 													</td>
 												</tr>
 											))}
@@ -668,9 +689,9 @@ const MissionDetailPage = () => {
 						</Card>
 					</div>
 				</div>
-				<div className='row mt-3'>
+				{/* <div className='row mt-3'>
 					<div className='col-6'>
-						<div className='display-6 fw-bold py-3'>Danh sách công việc</div>
+						<div className='display-6 fw-bold py-3'>Danh sách đầu việc</div>
 					</div>
 					<div className='col-md-6 col-xl-6 col-sm-6'>
 						<div className='w-100 h-100 d-flex align-items-center justify-content-end'>
@@ -681,12 +702,12 @@ const MissionDetailPage = () => {
 								className='w-50 h-100'
 								onClick={() => handleOpenModal()}
 								icon='AddCircle'>
-								Thêm công việc
+								Thêm đầu việc
 							</Button>
 						</div>
 					</div>
-				</div>
-				<div className='row mt-3'>
+				</div> */}
+				{/* <div className='row mt-3'>
 					{mission?.data?.map((item, index) => {
 						return (
 							<Item
@@ -708,10 +729,10 @@ const MissionDetailPage = () => {
 							/>
 						);
 					})}
-				</div>
-				<MissionDetailForm setEditModalStatus={setEditModalStatus} editModalStatus={editModalStatus} id={idEdit} />
+				</div> */}
+				<TaskDetailForm setEditModalStatus={setEditModalStatus} editModalStatus={editModalStatus} id={idEdit} />
 			</Page>
 		</PageWrapper>
 	);
 };
-export default MissionDetailPage;
+export default TaskDetailPage;

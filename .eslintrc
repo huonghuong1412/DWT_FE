@@ -49,7 +49,6 @@
 		],
 		"react/no-arrow-function-lifecycle": "off",
 		"react/no-invalid-html-attribute": "off",
-		"react/no-unused-class-component-methods": "off",
-		"semi": "off"
+		"react/no-unused-class-component-methods": "off"
 	}
 }

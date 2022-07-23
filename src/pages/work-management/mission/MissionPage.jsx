@@ -130,7 +130,7 @@ const MissionPage = () => {
 
 	const navigate = useNavigate();
 	const navigateToDetailPage = useCallback(
-		(page) => navigate(`/quan-ly-cong-viec/muc-tieu/${page}`),
+		(page) => navigate(`/muc-tieu/chi-tiet/${page}`),
 		[navigate],
 	);
 	const handleClearValueForm = () => {

@@ -1,338 +1,199 @@
 // eslint-disable-next-line eslint-comments/disable-enable-pair
 /* eslint-disable react/prop-types */
 
-import React, { useCallback, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import classNames from 'classnames';
 import moment from 'moment';
+import { useToasts } from 'react-toast-notifications';
 import Page from '../../../layout/Page/Page';
 import PageWrapper from '../../../layout/PageWrapper/PageWrapper';
-import { demoPages } from '../../../menu';
 import Card, {
 	CardActions,
 	CardBody,
 	CardHeader,
 	CardLabel,
-	CardSubTitle,
 	CardTitle,
 } from '../../../components/bootstrap/Card';
+import Alert from '../../../components/bootstrap/Alert';
+import Badge from '../../../components/bootstrap/Badge';
+import Toasts from '../../../components/bootstrap/Toasts';
+import Icon from '../../../components/icon/Icon';
+import Avatar from '../../../components/Avatar';
+import { getUserDataWithId } from '../../../common/data/userDummyData';
+import useDarkMode from '../../../hooks/useDarkMode';
+import {
+	addNewTask,
+	deleteTaskById,
+	getAllTaksByMissionID,
+	getItemById,
+	updateTaskByID,
+} from './services';
+import {
+	calculateProgressMission,
+	calculateTotalFailSubTask,
+	calculateTotalSubTasksInTasks,
+} from '../../../utils/function';
+import Button from '../../../components/bootstrap/Button';
+import MissionAlertConfirm from './MissionAlertConfirm';
+import TaskFormModal from './TaskFormModal';
 import Dropdown, {
 	DropdownItem,
 	DropdownMenu,
 	DropdownToggle,
 } from '../../../components/bootstrap/Dropdown';
-import Alert from '../../../components/bootstrap/Alert';
-import Button from '../../../components/bootstrap/Button';
-import Badge from '../../../components/bootstrap/Badge';
-import Icon from '../../../components/icon/Icon';
-import Progress from '../../../components/bootstrap/Progress';
-import Chart from '../../../components/extras/Chart';
-import Avatar, { AvatarGroup } from '../../../components/Avatar';
-import USERS, { getUserDataWithId } from '../../../common/data/userDummyData';
-import dummyEventsData from '../../../common/data/dummyEventsData';
-import useDarkMode from '../../../hooks/useDarkMode';
-import { priceFormat } from '../../../helpers/helpers';
-import EVENT_STATUS from '../../../common/data/enumEventStatus';
-import COLORS from '../../../common/data/enumColors';
-
-const Item = ({
-	name,
-	teamName,
-	attachCount,
-	taskCount,
-	percent,
-	startTime,
-	endTime,
-	...props
-}) => {
-	const navigate = useNavigate();
-	const handleOnClickToProjectPage = useCallback(
-		() => navigate(`../${demoPages.quanLyCongViec.subMenu.chiTietCongViecPhongBan.path}`),
-		[navigate],
-	);
-	return (
-		<div className='col-md-6 col-xl-4 col-sm-12' {...props}>
-			<Card stretch onClick={handleOnClickToProjectPage} className='cursor-pointer'>
-				<CardHeader>
-					<CardLabel icon='Ballot'>
-						<CardTitle>{name}</CardTitle>
-						<CardSubTitle>{teamName}</CardSubTitle>
-					</CardLabel>
-				</CardHeader>
-				<CardBody>
-					<div className='d-flex align-items-center mb-3'>
-						<small
-							className='border rounded-1 text-success fw-bold px-2 py-1'
-							style={{ fontSize: 14 }}>
-							{startTime}
-						</small>
-						-
-						<small
-							className='border rounded-1 text-success fw-bold px-2 py-1'
-							style={{ fontSize: 14 }}>
-							{endTime}
-						</small>
-					</div>
-					<div className='row g-2 mb-3'>
-						<div className='col-auto'>
-							<Badge color='dark' isLight style={{ fontSize: 18 }}>
-								<Icon icon='TaskAlt' /> {taskCount}
-							</Badge>
-						</div>
-					</div>
-					<div className='row'>
-						<div className='col-md-6'>
-							{percent}%
-							<Progress isAutoColor value={percent} height={10} />
-						</div>
-						<div className='col-md-6 d-flex justify-content-end'>
-							<AvatarGroup>
-								<Avatar
-									srcSet={USERS.GRACE.srcSet}
-									src={USERS.GRACE.src}
-									userName={`${USERS.GRACE.name} ${USERS.GRACE.surname}`}
-									color={USERS.GRACE.color}
-								/>
-								<Avatar
-									srcSet={USERS.SAM.srcSet}
-									src={USERS.SAM.src}
-									userName={`${USERS.SAM.name} ${USERS.SAM.surname}`}
-									color={USERS.SAM.color}
-								/>
-								<Avatar
-									srcSet={USERS.CHLOE.srcSet}
-									src={USERS.CHLOE.src}
-									userName={`${USERS.CHLOE.name} ${USERS.CHLOE.surname}`}
-									color={USERS.CHLOE.color}
-								/>
-							</AvatarGroup>
-						</div>
-					</div>
-				</CardBody>
-			</Card>
-		</div>
-	);
-};
-const dataMissions = [
-	{
-		id: 1,
-		name: 'Mục tiêu 1',
-		description: 'Mô tả mục tiêu 1',
-		total_kpi_value: 1000,
-		progress: 60,
-		keys: [
-			{
-				name: 'Doanh thu',
-				value: '100,000,000 đ',
-			},
-			{
-				name: 'Đầu việc',
-				value: '100',
-			},
-			{
-				name: 'Giá trị KPI',
-				value: '1000',
-			},
-			{
-				name: 'Ngân sách',
-				value: '500,000,000 đ',
-			},
-			{
-				name: 'Đã chi',
-				value: '150,000,000 đ',
-			},
-		],
-		tasks: [
-			{
-				id: 1,
-				name: 'Công việc 1 - Mục tiêu 1',
-				description: 'Mô tả công việc 1 - Mục tiêu 1',
-				teamName: 'Phòng kinh doanh',
-				estimateTime: '16-07-2022 17:00',
-				startTime: '15-07-2022 08:00',
-				endTime: '16-07-2022 17:00',
-				kpi_value: 300,
-				status: 2,
-				priority: 1,
-			},
-			{
-				id: 2,
-				name: 'Công việc 2 - Mục tiêu 1',
-				description: 'Mô tả công việc 2 - Mục tiêu 1',
-				teamName: 'Phòng kinh doanh',
-				estimateTime: '20-07-2022 17:00',
-				startTime: '18-07-2022 08:00',
-				endTime: '20-07-2022 17:00',
-				kpi_value: 500,
-				status: 1,
-				priority: 1,
-			},
-			{
-				id: 3,
-				name: 'Công việc 3 - Mục tiêu 1',
-				description: 'Mô tả công việc 3 - Mục tiêu 1',
-				teamName: 'Phòng kinh doanh',
-				estimateTime: '20-07-2022 17:00',
-				startTime: '18-07-2022 08:00',
-				endTime: '20-07-2022 17:00',
-				kpi_value: 200,
-				status: 3,
-				priority: 3,
-			},
-			{
-				id: 4,
-				name: 'Công việc 4 - Mục tiêu 1',
-				description: 'Mô tả công việc 4 - Mục tiêu 1',
-				teamName: 'Phòng kinh doanh',
-				estimateTime: '20-07-2022 17:00',
-				startTime: '18-07-2022 08:00',
-				endTime: '20-07-2022 17:00',
-				kpi_value: 200,
-				status: 3,
-				priority: 3,
-			},
-		],
-	},
-	{
-		id: 2,
-		name: 'Mục tiêu 2',
-		description: 'Mô tả mục tiêu 2',
-		total_kpi_value: 1000,
-		progress: 20,
-		keys: [
-			{
-				name: 'Đầu việc',
-				value: '100',
-			},
-			{
-				name: 'Giá trị KPI',
-				value: '1000',
-			},
-		],
-	},
-	{
-		id: 3,
-		name: 'Mục tiêu 3',
-		description: 'Mô tả mục tiêu 3',
-		total_kpi_value: 1000,
-		progress: 80,
-		keys: [
-			{
-				name: 'Doanh thu',
-				value: '100,000,000 đ',
-			},
-			{
-				name: 'Đầu việc',
-				value: '100',
-			},
-			{
-				name: 'Giá trị KPI',
-				value: '1000',
-			},
-		],
-	},
-	{
-		id: 4,
-		name: 'Mục tiêu 4',
-		description: 'Mô tả mục tiêu 4',
-		total_kpi_value: 1000,
-		progress: 10,
-		keys: [
-			{
-				name: 'Số giờ',
-				value: '100h',
-			},
-			{
-				name: 'Đầu việc',
-				value: '100',
-			},
-			{
-				name: 'Giá trị KPI',
-				value: '1000',
-			},
-		],
-	},
-	{
-		id: 5,
-		name: 'Mục tiêu 5',
-		description: 'Mô tả mục tiêu 2',
-		total_kpi_value: 1000,
-		progress: 50,
-	},
-];
+import {
+	STATUS,
+	FORMAT_TASK_STATUS,
+	formatColorStatus,
+	formatColorPriority,
+} from '../../../utils/constants';
 
 const MissionDetailPage = () => {
 	const [mission, setMission] = useState({});
+	const [tasks, setTasks] = useState([]);
+	const [editModalStatus, setEditModalStatus] = useState(false);
+	const [openConfirmModal, setOpenConfirmModal] = useState(false);
+	const [itemEdit, setItemEdit] = useState({});
 	const params = useParams();
+	const { id } = params;
+
 	useEffect(() => {
-		setMission(dataMissions.filter((item) => item.id === parseInt(params?.id, 10))[0]);
-	}, [params?.id]);
+		async function fetchDataMissionByID() {
+			const response = await getItemById(id);
+			const result = await response.data;
+			setMission(result);
+		}
+		fetchDataMissionByID();
+	}, [id]);
 
-	const { darkModeStatus } = useDarkMode();
-	const data = getUserDataWithId(params?.id);
+	useEffect(() => {
+		async function fetchDataTaskByMissionID() {
+			const response = await getAllTaksByMissionID(id);
+			const result = await response.data;
+			setTasks(result);
+		}
+		fetchDataTaskByMissionID();
+	}, [id]);
 
-	const [dayHours] = useState({
-		series: [
+	const { themeStatus, darkModeStatus } = useDarkMode();
+	const { addToast } = useToasts();
+	const userData = getUserDataWithId(1);
+
+	const handleClearValueForm = () => {
+		setItemEdit({
+			id: null,
+			name: '',
+			description: '',
+			kpi_value: 0,
+			estimate_date: moment().add(0, 'days').format('YYYY-MM-DD'),
+			estimate_time: '08:00',
+			deadline_date: moment().add(0, 'days').format('YYYY-MM-DD'),
+			deadline_time: '08:00',
+			status: 0,
+		});
+	};
+
+	// confirm modal
+	const handleOpenConfirmModal = (item) => {
+		setOpenConfirmModal(true);
+		setItemEdit({ ...item });
+	};
+
+	const handleCloseConfirmModal = () => {
+		setOpenConfirmModal(false);
+		setItemEdit(null);
+	};
+
+	// show toast
+	const handleShowToast = (title, content) => {
+		addToast(
+			<Toasts title={title} icon='Check2Circle' iconColor='success' time='Now' isDismiss>
+				{content}
+			</Toasts>,
 			{
-				data: [8, 12, 15, 20, 15, 22, 9],
+				autoDismiss: true,
 			},
-		],
-		options: {
-			colors: [process.env.REACT_APP_SUCCESS_COLOR],
-			chart: {
-				type: 'radar',
-				width: 200,
-				height: 200,
-				sparkline: {
-					enabled: true,
-				},
-			},
-			xaxis: {
-				categories: [
-					'Monday',
-					'Tuesday',
-					'Wednesday',
-					'Thursday',
-					'Friday',
-					'Saturday',
-					'Sunday',
-				],
-				convertedCatToNumeric: false,
-			},
-			tooltip: {
-				theme: 'dark',
-				fixed: {
-					enabled: false,
-				},
-				x: {
-					show: true,
-				},
-				y: {
-					title: {
-						// eslint-disable-next-line no-unused-vars
-						formatter(seriesName) {
-							return 'Hours';
-						},
-					},
-				},
-			},
-			stroke: {
-				curve: 'smooth',
-				width: 2,
-			},
-			plotOptions: {
-				radar: {
-					polygons: {
-						strokeColors: `${COLORS.SUCCESS.code}50`,
-						strokeWidth: 1,
-						connectorColors: `${COLORS.SUCCESS.code}50`,
-					},
-				},
-			},
-		},
-	});
+		);
+	};
 
-	const userTasks = dummyEventsData.filter((f) => f.assigned.username === data.username);
+	const handleDeleteItem = async (taskId) => {
+		try {
+			await deleteTaskById(taskId);
+			const newState = [...tasks];
+			setTasks(newState.filter((item) => item.id !== taskId));
+			handleCloseConfirmModal();
+			handleShowToast(`Xoá mục tiêu`, `Xoá mục tiêu thành công!`);
+		} catch (error) {
+			handleCloseConfirmModal();
+			handleShowToast(`Xoá mục tiêu`, `Xoá mục tiêu không thành công!`);
+		}
+	};
+
+	// form modal
+	const handleOpenEditForm = (item) => {
+		setEditModalStatus(true);
+		setItemEdit({ ...item });
+	};
+
+	const handleCloseEditForm = () => {
+		setEditModalStatus(false);
+		setItemEdit(null);
+	};
+
+	const handleSubmitTaskForm = async (data) => {
+		if (data.id) {
+			try {
+				const response = await updateTaskByID(data);
+				const result = await response.data;
+				const newTasks = [...tasks];
+				setTasks(newTasks.map((item) => (item.id === data.id ? { ...result } : item)));
+				handleClearValueForm();
+				handleCloseEditForm();
+				handleShowToast(
+					`Cập nhật công việc!`,
+					`Công việc ${result.name} được cập nhật thành công!`,
+				);
+			} catch (error) {
+				setTasks(tasks);
+				handleShowToast(`Cập nhật công việc`, `Cập nhật công việc không thành công!`);
+			}
+		} else {
+			try {
+				const response = await addNewTask(data);
+				const result = await response.data;
+				const newTasks = [...tasks];
+				newTasks.push(result);
+				setTasks(newTasks);
+				handleClearValueForm();
+				handleCloseEditForm();
+				handleShowToast(`Thêm công việc`, `Công việc ${result.name} được thêm thành công!`);
+			} catch (error) {
+				setTasks(tasks);
+				handleShowToast(`Thêm công việc`, `Thêm công việc không thành công!`);
+			}
+		}
+	};
+
+	const handleUpdateStatus = async (status, data) => {
+		try {
+			const newData = { ...data };
+			newData.status = status;
+			const response = await updateTaskByID(newData);
+			const result = await response.data;
+			const newTasks = [...tasks];
+			setTasks(newTasks.map((item) => (item.id === data.id ? { ...result } : item)));
+			handleClearValueForm();
+			handleCloseEditForm();
+			handleShowToast(
+				`Cập nhật công việc!`,
+				`Công việc ${result.name} được cập nhật thành công!`,
+			);
+		} catch (error) {
+			setTasks(tasks);
+			handleShowToast(`Cập nhật công việc`, `Cập nhật công việc không thành công!`);
+		}
+	};
 
 	return (
 		<PageWrapper title={`${mission?.name}`}>
@@ -347,10 +208,10 @@ const MissionDetailPage = () => {
 								<div className='row g-5'>
 									<div className='col-12 d-flex justify-content-center'>
 										<Avatar
-											src={data.src}
-											srcSet={data.srcSet}
-											color={data.color}
-											isOnline={data.isOnline}
+											src={userData.src}
+											srcSet={userData.srcSet}
+											color={userData.color}
+											isOnline={userData.isOnline}
 										/>
 									</div>
 									<div className='col-12'>
@@ -362,7 +223,7 @@ const MissionDetailPage = () => {
 													</div>
 													<div className='flex-grow-1 ms-3'>
 														<div className='fw-bold fs-5 mb-0'>
-															{`${data.username}@site.com`}
+															{`${userData.username}@site.com`}
 														</div>
 														<div className='text-muted'>
 															Email Address
@@ -377,7 +238,7 @@ const MissionDetailPage = () => {
 													</div>
 													<div className='flex-grow-1 ms-3'>
 														<div className='fw-bold fs-5 mb-0'>
-															{`@${data.username}`}
+															{`@${userData.username}`}
 														</div>
 														<div className='text-muted'>
 															Social name
@@ -397,9 +258,9 @@ const MissionDetailPage = () => {
 								</CardLabel>
 							</CardHeader>
 							<CardBody>
-								{data.services ? (
+								{userData.services ? (
 									<div className='row g-2'>
-										{data?.services.map((service) => (
+										{userData?.services.map((service) => (
 											<div key={service.name} className='col-auto'>
 												<Badge
 													isLight
@@ -423,107 +284,11 @@ const MissionDetailPage = () => {
 												isLight
 												icon='Report'
 												className='mb-0'>
-												No results to show
+												Không có dữ liệu để hiển thị
 											</Alert>
 										</div>
 									</div>
 								)}
-							</CardBody>
-						</Card>
-						<Card>
-							<CardHeader>
-								<CardLabel icon='ShowChart' iconColor='secondary'>
-									<CardTitle>Chỉ số key</CardTitle>
-								</CardLabel>
-								<CardActions>
-									Only in <strong>{moment().format('MMM')}</strong>.
-								</CardActions>
-							</CardHeader>
-							<CardBody>
-								<div className='row g-4 align-items-center'>
-									<div className='col-xl-6'>
-										<div
-											className={classNames(
-												'd-flex align-items-center rounded-2 p-3',
-												{
-													'bg-l10-warning': !darkModeStatus,
-													'bg-lo25-warning': darkModeStatus,
-												},
-											)}>
-											<div className='flex-shrink-0'>
-												<Icon icon='DoneAll' size='3x' color='warning' />
-											</div>
-											<div className='flex-grow-1 ms-3'>
-												<div className='fw-bold fs-3 mb-0'>12345</div>
-												<div className='text-muted mt-n2 truncate-line-1'>
-													Đơn hàng
-												</div>
-											</div>
-										</div>
-									</div>
-									<div className='col-xl-6'>
-										<div
-											className={classNames(
-												'd-flex align-items-center rounded-2 p-3',
-												{
-													'bg-l10-info': !darkModeStatus,
-													'bg-lo25-info': darkModeStatus,
-												},
-											)}>
-											<div className='flex-shrink-0'>
-												<Icon icon='Savings' size='3x' color='info' />
-											</div>
-											<div className='flex-grow-1 ms-3'>
-												<div className='fw-bold fs-3 mb-0'>1,280 tỷ</div>
-												<div className='text-muted mt-n2 truncate-line-1'>
-													Doanh thu
-												</div>
-											</div>
-										</div>
-									</div>
-									<div className='col-xl-6'>
-										<div
-											className={classNames(
-												'd-flex align-items-center rounded-2 p-3',
-												{
-													'bg-l10-primary': !darkModeStatus,
-													'bg-lo25-primary': darkModeStatus,
-												},
-											)}>
-											<div className='flex-shrink-0'>
-												<Icon
-													icon='Celebration'
-													size='3x'
-													color='primary'
-												/>
-											</div>
-											<div className='flex-grow-1 ms-3'>
-												<div className='fw-bold fs-3 mb-0'>76</div>
-												<div className='text-muted mt-n2 truncate-line-1'>
-													Khách mời
-												</div>
-											</div>
-										</div>
-									</div>
-									<div className='col-xl-6'>
-										<div
-											className={classNames(
-												'd-flex align-items-center rounded-2 p-3',
-												{
-													'bg-l10-success': !darkModeStatus,
-													'bg-lo25-success': darkModeStatus,
-												},
-											)}>
-											<div className='flex-shrink-0'>
-												<Icon icon='Timer' size='3x' color='success' />
-											</div>
-											<div className='flex-grow-1 ms-3'>
-												<div className='fw-bold fs-3 mb-0'>427</div>
-												<div className='text-muted mt-n2'>Giờ làm việc</div>
-											</div>
-										</div>
-									</div>
-								</div>
 							</CardBody>
 						</Card>
 					</div>
@@ -538,7 +303,7 @@ const MissionDetailPage = () => {
 							</CardHeader>
 							<CardBody>
 								<div className='row g-4'>
-									<div className='col-md-6'>
+									<div className='col-md-5'>
 										<Card
 											className={`bg-l${
 												darkModeStatus ? 'o25' : '25'
@@ -564,15 +329,16 @@ const MissionDetailPage = () => {
 													</div>
 													<div className='flex-grow-1 ms-3'>
 														<div className='fw-bold fs-3 mb-0'>
-															70%
-															<span className='text-info fs-5 fw-bold ms-3'>
+															{calculateProgressMission(tasks)}%
+															{/* <span className='text-info fs-5 fw-bold ms-3'>
 																0
 																<Icon icon='TrendingFlat' />
-															</span>
+															</span> */}
 														</div>
 														<div className='text-muted'>
-															trên tổng số 200 công việc (5000 đầu
-															việc)
+															trên tổng số {tasks?.length} công việc (
+															{calculateTotalSubTasksInTasks(tasks)}{' '}
+															đầu việc)
 														</div>
 													</div>
 												</div>
@@ -603,65 +369,60 @@ const MissionDetailPage = () => {
 													</div>
 													<div className='flex-grow-1 ms-3'>
 														<div className='fw-bold fs-3 mb-0'>
-															61
-															<span className='text-danger fs-5 fw-bold ms-3'>
+															{calculateTotalFailSubTask(tasks)}
+															{/* <span className='text-danger fs-5 fw-bold ms-3'>
 																-50%
 																<Icon icon='TrendingDown' />
-															</span>
+															</span> */}
 														</div>
 														<div className='text-muted'>
-															Thuộc 6 công việc
+															Thuộc {tasks?.length} công việc
 														</div>
 													</div>
 												</div>
 											</CardBody>
 										</Card>
 									</div>
-									<div className='col-md-6'>
-										<Card
-											className={`bg-l${
-												darkModeStatus ? 'o25' : '25'
-											}-success bg-l${
-												darkModeStatus ? 'o50' : '10'
-											}-success-hover transition-base rounded-2 mb-0`}
-											stretch
-											shadow='sm'>
-											<CardHeader className='bg-transparent'>
-												<CardLabel>
-													<CardTitle tag='h4' className='h5'>
-														Báo cáo ngày
-													</CardTitle>
+									<div className='col-md-7'>
+										<Card>
+											<CardHeader>
+												<CardLabel icon='ShowChart' iconColor='secondary'>
+													<CardTitle>Chỉ số key</CardTitle>
 												</CardLabel>
 											</CardHeader>
-											<CardBody className='pt-0'>
-												<Chart
-													className='d-flex justify-content-center'
-													series={dayHours.series}
-													options={dayHours.options}
-													type={dayHours.options.chart.type}
-													height={dayHours.options.chart.height}
-													width={dayHours.options.chart.width}
-												/>
-												<div className='d-flex align-items-center pb-3'>
-													<div className='flex-shrink-0'>
-														<Icon
-															icon='Timer'
-															size='4x'
-															color='success'
-														/>
-													</div>
-													<div className='flex-grow-1 ms-3'>
-														<div className='fw-bold fs-3 mb-0'>
-															~22H
-															<span className='text-success fs-5 fw-bold ms-3'>
-																+12.5%
-																<Icon icon='TrendingUp' />
-															</span>
+											<CardBody>
+												<div className='row g-4 align-items-center'>
+													{mission?.keys?.map((item, index) => (
+														// eslint-disable-next-line react/no-array-index-key
+														<div className='col-xl-6' key={index}>
+															<div
+																className={classNames(
+																	'd-flex align-items-center rounded-2 p-3',
+																	{
+																		'bg-l10-warning':
+																			!darkModeStatus,
+																		'bg-lo25-warning':
+																			darkModeStatus,
+																	},
+																)}>
+																<div className='flex-shrink-0'>
+																	<Icon
+																		icon='DoneAll'
+																		size='3x'
+																		color='warning'
+																	/>
+																</div>
+																<div className='flex-grow-1 ms-3'>
+																	<div className='fw-bold fs-3 mb-0'>
+																		{item?.key_value}
+																	</div>
+																	<div className='text-muted mt-n2 truncate-line-1'>
+																		{item?.key_name}
+																	</div>
+																</div>
+															</div>
 														</div>
-														<div className='text-muted'>
-															Giờ làm việc đã được hoàn thành
-														</div>
-													</div>
+													))}
 												</div>
 											</CardBody>
 										</Card>
@@ -669,6 +430,8 @@ const MissionDetailPage = () => {
 								</div>
 							</CardBody>
 						</Card>
+					</div>
+					<div className='col-md-12'>
 						<Card>
 							<CardHeader>
 								<CardLabel icon='Task' iconColor='danger'>
@@ -676,145 +439,178 @@ const MissionDetailPage = () => {
 										<CardLabel>Danh sách công việc</CardLabel>
 									</CardTitle>
 								</CardLabel>
+								<CardActions>
+									<Button
+										color='info'
+										icon='Plus'
+										isLight
+										tag='button'
+										onClick={() => handleOpenEditForm(null)}>
+										Thêm công việc
+									</Button>
+								</CardActions>
 							</CardHeader>
 							<CardBody>
 								<div className='table-responsive'>
 									<table className='table table-modern mb-0'>
 										<thead>
 											<tr>
-												<th>Date / Time</th>
-												<th>Customer</th>
-												<th>Service</th>
-												<th>Duration</th>
-												<th>Payment</th>
-												<th>Status</th>
+												<th align='center'>STT</th>
+												<th align='center'>Tên công việc</th>
+												<th align='center'>Thời gian dự kiến</th>
+												<th align='center'>Thời hạn hoàn thành</th>
+												<th align='center'>Giá trị KPI</th>
+												<th align='center'>Độ ưu tiên</th>
+												<th align='center'>Trạng thái</th>
+												<th align='center'>Số đầu việc</th>
+												<td />
 											</tr>
 										</thead>
 										<tbody>
-											{userTasks.map((item) => (
+											{tasks?.map((item, index) => (
 												<tr key={item.id}>
+													<td>{index + 1}</td>
+													<td className='cursor-pointer'>
+														<Link
+															className='text-underline'
+															to={`/quan-ly-cong-viec/cong-viec/${item?.id}`}>
+															{item?.name}
+														</Link>
+													</td>
+													<td align='center'>
+														<div className='d-flex align-items-center'>
+															<span className='text-nowrap'>
+																{moment(
+																	`${item.estimate_date} ${item.estimate_time}`,
+																).format('DD-MM-YYYY, HH:mm')}
+															</span>
+														</div>
+													</td>
+													<td align='center'>
+														<div className='d-flex align-items-center'>
+															<span className='text-nowrap'>
+																{moment(
+																	`${item.deadline_date} ${item.deadline_time}`,
+																).format('DD-MM-YYYY, HH:mm')}
+															</span>
+														</div>
+													</td>
+													<td align='center'>{item?.kpi_value}</td>
 													<td>
 														<div className='d-flex align-items-center'>
 															<span
+																style={{
+																	paddingRight: '1rem',
+																	paddingLeft: '1rem',
+																}}
 																className={classNames(
 																	'badge',
-																	'border border-2 border-light',
-																	'rounded-circle',
+																	'border border-2',
+																	[`border-${themeStatus}`],
 																	'bg-success',
-																	'p-2 me-2',
-																	`bg-${item.status.color}`,
+																	'pt-2 pb-2 me-2',
+																	`bg-${formatColorPriority(
+																		item.priority,
+																	)}`,
 																)}>
-																<span className='visually-hidden'>
-																	{item.status.name}
-																</span>
-															</span>
-															<span className='text-nowrap'>
-																{moment(
-																	`${item.date} ${item.time}`,
-																).format('MMM Do YYYY, h:mm a')}
+																<span className=''>{`Cấp ${item.priority}`}</span>
 															</span>
 														</div>
-													</td>
-													<td>
-														<div>
-															<div>{item.customer.name}</div>
-															<div className='small text-muted'>
-																{item.customer.email}
-															</div>
-														</div>
-													</td>
-													<td>{item.service.name}</td>
-													<td>{item.duration}</td>
-													<td>
-														{item.payment && priceFormat(item.payment)}
 													</td>
 													<td>
 														<Dropdown>
 															<DropdownToggle hasIcon={false}>
 																<Button
 																	isLink
-																	color={item.status.color}
+																	color={formatColorStatus(
+																		item.status,
+																	)}
 																	icon='Circle'
 																	className='text-nowrap'>
-																	{item.status.name}
+																	{FORMAT_TASK_STATUS(
+																		item.status,
+																	)}
 																</Button>
 															</DropdownToggle>
 															<DropdownMenu>
-																{Object.keys(EVENT_STATUS).map(
-																	(key) => (
-																		<DropdownItem key={key}>
-																			<div>
-																				<Icon
-																					icon='Circle'
-																					color={
-																						EVENT_STATUS[
-																							key
-																						].color
-																					}
-																				/>
-																				{
-																					EVENT_STATUS[
-																						key
-																					].name
+																{Object.keys(STATUS).map((key) => (
+																	<DropdownItem
+																		key={key}
+																		onClick={() =>
+																			handleUpdateStatus(
+																				STATUS[key].value,
+																				item,
+																			)
+																		}>
+																		<div>
+																			<Icon
+																				icon='Circle'
+																				color={
+																					STATUS[key]
+																						.color
 																				}
-																			</div>
-																		</DropdownItem>
-																	),
-																)}
+																			/>
+																			{STATUS[key].name}
+																		</div>
+																	</DropdownItem>
+																))}
 															</DropdownMenu>
 														</Dropdown>
+													</td>
+													<td align='center'>
+														{item?.subtasks?.length || 0}
+													</td>
+													<td>
+														<Button
+															isOutline={!darkModeStatus}
+															color='success'
+															isLight={darkModeStatus}
+															className='text-nowrap mx-2'
+															icon='Edit'
+															onClick={() =>
+																handleOpenEditForm(item)
+															}>
+															Sửa
+														</Button>
+														<Button
+															isOutline={!darkModeStatus}
+															color='danger'
+															isLight={darkModeStatus}
+															className='text-nowrap mx-2'
+															icon='Trash'
+															onClick={() =>
+																handleOpenConfirmModal(item)
+															}>
+															Xoá
+														</Button>
 													</td>
 												</tr>
 											))}
 										</tbody>
 									</table>
 								</div>
-								{!userTasks.length && (
+								{!tasks?.length && (
 									<Alert color='warning' isLight icon='Report' className='mt-3'>
-										There is no scheduled and assigned task.
+										Không có công việc thuộc mục tiêu này!
 									</Alert>
 								)}
 							</CardBody>
 						</Card>
 					</div>
 				</div>
-				<div className='row mt-3'>
-					<div className='col-6'>
-						<div className='display-6 fw-bold py-3'>Danh sách công việc</div>
-					</div>
-					<div className='col-md-6 col-xl-6 col-sm-6'>
-						<div className='w-100 h-100 d-flex align-items-center justify-content-end'>
-							<Button
-								color='success'
-								size='lg'
-								isLight
-								className='w-50 h-100'
-								icon='AddCircle'
-								// onClick={handleUpcomingEdit}
-							>
-								Thêm công việc
-							</Button>
-						</div>
-					</div>
-				</div>
-				<div className='row mt-3'>
-					{mission?.tasks?.map((item, index) => {
-						return (
-							<Item
-								// eslint-disable-next-line react/no-array-index-key
-								key={index}
-								name={item.name}
-								teamName={item.teamName}
-								startTime={`${item.startTime}`}
-								endTime={`${item.endTime}`}
-								attachCount={6}
-								taskCount={24}
-								percent={65}
-								data-tour='project-item'
-							/>
-						);
-					})}
-				</div>
+				<MissionAlertConfirm
+					openModal={openConfirmModal}
+					onCloseModal={handleCloseConfirmModal}
+					onConfirm={() => handleDeleteItem(itemEdit?.id)}
+					title='Xoá công việc'
+					content={`Xác nhận xoá công việc <strong>${itemEdit?.name}</strong> ?`}
+				/>
+				<TaskFormModal
+					show={editModalStatus}
+					onClose={handleCloseEditForm}
+					onSubmit={handleSubmitTaskForm}
+					item={itemEdit}
+				/>
 			</Page>
 		</PageWrapper>
 	);

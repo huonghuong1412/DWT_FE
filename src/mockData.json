@@ -182,16 +182,34 @@
     {
       "id": 1,
       "mission_id": 1,
-      "departmnents": [
-        {
-          "id": 2,
-          "name": "Phòng Kinh doanh"
-        }
-      ],
-      "user": [
+      "department": {
+        "id": 2,
+        "name": "Phòng Kinh doanh"
+      },
+      "departments_related": [
         {
           "id": 1,
-          "name": "Nhân viên 1"
+          "name": "Phòng Marketing",
+          "slug": "mkt"
+        },
+        {
+          "id": 3,
+          "name": "Phòng Cung ứng",
+          "slug": "supply"
+        }
+      ],
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "users_related": [
+        {
+          "id": 2,
+          "name": "Nhân viên 2"
+        },
+        {
+          "id": 3,
+          "name": "Nhân viên 3"
         }
       ],
       "name": "Công việc 1 - Nhiệm vụ 1",
@@ -214,16 +232,34 @@
         {
           "id": 1,
           "task_id": 1,
-          "departmnents": [
-            {
-              "id": 2,
-              "name": "Phòng Kinh doanh"
-            }
-          ],
-          "user": [
+          "department": {
+            "id": 2,
+            "name": "Phòng Kinh doanh"
+          },
+          "departments_related": [
             {
               "id": 1,
-              "name": "Nhân viên 1"
+              "name": "Phòng Marketing",
+              "slug": "mkt"
+            },
+            {
+              "id": 3,
+              "name": "Phòng Cung ứng",
+              "slug": "supply"
+            }
+          ],
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "users_related": [
+            {
+              "id": 2,
+              "name": "Nhân viên 2"
+            },
+            {
+              "id": 3,
+              "name": "Nhân viên 3"
             }
           ],
           "name": "Đầu việc 1 - Công việc 1 - Nhiệm vụ 1",
@@ -259,16 +295,34 @@
         {
           "id": 2,
           "task_id": 1,
-          "departmnents": [
-            {
-              "id": 2,
-              "name": "Phòng Kinh doanh"
-            }
-          ],
-          "user": [
+          "department": {
+            "id": 2,
+            "name": "Phòng Kinh doanh"
+          },
+          "departments_related": [
             {
               "id": 1,
-              "name": "Nhân viên 1"
+              "name": "Phòng Marketing",
+              "slug": "mkt"
+            },
+            {
+              "id": 3,
+              "name": "Phòng Cung ứng",
+              "slug": "supply"
+            }
+          ],
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "users_related": [
+            {
+              "id": 2,
+              "name": "Nhân viên 2"
+            },
+            {
+              "id": 3,
+              "name": "Nhân viên 3"
             }
           ],
           "name": "Đầu việc 2 - Công việc 1 - Nhiệm vụ 1",
@@ -293,26 +347,39 @@
             }
           ]
         }
-      ],
-      "departments": [
-        {
-          "id": 1,
-          "name": "Phòng Marketing",
-          "slug": "mkt"
-        }
       ]
     },
     {
       "id": 2,
       "mission_id": 2,
-      "departmnent": {
-        "id": 1,
-        "name": "Phòng Marketing"
+      "department": {
+        "id": 2,
+        "name": "Phòng Kinh doanh"
       },
-      "user": [
+      "departments_related": [
         {
           "id": 1,
-          "name": "Nhân viên 1"
+          "name": "Phòng Marketing",
+          "slug": "mkt"
+        },
+        {
+          "id": 3,
+          "name": "Phòng Cung ứng",
+          "slug": "supply"
+        }
+      ],
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "users_related": [
+        {
+          "id": 2,
+          "name": "Nhân viên 2"
+        },
+        {
+          "id": 3,
+          "name": "Nhân viên 3"
         }
       ],
       "name": "Công việc 1 - Nhiệm vụ 2",
@@ -330,16 +397,34 @@
         {
           "id": 1,
           "task_id": 2,
-          "departmnent": [
-            {
-              "id": 2,
-              "name": "Phòng Kinh doanh"
-            }
-          ],
-          "user": [
+          "department": {
+            "id": 2,
+            "name": "Phòng Kinh doanh"
+          },
+          "departments_related": [
             {
               "id": 1,
-              "name": "Nhân viên 1"
+              "name": "Phòng Marketing",
+              "slug": "mkt"
+            },
+            {
+              "id": 3,
+              "name": "Phòng Cung ứng",
+              "slug": "supply"
+            }
+          ],
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "users_related": [
+            {
+              "id": 2,
+              "name": "Nhân viên 2"
+            },
+            {
+              "id": 3,
+              "name": "Nhân viên 3"
             }
           ],
           "name": "Đầu việc 1 - Công việc 1 - Nhiệm vụ 2",
@@ -375,16 +460,34 @@
         {
           "id": 2,
           "task_id": 2,
-          "departmnent": [
-            {
-              "id": 2,
-              "name": "Phòng Kinh doanh"
-            }
-          ],
-          "user": [
+          "department": {
+            "id": 2,
+            "name": "Phòng Kinh doanh"
+          },
+          "departments_related": [
             {
               "id": 1,
-              "name": "Nhân viên 1"
+              "name": "Phòng Marketing",
+              "slug": "mkt"
+            },
+            {
+              "id": 3,
+              "name": "Phòng Cung ứng",
+              "slug": "supply"
+            }
+          ],
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "users_related": [
+            {
+              "id": 2,
+              "name": "Nhân viên 2"
+            },
+            {
+              "id": 3,
+              "name": "Nhân viên 3"
             }
           ],
           "name": "Đầu việc 2 - Công việc 1 - Nhiệm vụ 2",
@@ -420,16 +523,34 @@
         {
           "id": 3,
           "task_id": 2,
-          "departmnent": [
-            {
-              "id": 2,
-              "name": "Phòng Kinh doanh"
-            }
-          ],
-          "user": [
+          "department": {
+            "id": 2,
+            "name": "Phòng Kinh doanh"
+          },
+          "departments_related": [
             {
               "id": 1,
-              "name": "Nhân viên 1"
+              "name": "Phòng Marketing",
+              "slug": "mkt"
+            },
+            {
+              "id": 3,
+              "name": "Phòng Cung ứng",
+              "slug": "supply"
+            }
+          ],
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "users_related": [
+            {
+              "id": 2,
+              "name": "Nhân viên 2"
+            },
+            {
+              "id": 3,
+              "name": "Nhân viên 3"
             }
           ],
           "name": "Đầu việc 3 - Công việc 1 - Nhiệm vụ 2",
@@ -467,16 +588,34 @@
     {
       "id": 3,
       "mission_id": 1,
-      "departmnents": [
-        {
-          "id": 2,
-          "name": "Phòng Kinh doanh"
-        }
-      ],
-      "user": [
+      "department": {
+        "id": 2,
+        "name": "Phòng Kinh doanh"
+      },
+      "departments_related": [
         {
           "id": 1,
-          "name": "Nhân viên 1"
+          "name": "Phòng Marketing",
+          "slug": "mkt"
+        },
+        {
+          "id": 3,
+          "name": "Phòng Cung ứng",
+          "slug": "supply"
+        }
+      ],
+      "user": {
+        "id": 1,
+        "name": "Nhân viên 1"
+      },
+      "users_related": [
+        {
+          "id": 2,
+          "name": "Nhân viên 2"
+        },
+        {
+          "id": 3,
+          "name": "Nhân viên 3"
         }
       ],
       "name": "Công việc 2 - Nhiệm vụ 1",
@@ -498,16 +637,34 @@
         {
           "id": 1,
           "task_id": 1,
-          "departmnents": [
-            {
-              "id": 2,
-              "name": "Phòng Kinh doanh"
-            }
-          ],
-          "user": [
+          "department": {
+            "id": 2,
+            "name": "Phòng Kinh doanh"
+          },
+          "departments_related": [
             {
               "id": 1,
-              "name": "Nhân viên 1"
+              "name": "Phòng Marketing",
+              "slug": "mkt"
+            },
+            {
+              "id": 3,
+              "name": "Phòng Cung ứng",
+              "slug": "supply"
+            }
+          ],
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "users_related": [
+            {
+              "id": 2,
+              "name": "Nhân viên 2"
+            },
+            {
+              "id": 3,
+              "name": "Nhân viên 3"
             }
           ],
           "name": "Đầu việc 1 - Công việc 1 - Nhiệm vụ 1",
@@ -543,16 +700,34 @@
         {
           "id": 2,
           "task_id": 1,
-          "departmnents": [
-            {
-              "id": 2,
-              "name": "Phòng Kinh doanh"
-            }
-          ],
-          "user": [
+          "department": {
+            "id": 2,
+            "name": "Phòng Kinh doanh"
+          },
+          "departments_related": [
             {
               "id": 1,
-              "name": "Nhân viên 1"
+              "name": "Phòng Marketing",
+              "slug": "mkt"
+            },
+            {
+              "id": 3,
+              "name": "Phòng Cung ứng",
+              "slug": "supply"
+            }
+          ],
+          "user": {
+            "id": 1,
+            "name": "Nhân viên 1"
+          },
+          "users_related": [
+            {
+              "id": 2,
+              "name": "Nhân viên 2"
+            },
+            {
+              "id": 3,
+              "name": "Nhân viên 3"
             }
           ],
           "name": "Đầu việc 2 - Công việc 1 - Nhiệm vụ 1",
@@ -576,13 +751,6 @@
               "status": 1
             }
           ]
-        }
-      ],
-      "departments": [
-        {
-          "id": 1,
-          "name": "Phòng Marketing",
-          "slug": "mkt"
         }
       ]
     }

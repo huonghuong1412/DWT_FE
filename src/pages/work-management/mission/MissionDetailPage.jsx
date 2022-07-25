@@ -16,11 +16,8 @@ import Card, {
 	CardTitle,
 } from '../../../components/bootstrap/Card';
 import Alert from '../../../components/bootstrap/Alert';
-import Badge from '../../../components/bootstrap/Badge';
 import Toasts from '../../../components/bootstrap/Toasts';
 import Icon from '../../../components/icon/Icon';
-import Avatar from '../../../components/Avatar';
-import { getUserDataWithId } from '../../../common/data/userDummyData';
 import useDarkMode from '../../../hooks/useDarkMode';
 import {
 	addNewTask,
@@ -78,7 +75,6 @@ const MissionDetailPage = () => {
 
 	const { themeStatus, darkModeStatus } = useDarkMode();
 	const { addToast } = useToasts();
-	const userData = getUserDataWithId(1);
 
 	const handleClearValueForm = () => {
 		setItemEdit({
@@ -198,102 +194,50 @@ const MissionDetailPage = () => {
 	return (
 		<PageWrapper title={`${mission?.name}`}>
 			<Page container='fluid'>
-				<div className='row'>
+				<div className='row mb-4 pb-4'>
 					<div className='col-12'>
 						<div className='display-4 fw-bold py-3'>{mission?.name}</div>
 					</div>
-					<div className='col-lg-4'>
-						<Card className='shadow-3d-info'>
+					<div className='col-lg-4 mt-4'>
+						<Card className='shadow-3d-info h-100'>
 							<CardBody>
 								<div className='row g-5'>
 									<div className='col-12 d-flex justify-content-center'>
-										<Avatar
-											src={userData.src}
-											srcSet={userData.srcSet}
-											color={userData.color}
-											isOnline={userData.isOnline}
-										/>
+										<h2 className='mb-0 fw-bold'>Phòng ban phụ trách</h2>
 									</div>
 									<div className='col-12'>
 										<div className='row g-2'>
-											<div className='col-12'>
-												<div className='d-flex align-items-center'>
-													<div className='flex-shrink-0'>
-														<Icon icon='Mail' size='3x' color='info' />
-													</div>
-													<div className='flex-grow-1 ms-3'>
-														<div className='fw-bold fs-5 mb-0'>
-															{`${userData.username}@site.com`}
+											{mission?.departments?.map((department) => (
+												<div className='col-12 mb-4' key={department.id}>
+													<div className='d-flex align-items-center'>
+														<div className='flex-shrink-0'>
+															<Icon
+																icon='LayoutTextWindow'
+																size='3x'
+																color='info'
+															/>
 														</div>
-														<div className='text-muted'>
-															Email Address
-														</div>
-													</div>
-												</div>
-											</div>
-											<div className='col-12'>
-												<div className='d-flex align-items-center'>
-													<div className='flex-shrink-0'>
-														<Icon icon='Tag' size='3x' color='info' />
-													</div>
-													<div className='flex-grow-1 ms-3'>
-														<div className='fw-bold fs-5 mb-0'>
-															{`@${userData.username}`}
-														</div>
-														<div className='text-muted'>
-															Social name
+														<div className='flex-grow-1 ms-3'>
+															<div className='fw-bold fs-5 mb-0'>
+																{department.name}
+															</div>
+															<div
+																className='text-muted'
+																style={{ fontSize: 14 }}>
+																{department.slug}
+															</div>
 														</div>
 													</div>
 												</div>
-											</div>
+											))}
 										</div>
 									</div>
 								</div>
 							</CardBody>
 						</Card>
-						<Card>
-							<CardHeader>
-								<CardLabel icon='Stream' iconColor='warning'>
-									<CardTitle>Skill</CardTitle>
-								</CardLabel>
-							</CardHeader>
-							<CardBody>
-								{userData.services ? (
-									<div className='row g-2'>
-										{userData?.services.map((service) => (
-											<div key={service.name} className='col-auto'>
-												<Badge
-													isLight
-													color={service.color}
-													className='px-3 py-2'>
-													<Icon
-														icon={service.icon}
-														size='lg'
-														className='me-1'
-													/>
-													{service.name}
-												</Badge>
-											</div>
-										))}
-									</div>
-								) : (
-									<div className='row'>
-										<div className='col'>
-											<Alert
-												color='warning'
-												isLight
-												icon='Report'
-												className='mb-0'>
-												Không có dữ liệu để hiển thị
-											</Alert>
-										</div>
-									</div>
-								)}
-							</CardBody>
-						</Card>
 					</div>
-					<div className='col-lg-8'>
-						<Card className='shadow-3d-primary'>
+					<div className='col-lg-8 mt-4'>
+						<Card className='shadow-3d-primary h-100'>
 							<CardHeader>
 								<CardLabel icon='Summarize' iconColor='success'>
 									<CardTitle tag='h4' className='h5'>
@@ -330,12 +274,10 @@ const MissionDetailPage = () => {
 													<div className='flex-grow-1 ms-3'>
 														<div className='fw-bold fs-3 mb-0'>
 															{calculateProgressMission(tasks)}%
-															{/* <span className='text-info fs-5 fw-bold ms-3'>
-																0
-																<Icon icon='TrendingFlat' />
-															</span> */}
 														</div>
-														<div className='text-muted'>
+														<div
+															className='text-muted'
+															style={{ fontSize: 15 }}>
 															trên tổng số {tasks?.length} công việc (
 															{calculateTotalSubTasksInTasks(tasks)}{' '}
 															đầu việc)
@@ -370,12 +312,10 @@ const MissionDetailPage = () => {
 													<div className='flex-grow-1 ms-3'>
 														<div className='fw-bold fs-3 mb-0'>
 															{calculateTotalFailSubTask(tasks)}
-															{/* <span className='text-danger fs-5 fw-bold ms-3'>
-																-50%
-																<Icon icon='TrendingDown' />
-															</span> */}
 														</div>
-														<div className='text-muted'>
+														<div
+															className='text-muted'
+															style={{ fontSize: 15 }}>
 															Thuộc {tasks?.length} công việc
 														</div>
 													</div>
@@ -384,8 +324,12 @@ const MissionDetailPage = () => {
 										</Card>
 									</div>
 									<div className='col-md-7'>
-										<Card>
-											<CardHeader>
+										<Card
+											className={`h-100 bg-l${
+												darkModeStatus ? 'o25' : '25'
+											}-info transition-base rounded-2 mb-0`}
+											shadow='sm'>
+											<CardHeader className='bg-transparent'>
 												<CardLabel icon='ShowChart' iconColor='secondary'>
 													<CardTitle>Chỉ số key</CardTitle>
 												</CardLabel>
@@ -397,13 +341,7 @@ const MissionDetailPage = () => {
 														<div className='col-xl-6' key={index}>
 															<div
 																className={classNames(
-																	'd-flex align-items-center rounded-2 p-3',
-																	{
-																		'bg-l10-warning':
-																			!darkModeStatus,
-																		'bg-lo25-warning':
-																			darkModeStatus,
-																	},
+																	'd-flex align-items-center rounded-2 p-3 bg-l25-light',
 																)}>
 																<div className='flex-shrink-0'>
 																	<Icon
@@ -416,7 +354,9 @@ const MissionDetailPage = () => {
 																	<div className='fw-bold fs-3 mb-0'>
 																		{item?.key_value}
 																	</div>
-																	<div className='text-muted mt-n2 truncate-line-1'>
+																	<div
+																		className='text-muted mt-n2 truncate-line-1'
+																		style={{ fontSize: 14 }}>
 																		{item?.key_name}
 																	</div>
 																</div>
@@ -431,8 +371,8 @@ const MissionDetailPage = () => {
 							</CardBody>
 						</Card>
 					</div>
-					<div className='col-md-12'>
-						<Card>
+					<div className='col-md-12 mt-4 pt-4'>
+						<Card style={{ minHeight: '60vh' }}>
 							<CardHeader>
 								<CardLabel icon='Task' iconColor='danger'>
 									<CardTitle>
@@ -443,152 +383,144 @@ const MissionDetailPage = () => {
 									<Button
 										color='info'
 										icon='Plus'
-										isLight
 										tag='button'
 										onClick={() => handleOpenEditForm(null)}>
 										Thêm công việc
 									</Button>
 								</CardActions>
 							</CardHeader>
-							<CardBody>
-								<div className='table-responsive'>
-									<table className='table table-modern mb-0'>
-										<thead>
-											<tr>
-												<th align='center'>STT</th>
-												<th align='center'>Tên công việc</th>
-												<th align='center'>Thời gian dự kiến</th>
-												<th align='center'>Thời hạn hoàn thành</th>
-												<th align='center'>Giá trị KPI</th>
-												<th align='center'>Độ ưu tiên</th>
-												<th align='center'>Trạng thái</th>
-												<th align='center'>Số đầu việc</th>
-												<td />
+							<CardBody className='table-responsive'>
+								<table className='table table-modern mb-0' style={{ fontSize: 14 }}>
+									<thead>
+										<tr>
+											<th align='center'>STT</th>
+											<th align='center'>Tên công việc</th>
+											<th align='center'>Thời gian dự kiến</th>
+											<th align='center'>Thời hạn hoàn thành</th>
+											<th align='center'>Giá trị KPI</th>
+											<th align='center'>Độ ưu tiên</th>
+											<th align='center'>Trạng thái</th>
+											<th align='center'>Số đầu việc</th>
+											<td />
+										</tr>
+									</thead>
+									<tbody>
+										{tasks?.map((item, index) => (
+											<tr key={item.id}>
+												<td>{index + 1}</td>
+												<td className='cursor-pointer'>
+													<Link
+														className='text-underline'
+														to={`/quan-ly-cong-viec/cong-viec/${item?.id}`}>
+														{item?.name}
+													</Link>
+												</td>
+												<td align='center'>
+													<div className='d-flex align-items-center'>
+														<span className='text-nowrap'>
+															{moment(
+																`${item.estimate_date} ${item.estimate_time}`,
+															).format('DD-MM-YYYY, HH:mm')}
+														</span>
+													</div>
+												</td>
+												<td align='center'>
+													<div className='d-flex align-items-center'>
+														<span className='text-nowrap'>
+															{moment(
+																`${item.deadline_date} ${item.deadline_time}`,
+															).format('DD-MM-YYYY, HH:mm')}
+														</span>
+													</div>
+												</td>
+												<td align='center'>{item?.kpi_value}</td>
+												<td>
+													<div className='d-flex align-items-center'>
+														<span
+															style={{
+																paddingRight: '1rem',
+																paddingLeft: '1rem',
+															}}
+															className={classNames(
+																'badge',
+																'border border-2',
+																[`border-${themeStatus}`],
+																'bg-success',
+																'pt-2 pb-2 me-2',
+																`bg-${formatColorPriority(
+																	item.priority,
+																)}`,
+															)}>
+															<span className=''>{`Cấp ${item.priority}`}</span>
+														</span>
+													</div>
+												</td>
+												<td>
+													<Dropdown>
+														<DropdownToggle hasIcon={false}>
+															<Button
+																isLink
+																color={formatColorStatus(
+																	item.status,
+																)}
+																icon='Circle'
+																className='text-nowrap'>
+																{FORMAT_TASK_STATUS(item.status)}
+															</Button>
+														</DropdownToggle>
+														<DropdownMenu>
+															{Object.keys(STATUS).map((key) => (
+																<DropdownItem
+																	key={key}
+																	onClick={() =>
+																		handleUpdateStatus(
+																			STATUS[key].value,
+																			item,
+																		)
+																	}>
+																	<div>
+																		<Icon
+																			icon='Circle'
+																			color={
+																				STATUS[key].color
+																			}
+																		/>
+																		{STATUS[key].name}
+																	</div>
+																</DropdownItem>
+															))}
+														</DropdownMenu>
+													</Dropdown>
+												</td>
+												<td align='center'>
+													{item?.subtasks?.length || 0}
+												</td>
+												<td>
+													<Button
+														isOutline={!darkModeStatus}
+														color='success'
+														isLight={darkModeStatus}
+														className='text-nowrap mx-2'
+														icon='Edit'
+														onClick={() => handleOpenEditForm(item)}>
+														Sửa
+													</Button>
+													<Button
+														isOutline={!darkModeStatus}
+														color='danger'
+														isLight={darkModeStatus}
+														className='text-nowrap mx-2'
+														icon='Trash'
+														onClick={() =>
+															handleOpenConfirmModal(item)
+														}>
+														Xoá
+													</Button>
+												</td>
 											</tr>
-										</thead>
-										<tbody>
-											{tasks?.map((item, index) => (
-												<tr key={item.id}>
-													<td>{index + 1}</td>
-													<td className='cursor-pointer'>
-														<Link
-															className='text-underline'
-															to={`/quan-ly-cong-viec/cong-viec/${item?.id}`}>
-															{item?.name}
-														</Link>
-													</td>
-													<td align='center'>
-														<div className='d-flex align-items-center'>
-															<span className='text-nowrap'>
-																{moment(
-																	`${item.estimate_date} ${item.estimate_time}`,
-																).format('DD-MM-YYYY, HH:mm')}
-															</span>
-														</div>
-													</td>
-													<td align='center'>
-														<div className='d-flex align-items-center'>
-															<span className='text-nowrap'>
-																{moment(
-																	`${item.deadline_date} ${item.deadline_time}`,
-																).format('DD-MM-YYYY, HH:mm')}
-															</span>
-														</div>
-													</td>
-													<td align='center'>{item?.kpi_value}</td>
-													<td>
-														<div className='d-flex align-items-center'>
-															<span
-																style={{
-																	paddingRight: '1rem',
-																	paddingLeft: '1rem',
-																}}
-																className={classNames(
-																	'badge',
-																	'border border-2',
-																	[`border-${themeStatus}`],
-																	'bg-success',
-																	'pt-2 pb-2 me-2',
-																	`bg-${formatColorPriority(
-																		item.priority,
-																	)}`,
-																)}>
-																<span className=''>{`Cấp ${item.priority}`}</span>
-															</span>
-														</div>
-													</td>
-													<td>
-														<Dropdown>
-															<DropdownToggle hasIcon={false}>
-																<Button
-																	isLink
-																	color={formatColorStatus(
-																		item.status,
-																	)}
-																	icon='Circle'
-																	className='text-nowrap'>
-																	{FORMAT_TASK_STATUS(
-																		item.status,
-																	)}
-																</Button>
-															</DropdownToggle>
-															<DropdownMenu>
-																{Object.keys(STATUS).map((key) => (
-																	<DropdownItem
-																		key={key}
-																		onClick={() =>
-																			handleUpdateStatus(
-																				STATUS[key].value,
-																				item,
-																			)
-																		}>
-																		<div>
-																			<Icon
-																				icon='Circle'
-																				color={
-																					STATUS[key]
-																						.color
-																				}
-																			/>
-																			{STATUS[key].name}
-																		</div>
-																	</DropdownItem>
-																))}
-															</DropdownMenu>
-														</Dropdown>
-													</td>
-													<td align='center'>
-														{item?.subtasks?.length || 0}
-													</td>
-													<td>
-														<Button
-															isOutline={!darkModeStatus}
-															color='success'
-															isLight={darkModeStatus}
-															className='text-nowrap mx-2'
-															icon='Edit'
-															onClick={() =>
-																handleOpenEditForm(item)
-															}>
-															Sửa
-														</Button>
-														<Button
-															isOutline={!darkModeStatus}
-															color='danger'
-															isLight={darkModeStatus}
-															className='text-nowrap mx-2'
-															icon='Trash'
-															onClick={() =>
-																handleOpenConfirmModal(item)
-															}>
-															Xoá
-														</Button>
-													</td>
-												</tr>
-											))}
-										</tbody>
-									</table>
-								</div>
+										))}
+									</tbody>
+								</table>
 								{!tasks?.length && (
 									<Alert color='warning' isLight icon='Report' className='mt-3'>
 										Không có công việc thuộc mục tiêu này!

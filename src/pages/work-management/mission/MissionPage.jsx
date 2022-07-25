@@ -137,7 +137,7 @@ const MissionPage = () => {
 		setItemEdit({
 			name: '',
 			description: '',
-			kpi_value: 0,
+			kpi_value: '',
 			start_time: moment().add(0, 'days').format('YYYY-MM-DD'),
 			end_time: moment().add(0, 'days').format('YYYY-MM-DD'),
 			status: 1,
@@ -159,8 +159,7 @@ const MissionPage = () => {
 		try {
 			await deleteItemById(id);
 			const newState = [...missions];
-			newState.filter((item) => item.id !== id);
-			setMissions(newState);
+			setMissions(newState.filter((item) => item.id !== id));
 			handleCloseConfirmModal();
 			handleShowToast(`Xoá mục tiêu`, `Xoá mục tiêu thành công!`);
 		} catch (error) {
